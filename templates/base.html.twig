@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>{% block title %}{% endblock %} - LevantLesBras.fr</title>
+    <meta name="keywords" content="HTML5 Template"/>
+    <meta name="description" content="Vertex - Responsive HTML5 Template">
+    <meta name="author" content="bootstraptemplates.net">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="shortcut icon" href="{{ asset('img/favicon.png') }}" type="image/x-icon"/>
+    <link rel="apple-touch-icon" href="{{ asset('img/apple-touch-icon.png') }}">
+
+    {% block stylesheets %}
+
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,700|Cabin:400,600,700" rel="stylesheet">
+
+        <!-- Vendor CSS -->
+        <link rel="stylesheet" href="{{ asset('vendor/tether/tether.min.css') }}"/>
+        <link rel="stylesheet" href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/fonts/vertex-icons.css') }}"/>
+        <link rel="stylesheet" href="{{ asset('vendor/font-awesome/css/font-awesome.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('vendor/bootstrap/css/glyphicon.css') }}"/>
+        <link rel="stylesheet" href="{{ asset('vendor/ion-icons/css/ionicons.min.css') }}"/>
+        <link rel="stylesheet" href="{{ asset('vendor/owl-carousel/owl.theme.css') }}"/>
+        <link rel="stylesheet" href="{{ asset('vendor/owl-carousel/owl.carousel.css') }}"/>
+        <link rel="stylesheet" href="{{ asset('vendor/magnific-popup/magnific-popup.css') }}"/>
+        <link rel="stylesheet" href="{{ asset('vendor/lite-tooltip/css/litetooltip.css') }}"/>
+
+        <!-- Theme CSS -->
+        <link href="{{ asset('css/main.css') }}" rel="stylesheet"/>
+        <link href="{{ asset('css/main-shortcodes.css') }}" rel="stylesheet"/>
+        <link href="{{ asset('css/header.css') }}" rel="stylesheet"/>
+        <link href="{{ asset('css/form-element.css') }}" rel="stylesheet"/>
+        <link href="{{ asset('css/animation.css') }}" rel="stylesheet"/>
+        <link href="{{ asset('css/streamline-icon.css') }}" rel="stylesheet"/>
+        <link href="{{ asset('css/font-icons.css') }}" rel="stylesheet"/>
+        <link href="{{ asset('css/responsive.css') }}" rel="stylesheet"/>
+        <link href="{{ asset('css/utilities.css') }}" rel="stylesheet"/>
+        <link href="{{ asset('css/skins/default.css') }}" rel="stylesheet"/>
+
+
+        <!-- Current Page CSS -->
+        <link rel="stylesheet" href="{{ asset('vendor/rs-plugin/css/settings.css') }}">
+        <link rel="stylesheet" href="{{ asset('vendor/rs-plugin/css/layers.css') }}">
+        <link rel="stylesheet" href="{{ asset('vendor/rs-plugin/css/navigation.css') }}">
+
+        <!-- Theme Custom CSS -->
+        <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
+
+        <!-- Style Swicher -->
+        <link href="{{ asset('vendor/style-switcher/style-switcher.css') }}" rel="stylesheet"/>
+        <link href="{{ asset('vendor/style-switcher/bootstrap-colorpicker/css/bootstrap-colorpicker.css') }}" rel="stylesheet"/>
+    {% endblock %}
+</head>
+
+<body>
+{% block body %}{% endblock %}
+
+
+{% block javascripts %}
+    <!-- Vendor -->
+    <script src="{{ asset('vendor/jquery/jquery.js') }}"></script>
+    <script src="{{ asset('vendor/jquery/jquery.nav.js') }}"></script>
+    <script src="{{ asset('vendor/jquery/jquery.validate.js') }}"></script>
+    <script src="{{ asset('vendor/jquery.appear/jquery.appear.min.js') }}"></script>
+    <script src="{{ asset('vendor/jquery.easing/jquery.easing.min.js') }}"></script>
+    <script src="{{ asset('vendor/jquery-cookie/jquery-cookie.min.js') }}"></script>
+    <script src="{{ asset('vendor/magnific-popup/jquery.magnific-popup.js') }}"></script>
+    <script src="{{ asset('vendor/modernizr/modernizr.min.js') }}"></script>
+    <script src="{{ asset('vendor/tether/tether.min.js') }}"></script>
+    <script src="{{ asset('vendor/bootstrap/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('vendor/menuzord/menuzord.js') }}"></script>
+    <script src="{{ asset('vendor/sticky/jquery.sticky.min.js') }}"></script>
+    <script src="{{ asset('vendor/isotope/jquery.isotope.min.js') }}"></script>
+    <script src="{{ asset('vendor/respond/respond.js') }}"></script>
+    <script src="{{ asset('vendor/images-loaded/imagesloaded.js') }}"></script>
+    <script src="{{ asset('vendor/owl-carousel/owl.carousel.js') }}"></script>
+    <script src="{{ asset('vendor/wow/wow.min.js') }}"></script>
+    <script src="{{ asset('vendor/lite-tooltip/js/litetooltip.js') }}"></script>
+    <script src="{{ asset('vendor/smoothscroll/smooth.scroll.min.js') }}"></script>
+    <script src="{{ asset('js/theme-plugins.js') }}"></script>
+
+    <!-- Current Page Vendor and Views -->
+    <script src="vendor/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
+    <script src="vendor/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+
+    <!-- Theme Initialization -->
+    <script src="js/theme.js"></script>
+
+    <!-- Custom JS -->
+    <script src="js/custom.js"></script>
+{% endblock %}
+
+
+<!-- Style Swicher -->
+<!--<script src="vendor/style-switcher/style.switcher.js" id="styleSwitcherScript" data-base-path="" data-skin-src=""></script>
+<script src="vendor/style-switcher/style.switcher.localstorage.js"></script>-->
+</body>
+</html>
