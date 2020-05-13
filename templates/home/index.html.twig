@@ -192,21 +192,23 @@
                             <div class="col-sm-12">
                                 <div class="carousel-wrap mb-30">
 
-                                    <div class="owl-carousel" data-plugin-options='{"items": 4, "singleItem": false, "autoPlay": true, "margin":20, "dots":false}'>
+                                    <div class="owl-carousel" data-plugin-options='{"items": {{ articles|length }}, "singleItem": false, "autoPlay": true, "margin":20, "dots":false}'>
+                                        {% for article in articles %}
                                         <div class="item exp-animation" data-animation="bottom-to-top" data-delay="200">
                                             <figure class="animated-overlay overlay-alt">
-                                                <img src="img/main/bus-11.jpg"/>
-                                                <a href="portfolio-single.html" class="link-to-post"></a>
+                                                <img src="{{ asset('img/articles/article_header_guid.jpg') }}"/>
+                                                <a href="{{ path('article_show', { 'id': article.id }) }}" class="link-to-post"></a>
                                                 <figcaption>
                                                     <div class="thumb-info thumb-info-v2"><i class="fa fa-angle-right"></i></div>
                                                 </figcaption>
                                             </figure>
                                             <div class="portfolio-item-info">
                                                 <h3 class="portfolio-item-title">
-                                                    <a href="portfolio-single.html" class="link-to-post">Suspendisse Euismod</a>
+                                                    <a href="{{ path('article_show', { 'id': article.id }) }}" class="link-to-post">{{ article.title }}</a>
                                                 </h3>
                                             </div>
                                         </div>
+                                        {% endfor %}
 
                                     </div>
 
@@ -220,7 +222,7 @@
 
                         <div class="row text-center">
                             <div class="col-md-12">
-                                <a class="btn standard lightgrey btn-icon-reveal item-shadow-2x" href="#">
+                                <a class="btn standard lightgrey btn-icon-reveal item-shadow-2x" href="{{ path('article_index') }}">
                                     <i class="fa fa-diamond"></i>
                                     <span class="text">Voir tous les articles</span>
                                 </a>

@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('css/blog.css') }}" rel="stylesheet" />
+    <link href="{{ asset('css/ss-gizmo.css') }}" rel="stylesheet" />
+
+{% endblock %}
+
+{% block title %}Article index{% endblock %}
+
+{% block body %}
+
+    <div class="page-inner p-none">
+
+        <section class="section-primary pt-40">
+            <div class="container">
+
+                <div class="sort-destination-loader sort-destination-loader-showing mt-4 pt-2">
+                    <div class="row portfolio-list sort-destination" data-sort-id="portfolio">
+
+                        {% for article in articles %}
+                        <div class="col-lg-6 isotope-item websites">
+
+                            <article class="v_blog-item v_blog-item-related v_blog-grid">
+                                <div class="v_blog-item-inner">
+                                    <div class="v_blog-item-media">
+                                        <a href="#">
+                                            <img src="{{ asset('img/articles/article_header_guid.jpg') }}" />
+                                        </a>
+                                    </div>
+                                    <div class="v_blog-item-content">
+                                        <div class="v_blog-item-header">
+                                            <ul class="v_blog-item-meta">
+                                                <li class="v_blog-item-date" datetime="2018-06-30T10:47:48+00:00">
+                                                  {{ article.createdAt|date('d/m/Y') }}
+                                                </li>
+                                            </ul>
+
+                                            <a href="{{ path('article_show', { 'id': article.id }) }}" rel="bookmark">
+                                                <h2 class="v_blog-item-title" itemprop="name headline">{{ article.title }}</h2>
+                                            </a>
+                                        </div>
+
+                                        <div itemprop="articleBody">
+                                            <p>
+                                                {{ article.content }}
+                                            </p>
+                                            <hr />
+                                            <p class="v_blog-item-author">
+                                                <a href="#">
+                                                    <img alt="" src="{{ asset('img/avatars/a1.jpeg') }}">
+                                                    <span>{{ article.createdBy.fullName }}</span>
+                                                </a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                        {% endfor %}
+
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $('.masonary-post-wrap').isotope({
+            itemSelector: '.masonary-post-item',
+            percentPosition: true
+        })
+    </script>
+{% endblock %}
