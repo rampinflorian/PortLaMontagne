@@ -17,7 +17,6 @@ class HomeController extends AbstractController
     public function index(ArticleRepository $articleRepository)
     {
         return $this->render('home/index.html.twig', [
-            'controller_name' => 'HomeController',
             'articles' => $articleRepository->findAllWithMaxResult(4)
         ]);
     }
