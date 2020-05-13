@@ -37,7 +37,7 @@ class User implements UserInterface
     private $password;
 
     /**
-     * @ORM\OneToMany(targetEntity=Article::class, mappedBy="createdBy")
+     * @ORM\OneToMany(targetEntity=Article::class, mappedBy="user")
      */
     private $articles;
 
@@ -50,6 +50,11 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=255)
      */
     private $lastname;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $description;
 
     public function __construct()
     {
@@ -146,7 +151,7 @@ class User implements UserInterface
     {
         if (!$this->articles->contains($article)) {
             $this->articles[] = $article;
-            $article->setCreatedBy($this);
+            $article->setUser($this);
         }
 
         return $this;
@@ -157,8 +162,8 @@ class User implements UserInterface
         if ($this->articles->contains($article)) {
             $this->articles->removeElement($article);
             // set the owning side to null (unless already changed)
-            if ($article->getCreatedBy() === $this) {
-                $article->setCreatedBy(null);
+            if ($article->getUser() === $this) {
+                $article->setUser(null);
             }
         }
 
@@ -192,5 +197,17 @@ class User implements UserInterface
     public function getFullName(): ? string
     {
         return $this->getFirstname() . ' ' . $this->getLastname();
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description): self
+    {
+        $this->description = $description;
+
+        return $this;
     }
 }

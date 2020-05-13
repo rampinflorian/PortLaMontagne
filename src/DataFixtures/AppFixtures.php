@@ -19,7 +19,8 @@ class AppFixtures extends Fixture
             ->setPassword('$argon2id$v=19$m=65536,t=4,p=1$ZnlsdnBzZmdsRGxzOFNQUw$TNcmf6eNHpehasfT0X24SxXsg3vMYrwWmVZb8XB7cug')
             ->setRoles(['ROLE_USER'])
             ->setFirstname('Florian')
-            ->setLastname('Rampin');
+            ->setLastname('Rampin')
+            ->setDescription($faker->text(90));
 
         $this->addReference('User_DEV', $user);
 
@@ -32,7 +33,7 @@ class AppFixtures extends Fixture
                 ->setCreatedAt(new \DateTime())
                 ->setTitle($faker->text(20))
                 ->setContent($faker->paragraph)
-                ->setCreatedBy($this->getReference('User_DEV'))
+                ->setUser($this->getReference('User_DEV'))
                 ->setImage('todo');
 
             $manager->persist($article);

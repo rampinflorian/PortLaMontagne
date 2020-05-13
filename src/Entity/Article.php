@@ -36,7 +36,7 @@ class Article
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="articles")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $createdBy;
+    private $user;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -84,14 +84,14 @@ class Article
         return $this;
     }
 
-    public function getCreatedBy(): ?User
+    public function getUser(): ?User
     {
-        return $this->createdBy;
+        return $this->user;
     }
 
-    public function setCreatedBy(?User $createdBy): self
+    public function setUser(?User $user): self
     {
-        $this->createdBy = $createdBy;
+        $this->user = $user;
 
         return $this;
     }

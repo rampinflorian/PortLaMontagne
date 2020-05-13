@@ -32,7 +32,7 @@
                                     <div class="v_blog-item-content">
                                         <div class="v_blog-item-header">
                                             <ul class="v_blog-item-meta">
-                                                <li class="v_blog-item-date" datetime="2018-06-30T10:47:48+00:00">
+                                                <li class="v_blog-item-date">
                                                   {{ article.createdAt|date('d/m/Y') }}
                                                 </li>
                                             </ul>
@@ -50,7 +50,7 @@
                                             <p class="v_blog-item-author">
                                                 <a href="#">
                                                     <img alt="" src="{{ asset('img/avatars/a1.jpeg') }}">
-                                                    <span>{{ article.createdBy.fullName }}</span>
+                                                    <span>{{ article.user.fullName }}</span>
                                                 </a>
                                             </p>
                                         </div>
