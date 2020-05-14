@@ -2,7 +2,7 @@
     "type": "project",
     "license": "proprietary",
     "require": {
-        "php": "^7.2.5",
+        "php": "7.4.4",
         "ext-ctype": "*",
         "ext-iconv": "*",
         "fzaninotto/faker": "^1.9",
@@ -29,7 +29,7 @@
         "symfony/twig-pack": "*",
         "symfony/validator": "5.0.*",
         "symfony/web-link": "5.0.*",
-        "symfony/yaml": "5.0.*",
+        "symfony/yaml": "5.0.*"
     },
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "^3.3",
