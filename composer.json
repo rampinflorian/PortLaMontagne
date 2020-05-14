@@ -29,7 +29,7 @@
         "symfony/twig-pack": "*",
         "symfony/validator": "5.0.*",
         "symfony/web-link": "5.0.*",
-        "symfony/yaml": "5.0.*"
+        "symfony/yaml": "5.0.*",
     },
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "^3.3",
@@ -73,6 +73,9 @@
         ],
         "post-update-cmd": [
             "@auto-scripts"
+        ],
+        "compile": [
+            "php bin/console doctrine:migrations:migrate -n"
         ]
     },
     "conflict": {
