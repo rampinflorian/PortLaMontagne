@@ -14,3 +14,16 @@
 .phpunit.result.cache
 /phpunit.xml
 ###< symfony/phpunit-bridge ###
+/.idea/dataSources/ea8b4fea-8b2a-47a1-b0c8-15bc05d8355f/storage_v2/_src_/schema/information_schema.FNRwLQ.meta
+/.idea/dataSources/f460575f-f93c-45ac-9b59-c991fe3f4f02/storage_v2/_src_/schema/information_schema.FNRwLQ.meta
+/.idea/dataSources/ea8b4fea-8b2a-47a1-b0c8-15bc05d8355f.xml
+/.idea/dataSources/f460575f-f93c-45ac-9b59-c991fe3f4f02.xml
+/.idea/dataSources.local.xml
+/.idea/dataSources.xml
+/.idea/misc.xml
+/.idea/modules.xml
+/.idea/php.xml
+/.idea/PortLaMontagne.iml
+/.idea/symfony2.xml
+/.idea/vcs.xml
+/.idea/workspace.xml
