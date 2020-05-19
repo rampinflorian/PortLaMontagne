@@ -2,15 +2,15 @@
 
 namespace App\Entity;
 
-use App\Repository\CategoryRepository;
+use App\Repository\AlertRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=CategoryRepository::class)
+ * @ORM\Entity(repositoryClass=AlertRepository::class)
  */
-class Category
+class Alert
 {
     /**
      * @ORM\Id()
@@ -20,12 +20,17 @@ class Category
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="datetime")
      */
-    private $title;
+    private $startedAt;
 
     /**
-     * @ORM\OneToMany(targetEntity=Article::class, mappedBy="category")
+     * @ORM\Column(type="datetime")
+     */
+    private $finishedAt;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Article::class, mappedBy="alert", cascade={"persist", "remove"})
      */
     private $articles;
 
@@ -39,14 +44,26 @@ class Category
         return $this->id;
     }
 
-    public function getTitle(): ?string
+    public function getStartedAt(): ?\DateTimeInterface
     {
-        return $this->title;
+        return $this->startedAt;
     }
 
-    public function setTitle(string $title): self
+    public function setStartedAt(\DateTimeInterface $startedAt): self
     {
-        $this->title = $title;
+        $this->startedAt = $startedAt;
+
+        return $this;
+    }
+
+    public function getFinishedAt(): ?\DateTimeInterface
+    {
+        return $this->finishedAt;
+    }
+
+    public function setFinishedAt(\DateTimeInterface $finishedAt): self
+    {
+        $this->finishedAt = $finishedAt;
 
         return $this;
     }
@@ -63,7 +80,7 @@ class Category
     {
         if (!$this->articles->contains($article)) {
             $this->articles[] = $article;
-            $article->setCategory($this);
+            $article->setAlert($this);
         }
 
         return $this;
@@ -74,8 +91,8 @@ class Category
         if ($this->articles->contains($article)) {
             $this->articles->removeElement($article);
             // set the owning side to null (unless already changed)
-            if ($article->getCategory() === $this) {
-                $article->setCategory(null);
+            if ($article->getAlert() === $this) {
+                $article->setAlert(null);
             }
         }
 

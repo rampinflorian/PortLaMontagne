@@ -2,23 +2,23 @@
 
 namespace App\Controller;
 
-use App\Repository\AlertRepository;
 use App\Repository\ArticleRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class HomeController extends AbstractController
+class DefaultController extends AbstractController
 {
     /**
-     * @Route("/", name="home")
+     * @Route("/default/alerts", name="default_alerts", methods={"GET"})
      * @param ArticleRepository $articleRepository
      * @return Response
      */
-    public function index(ArticleRepository $articleRepository)
+    public function indexAlerts(ArticleRepository $articleRepository): Response
     {
-        return $this->render('home/index.html.twig', [
-            'articles' => $articleRepository->findAllWithMaxResult(4),
+        return $this->json([
+            'code' => 200,
+            'alerts' => count($articleRepository->findByActivatedAlert())
         ]);
     }
 }

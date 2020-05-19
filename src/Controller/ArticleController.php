@@ -24,7 +24,18 @@ class ArticleController extends AbstractController
     public function index(ArticleRepository $articleRepository): Response
     {
         return $this->render('article/index.html.twig', [
-            'articles' => $articleRepository->findAll(),
+            'articles' => $articleRepository->findAllByOrder('DESC'),
+        ]);
+    }
+    /**
+     * @Route("/alerts", name="article_alert_index", methods={"GET"})
+     * @param ArticleRepository $articleRepository
+     * @return Response
+     */
+    public function indexAlerts(ArticleRepository $articleRepository): Response
+    {
+        return $this->render('article/index.html.twig', [
+            'articles' => $articleRepository->findByActivatedAlert()
         ]);
     }
 
@@ -41,6 +52,11 @@ class ArticleController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $article->setUser($this->getUser());
+
+            if (!$form->get('isAlert')->getData())
+            {
+                $article->setAlert(null);
+            }
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($article);
             $entityManager->flush();

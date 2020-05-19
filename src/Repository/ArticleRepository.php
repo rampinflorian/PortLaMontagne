@@ -19,39 +19,40 @@ class ArticleRepository extends ServiceEntityRepository
         parent::__construct($registry, Article::class);
     }
 
-    // /**
-    //  * @return Article[] Returns an array of Article objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    /**
+     * @param string $order
+     * @return Article[] Returns an array of Article objects
+     */
+    public function findAllByOrder(string $order)
     {
         return $this->createQueryBuilder('a')
-            ->andWhere('a.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('a.id', 'ASC')
-            ->setMaxResults(10)
+            ->orderBy('a.createdAt', $order)
             ->getQuery()
             ->getResult()
         ;
     }
-    */
 
-    /*
-    public function findOneBySomeField($value): ?Article
-    {
-        return $this->createQueryBuilder('a')
-            ->andWhere('a.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
+    /**
+     * @param int $maxResult
+     * @return int|mixed|string
+     */
     public function findAllWithMaxResult(int $maxResult)
     {
         return $this->createQueryBuilder('a')
             ->orderBy('a.id', 'ASC')
             ->setMaxResults($maxResult)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+    /**
+     * @return int|mixed|string
+     */
+    public function findByActivatedAlert()
+    {
+        return $this->createQueryBuilder('a')
+            ->andWhere('a.alert IS NOT NULL')
             ->getQuery()
             ->getResult()
             ;

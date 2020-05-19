@@ -48,6 +48,11 @@ class Article
      */
     private $category;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Alert::class, inversedBy="articles", cascade={"persist", "remove"})
+     */
+    private $alert;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -121,6 +126,18 @@ class Article
     public function setCategory(?Category $category): self
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    public function getAlert(): ?Alert
+    {
+        return $this->alert;
+    }
+
+    public function setAlert(?Alert $alert): self
+    {
+        $this->alert = $alert;
 
         return $this;
     }
