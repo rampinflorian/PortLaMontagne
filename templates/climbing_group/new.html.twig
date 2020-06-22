@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New ClimbingGroup{% endblock %}
+
+{% block body %}
+    <h1>Create new ClimbingGroup</h1>
+
+    {{ include('climbing_group/_form.html.twig') }}
+
+    <a href="{{ path('climbing_group_index') }}">back to list</a>
+{% endblock %}
