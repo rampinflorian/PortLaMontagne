@@ -15,6 +15,7 @@ class SiteType extends AbstractType
             ->add('name')
             ->add('coordinates')
             ->add('description')
+            ->add('picture')
         ;
     }
 
