@@ -56,9 +56,15 @@ class User implements UserInterface
      */
     private $description;
 
+    /**
+     * @ORM\OneToMany(targetEntity=ClimbingGroup::class, mappedBy="user")
+     */
+    private $climbingGroups;
+
     public function __construct()
     {
         $this->articles = new ArrayCollection();
+        $this->climbingGroups = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -207,6 +213,37 @@ class User implements UserInterface
     public function setDescription(string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|ClimbingGroup[]
+     */
+    public function getClimbingGroups(): Collection
+    {
+        return $this->climbingGroups;
+    }
+
+    public function addClimbingGroup(ClimbingGroup $climbingGroup): self
+    {
+        if (!$this->climbingGroups->contains($climbingGroup)) {
+            $this->climbingGroups[] = $climbingGroup;
+            $climbingGroup->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeClimbingGroup(ClimbingGroup $climbingGroup): self
+    {
+        if ($this->climbingGroups->contains($climbingGroup)) {
+            $this->climbingGroups->removeElement($climbingGroup);
+            // set the owning side to null (unless already changed)
+            if ($climbingGroup->getUser() === $this) {
+                $climbingGroup->setUser(null);
+            }
+        }
 
         return $this;
     }

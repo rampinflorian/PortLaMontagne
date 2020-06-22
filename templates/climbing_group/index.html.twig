@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ClimbingGroup index{% endblock %}
+
+{% block body %}
+    <h1>ClimbingGroup index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>DificultyMin</th>
+                <th>DificultyMax</th>
+                <th>CreatedAt</th>
+                <th>ReleaseAt</th>
+                <th>IsOpen</th>
+                <th>MaxClimber</th>
+                <th>IsRegistrationOpened</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for climbing_group in climbing_groups %}
+            <tr>
+                <td>{{ climbing_group.id }}</td>
+                <td>{{ climbing_group.title }}</td>
+                <td>{{ climbing_group.description }}</td>
+                <td>{{ climbing_group.dificultyMin }}</td>
+                <td>{{ climbing_group.dificultyMax }}</td>
+                <td>{{ climbing_group.createdAt ? climbing_group.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ climbing_group.releaseAt ? climbing_group.releaseAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ climbing_group.isOpen ? 'Yes' : 'No' }}</td>
+                <td>{{ climbing_group.maxClimber }}</td>
+                <td>{{ climbing_group.isRegistrationOpened ? 'Yes' : 'No' }}</td>
+                <td>
+                    <a href="{{ path('climbing_group_show', {'id': climbing_group.id}) }}">show</a>
+                    <a href="{{ path('climbing_group_edit', {'id': climbing_group.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="11">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('climbing_group_new') }}">Create new</a>
+{% endblock %}
