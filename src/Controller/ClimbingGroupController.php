@@ -11,12 +11,14 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/climbing/group")
+ * @Route("/climbinggroup")
  */
 class ClimbingGroupController extends AbstractController
 {
     /**
      * @Route("/", name="climbing_group_index", methods={"GET"})
+     * @param ClimbingGroupRepository $climbingGroupRepository
+     * @return Response
      */
     public function index(ClimbingGroupRepository $climbingGroupRepository): Response
     {

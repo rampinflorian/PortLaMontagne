@@ -1,51 +1,520 @@
 {% extends 'base.html.twig' %}
+ {% block stylesheets %}
+     {{ parent() }}
+     <link href="{{ asset('css/shop.css') }}" rel="stylesheet"/>
+     <link href="{{ asset('css/bg-stylish.css') }}" rel="stylesheet"/>
+     <link href="{{ asset('css/blog.css') }}" rel="stylesheet"/>
+ {% endblock %}
 
 {% block title %}ClimbingGroup index{% endblock %}
 
 {% block body %}
-    <h1>ClimbingGroup index</h1>
+<div class="page">
+    <div class="page-inner p-none no-border">
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>Description</th>
-                <th>DificultyMin</th>
-                <th>DificultyMax</th>
-                <th>CreatedAt</th>
-                <th>ReleaseAt</th>
-                <th>IsOpen</th>
-                <th>MaxClimber</th>
-                <th>IsRegistrationOpened</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for climbing_group in climbing_groups %}
-            <tr>
-                <td>{{ climbing_group.id }}</td>
-                <td>{{ climbing_group.title }}</td>
-                <td>{{ climbing_group.description }}</td>
-                <td>{{ climbing_group.dificultyMin }}</td>
-                <td>{{ climbing_group.dificultyMax }}</td>
-                <td>{{ climbing_group.createdAt ? climbing_group.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ climbing_group.releaseAt ? climbing_group.releaseAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ climbing_group.isOpen ? 'Yes' : 'No' }}</td>
-                <td>{{ climbing_group.maxClimber }}</td>
-                <td>{{ climbing_group.isRegistrationOpened ? 'Yes' : 'No' }}</td>
-                <td>
-                    <a href="{{ path('climbing_group_show', {'id': climbing_group.id}) }}">show</a>
-                    <a href="{{ path('climbing_group_edit', {'id': climbing_group.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="11">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+        <section class="section-primary alternate-color">
 
-    <a href="{{ path('climbing_group_new') }}">Create new</a>
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <h2 class="section-title mb-5 fs-26">
+                            Prochainement
+                        </h2>
+                    </div>
+
+                    <div class="col-md-6">
+                        <a href="#" class="text-right pull-right mt-20">
+                            <i class="fa fa-th va-middle mr-5 fs-16"></i> <span class="fs-11 fw-5 ls-1">Toutes les sorties</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+
+                        <div class="carousel-wrap">
+                            <div class="owl-carousel"
+                                 data-plugin-options='{"items": 3, "singleItem": false, "dots":true, "autoPlay": true,"margin":0, "navigation": false}'>
+
+                                <div class="item">
+
+                                    <figure class="product-item product-item-style-1">
+                                        <div class="product-media">
+                                            <div class="img-wrap first-image">
+                                                <img src="{{ asset('img/articles/article_header_guid.jpg') }}">
+                                            </div>
+                                            <div class="img-wrap second-image">
+                                                <img src="{{ asset('img/articles/article_header_guid.jpg') }}">
+                                            </div>
+                                        </div>
+
+                                        <div class="product-details">
+                                            <h3 class="product-name"><a href="shop-single-product.html">Ultra Boost Uncaged</a></h3>
+                                            <span class="product-posted_in"><a href="shop-categories.html" rel="tag">Shirting</a></span>
+                                            <span class="product-price">
+                                          <span class="product-amount">
+                                             <span class="product-price-currency">£</span>200
+                                          </span>
+                                       </span>
+                                            <div class="product-star-rating" title="Rated 4.67 out of 5">
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star-half"></i>
+                                            </div>
+                                        </div>
+                                    </figure>
+                                </div>
+
+                                <div class="item">
+
+                                    <figure class="product-item product-item-style-1">
+                                        <div class="product-media">
+                                            <div class="img-wrap">
+                                                <img src="{{ asset('img/articles/article_header_guid.jpg') }}">
+                                            </div>
+                                        </div>
+
+                                        <div class="product-details">
+                                            <h3 class="product-name"><a href="shop-single-product.html">Gaspard Boots</a></h3>
+                                            <span class="product-posted_in"><a href="shop-categories.html" rel="tag">Outerwear</a></span>
+                                            <span class="product-price">
+                                          <del class="product-amount"><span class="product-price-currency">£</span>399</del>
+                                          <ins>
+                                             <span class="product-amount">
+                                                <span class="product-price-currency">£</span>305
+                                             </span>–
+                                             <span class="product-amount">
+                                                <span class="product-price-currency">£</span>360
+                                             </span>
+                                          </ins>
+                                       </span>
+                                            <div class="product-star-rating" title="Rated 4.67 out of 5">
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                            </div>
+                                        </div>
+                                    </figure>
+                                </div>
+
+                                <div class="item">
+
+                                    <figure class="product-item product-item-style-1">
+                                        <div class="product-media">
+                                            <div class="badge-wrap">
+                                                <span class="out-of-stock-badge">Of Sale</span>
+                                            </div>
+                                            <div class="img-wrap first-image">
+                                                <img src="{{ asset('img/articles/article_header_guid.jpg') }}">
+                                            </div>
+                                            <div class="img-wrap second-image">
+                                                <img src="{{ asset('img/articles/article_header_guid.jpg') }}">
+                                            </div>
+                                        </div>
+
+                                        <div class="product-details">
+                                            <h3 class="product-name"><a href="shop-single-product.html">Adidas Boston Super</a></h3>
+                                            <span class="product-posted_in"><a href="shop-categories.html" rel="tag">Shirting</a></span>
+                                            <span class="product-price">
+                                          <del class="product-amount"><span class="product-price-currency">£</span>399</del>
+                                          <ins>
+                                             <span class="product-amount">
+                                                <span class="product-price-currency">£</span>305
+                                             </span>
+                                          </ins>
+                                       </span>
+                                            <div class="product-star-rating" title="Rated 4.67 out of 5">
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star-half"></i>
+                                            </div>
+                                        </div>
+                                    </figure>
+                                </div>
+
+                                <div class="item">
+
+                                    <figure class="product-item product-item-style-1">
+                                        <div class="product-media">
+                                            <div class="img-wrap">
+                                                <img src="{{ asset('img/articles/article_header_guid.jpg') }}">
+                                            </div>
+                                        </div>
+
+                                        <div class="product-details">
+                                            <h3 class="product-name"><a href="shop-single-product.html">Turtleneck Sweater Grey</a></h3>
+                                            <span class="product-posted_in"><a href="shop-categories.html" rel="tag">Shirting</a></span>
+                                            <span class="product-price">
+                                          <span class="product-amount">
+                                             <span class="product-price-currency">£</span>190
+                                          </span>
+                                       </span>
+                                            <div class="product-star-rating" title="Rated 4.67 out of 5">
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                            </div>
+                                        </div>
+                                    </figure>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-primary main-color">
+
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-md-12">
+                        <h2 class="section-title mb-none fs-26">
+                            Featured Products
+                        </h2>
+                        <p class="section-sub-title mb-25">
+                            Lorem ipsum dolor sit amet isse potenti.
+                        </p>
+                    </div>
+
+                    <div class="col-md-12">
+
+                        <div class="carousel-wrap">
+                            <div class="owl-carousel" data-plugin-options='{"items": 4, "singleItem": false, "autoPlay": true,"margin":30, "navigation": false}'>
+
+                                <div class="item">
+
+                                    <figure class="product-item">
+                                        <div class="product-media">
+                                            <div class="img-wrap first-image">
+                                                <img src="{{ asset('img/articles/article_header_guid.jpg') }}">
+                                            </div>
+                                            <div class="img-wrap second-image">
+                                                <img src="{{ asset('img/articles/article_header_guid.jpg') }}">
+                                            </div>
+
+                                            <div class="cart-overlay clearfix">
+                                                <div class="shop-actions clearfix">
+                                                    <div class="shop-action-item add-to-cart-wrap lite-tooltip" data-title="Add to cart" data-location="top">
+                                                        <a href="#">
+                                                            <i class="fa fa-shopping-basket"></i>
+                                                        </a>
+                                                    </div>
+                                                    <div class="shop-action-item add-to-wishlist-wrap lite-tooltip" data-title="Add to wishlist"
+                                                         data-location="top">
+                                                        <a href="#">
+                                                            <i class="fa fa-heart"></i>
+                                                        </a>
+                                                    </div>
+                                                    <div class="shop-action-item add-to-quickview-wrap lite-tooltip" data-title="Quickview" data-location="top">
+                                                        <a href="#">
+                                                            <i class="fa fa-eye"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="product-details">
+                                            <h3 class="product-name"><a href="shop-single-product.html">Adidas Boston Super</a></h3>
+                                            <span class="product-posted_in"><a href="shop-categories.html" rel="tag">Shirting</a></span>
+                                            <span class="product-price">
+                                          <span class="product-amount">
+                                             <span class="product-price-currency">£</span>200
+                                          </span>
+                                       </span>
+                                            <div class="product-star-rating" title="Rated 4.67 out of 5">
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star-half"></i>
+                                            </div>
+                                        </div>
+                                    </figure>
+                                </div>
+
+                                <div class="item">
+                                    <figure class="product-shadows product-item">
+                                        <div class="product-media">
+                                            <div class="img-wrap">
+                                                <img src="{{ asset('img/articles/article_header_guid.jpg') }}">
+                                            </div>
+
+                                            <div class="cart-overlay clearfix">
+                                                <div class="shop-actions clearfix">
+                                                    <div class="shop-action-item add-to-cart-wrap lite-tooltip" data-title="Add to cart" data-location="top"
+                                                         style="cursor: pointer;">
+                                                        <a href="#">
+                                                            <i class="fa fa-shopping-basket"></i>
+                                                        </a>
+                                                    </div>
+                                                    <div class="shop-action-item add-to-wishlist-wrap lite-tooltip" data-title="Add to wishlist"
+                                                         data-location="top"
+                                                         style="cursor: pointer;">
+                                                        <a href="#">
+                                                            <i class="fa fa-heart"></i>
+                                                        </a>
+                                                    </div>
+                                                    <div class="shop-action-item add-to-quickview-wrap lite-tooltip" data-title="Quickview" data-location="top"
+                                                         style="cursor: pointer;">
+                                                        <a href="#">
+                                                            <i class="fa fa-eye"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="product-details">
+                                            <h3 class="product-name"><a href="shop-single-product.html">Turtleneck Sweater Grey</a></h3>
+                                            <span class="product-posted_in"><a href="shop-categories.html" rel="tag">Shirting</a></span>
+                                            <span class="product-price">
+                                          <del class="product-amount"><span class="product-price-currency">£</span>399</del>
+                                          <ins>
+                                             <span class="product-amount">
+                                                <span class="product-price-currency">£</span>305
+                                             </span>–
+                                             <span class="product-amount">
+                                                <span class="product-price-currency">£</span>360
+                                             </span>
+                                          </ins>
+                                       </span>
+                                            <div class="product-star-rating" title="Rated 4.67 out of 5">
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                            </div>
+                                        </div>
+                                    </figure>
+                                </div>
+
+                                <div class="item">
+
+                                    <figure class="product-shadows product-item">
+                                        <div class="product-media">
+                                            <div class="badge-wrap">
+                                                <span class="onsale">Sale</span>
+                                            </div>
+                                            <div class="img-wrap">
+                                                <img src="{{ asset('img/articles/article_header_guid.jpg') }}">
+                                            </div>
+
+                                            <div class="cart-overlay clearfix">
+                                                <div class="shop-actions clearfix">
+                                                    <div class="shop-action-item add-to-cart-wrap lite-tooltip" data-title="Add to cart" data-location="top"
+                                                         style="cursor: pointer;">
+                                                        <a href="#">
+                                                            <i class="fa fa-shopping-basket"></i>
+                                                        </a>
+                                                    </div>
+                                                    <div class="shop-action-item add-to-wishlist-wrap lite-tooltip" data-title="Add to wishlist"
+                                                         data-location="top"
+                                                         style="cursor: pointer;">
+                                                        <a href="#">
+                                                            <i class="fa fa-heart"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="product-details">
+                                            <h3 class="product-name"><a href="shop-single-product.html">Gift Card</a></h3>
+                                            <span class="product-posted_in"><a href="shop-categories.html" rel="tag">Accessories</a></span>
+                                            <span class="product-price">
+                                          <span class="product-amount">
+                                             <span class="product-price-currency">£</span>100
+                                          </span>
+                                       </span>
+                                        </div>
+                                    </figure>
+                                </div>
+
+                                <div class="item">
+
+                                    <figure class="product-shadows product-item">
+                                        <div class="product-media">
+                                            <div class="img-wrap">
+                                                <img src="{{ asset('img/articles/article_header_guid.jpg') }}">
+                                            </div>
+
+                                            <div class="cart-overlay clearfix">
+                                                <div class="shop-actions clearfix">
+                                                    <div class="shop-action-item add-to-cart-wrap lite-tooltip" data-title="Add to cart" data-location="top"
+                                                         style="cursor: pointer;">
+                                                        <a href="#">
+                                                            <i class="fa fa-shopping-basket"></i>
+                                                        </a>
+                                                    </div>
+                                                    <div class="shop-action-item add-to-wishlist-wrap lite-tooltip" data-title="Add to wishlist"
+                                                         data-location="top"
+                                                         style="cursor: pointer;">
+                                                        <a href="#">
+                                                            <i class="fa fa-heart"></i>
+                                                        </a>
+                                                    </div>
+                                                    <div class="shop-action-item add-to-quickview-wrap lite-tooltip" data-title="Quickview" data-location="top"
+                                                         style="cursor: pointer;">
+                                                        <a href="#">
+                                                            <i class="fa fa-eye"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="product-details">
+                                            <h3 class="product-name"><a href="shop-single-product.html">Turtleneck Sweater</a></h3>
+                                            <span class="product-posted_in"><a href="shop-categories.html" rel="tag">Outerwear</a></span>
+                                            <span class="product-price">
+                                          <span class="product-amount">
+                                             <span class="product-price-currency">£</span>720
+                                          </span>
+                                       </span>
+                                            <div class="product-star-rating" title="Rated 4.67 out of 5">
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                            </div>
+                                        </div>
+                                    </figure>
+                                </div>
+
+                                <div class="item">
+
+                                    <figure class="product-shadows product-item">
+                                        <div class="product-media">
+                                            <div class="img-wrap">
+                                                <img src="{{ asset('img/articles/article_header_guid.jpg') }}">
+                                            </div>
+
+                                            <div class="cart-overlay clearfix">
+                                                <div class="shop-actions clearfix">
+                                                    <div class="shop-action-item add-to-cart-wrap lite-tooltip" data-title="Add to cart" data-location="top"
+                                                         style="cursor: pointer;">
+                                                        <a href="#">
+                                                            <i class="fa fa-shopping-basket"></i>
+                                                        </a>
+                                                    </div>
+                                                    <div class="shop-action-item add-to-wishlist-wrap lite-tooltip" data-title="Add to wishlist"
+                                                         data-location="top"
+                                                         style="cursor: pointer;">
+                                                        <a href="#">
+                                                            <i class="fa fa-heart"></i>
+                                                        </a>
+                                                    </div>
+                                                    <div class="shop-action-item add-to-quickview-wrap lite-tooltip" data-title="Quickview" data-location="top"
+                                                         style="cursor: pointer;">
+                                                        <a href="#">
+                                                            <i class="fa fa-eye"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="product-details">
+                                            <h3 class="product-name"><a href="shop-single-product.html">Mismo Bag Ggrey</a></h3>
+                                            <span class="product-posted_in"><a href="shop-categories.html" rel="tag">Outerwear</a></span>
+                                            <span class="product-price">
+                                          <span class="product-amount">
+                                             <span class="product-price-currency">£</span>720
+                                          </span>
+                                       </span>
+                                            <div class="product-star-rating" title="Rated 4.67 out of 5">
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                            </div>
+                                        </div>
+                                    </figure>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section-primary bg-stylish bg-stylish-v6">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="anim-perspective">
+                            <div class="feature-box feature-box-secundary-one exp-animation" data-animation="vertex_b_show" data-delay="0">
+                                <div class="feature-box-icon center-icon small">
+                                    <i class="fa fa-shopping-bag v-icon"></i>
+                                </div>
+                                <div class="feature-box-text clearfix base-color">
+                                    <h3>Secure Checkout</h3>
+                                    <div class="feature-box-text-inner">
+                                        <p>
+                                            Class aptent taciti sociosqu ad litora torquent per conubia nostra,
+                                            per inceptos himenaeos. Nulla nunc dui, tristique in semper vel.
+                                        </p>
+                                        <a href="#" class="read-more">Read More</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="anim-perspective">
+                            <div class="feature-box feature-box-secundary-one exp-animation" data-animation="vertex_b_show" data-delay="200">
+                                <div class="feature-box-icon center-icon small">
+                                    <i class="fa fa-car v-icon"></i>
+                                </div>
+                                <div class="feature-box-text base-color">
+                                    <h3>Fast Delivery</h3>
+                                    <div class="feature-box-text-inner">
+                                        <p>
+                                            Class aptent taciti sociosqu ad litora torquent per conubia nostra,
+                                            per inceptos himenaeos. Nulla nunc dui, tristique in semper vel.<br>
+                                        </p>
+                                        <a href="#" class="read-more">Read More</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="anim-perspective">
+                            <div class="feature-box feature-box-secundary-one exp-animation" data-animation="vertex_b_show" data-delay="400">
+                                <div class="feature-box-icon center-icon small">
+                                    <i class="fa fa-ship v-icon"></i>
+                                </div>
+                                <div class="feature-box-text base-color">
+                                    <h3>International Shipping</h3>
+                                    <div class="feature-box-text-inner">
+                                        <p>
+                                            Class aptent taciti sociosqu ad litora torquent per conubia nostra,
+                                            per inceptos himenaeos. Nulla nunc dui, tristique in semper vel.<br>
+                                        </p>
+                                        <a href="#" class="read-more">Read More</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    {% endblock %}
+
+    {% block javascripts %}
+    {{ parent() }}
 {% endblock %}
