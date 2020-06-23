@@ -107,25 +107,36 @@
                                             </a>
                                         </li>
                                         <li class="dropdown header-search-wrap">
-                                            <a class="dropdown-item dropdown-toggle pr-5" href="https://www.meteoblue.com/fr/meteo/semaine/toulon_france_2972328"><i class="fa fa-weather-sunny fs-18"></i> Météo </a>
+                                            <a class="dropdown-item dropdown-toggle pr-5" href="https://www.meteoblue.com/fr/meteo/semaine/toulon_france_2972328"><i class="fa fa-weather-sunny fs-18"></i>&nbsp;Météo </a>
                                         </li>
-                                        <li class="dropdown header-search-wrap">
-                                            <a class="dropdown-item dropdown-toggle pr-5" href="#"><i class="fa fa-search3 fs-18"></i> </a>
-                                            <ul class="dropdown-menu">
-                                                <li>
-                                                    <div class="header-search">
-                                                        <form id="searchForm" action="pages-search-result.html" method="get" novalidate="novalidate">
-                                                            <div class="input-group">
-                                                                <input type="text" class="form-control" name="q" id="q" placeholder="Search..." required="">
-                                                                <span class="input-group-btn">
-                                                         <button class="btn btn-light" type="submit"><i class="fa fa-search"></i></button>
-                                                      </span>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </li>
+
+                                        {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                                            <li class="dropdown header-search-wrap">
+                                                <a class="dropdown-item dropdown-toggle pr-5" href="{{ path('app_login') }}"><i class="fa fa-user-circle fs-18"></i>&nbsp;Mon compte</a>
+                                            </li>
+                                        {% else %}
+                                            <li class="dropdown header-search-wrap">
+                                                <a class="dropdown-item dropdown-toggle pr-5" href="{{ path('app_login') }}"><i class="fa fa-user-circle fs-18"></i>&nbsp;Connexion</a>
+                                            </li>
+                                        {% endif %}
+
+                                        {#                                        <li class="dropdown header-search-wrap">#}
+                                        {#                                            <a class="dropdown-item dropdown-toggle pr-5" href="#"><i class="fa fa-search3 fs-18"></i> </a>#}
+                                        {#                                            <ul class="dropdown-menu">#}
+                                        {#                                                <li>#}
+                                        {#                                                    <div class="header-search">#}
+                                        {#                                                        <form id="searchForm" action="pages-search-result.html" method="get" novalidate="novalidate">#}
+                                        {#                                                            <div class="input-group">#}
+                                        {#                                                                <input type="text" class="form-control" name="q" id="q" placeholder="Search..." required="">#}
+                                        {#                                                                <span class="input-group-btn">#}
+                                        {#                                                         <button class="btn btn-light" type="submit"><i class="fa fa-search"></i></button>#}
+                                        {#                                                      </span>#}
+                                        {#                                                            </div>#}
+                                        {#                                                        </form>#}
+                                        {#                                                    </div>#}
+                                        {#                                                </li>#}
+                                        {#                                            </ul>#}
+                                        {#                                        </li>#}
                                     </ul>
                                 </nav>
                             </div>
@@ -138,27 +149,27 @@
 </header>
 <!--End Header-->
 <div class="wrapper">
-    <div class="page">
-        {% block body %}{% endblock %}
-        <!--Footer-Wrap-->
-        <footer class="footer footer-2">
-            <div class="copyright">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-sm-8">
 
-                            <ul class="list-inline fs-13 mb-none">
-                                <li><p class="mb-0 fw-6">© 2020 PortLaMontagne</p></li>
-                                <li><a href="pages-about.html">A Propos</a></li>
-                                <li><a href="pages-contact.html">Contact</a></li>
-                            </ul>
-                        </div>
+    {% block body %}{% endblock %}
+    <!--Footer-Wrap-->
+    <footer class="footer footer-wrap">
+        <div class="copyright">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-8">
+
+                        <ul class="list-inline fs-13 mb-none">
+                            <li><p class="mb-0 fw-6">© 2020 PortLaMontagne</p></li>
+                            <li><a href="pages-about.html">A Propos</a></li>
+                            <li><a href="pages-contact.html">Contact</a></li>
+                        </ul>
                     </div>
                 </div>
             </div>
-        </footer>
-        <!--End Footer-Wrap-->
-    </div>
+        </div>
+    </footer>
+    <!--End Footer-Wrap-->
+</div>
 </div>
 {% block javascripts %}
     <!-- Vendor -->
