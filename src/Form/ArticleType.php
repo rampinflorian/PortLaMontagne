@@ -8,7 +8,9 @@ use App\Repository\CategoryRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ArticleType extends AbstractType
@@ -19,8 +21,18 @@ class ArticleType extends AbstractType
             ->add('title')
             ->add('content')
             ->add('createdAt')
-            ->add('image')
-            ->add('category', EntityType::class, [
+            ->add('image', FileType::class, [
+                'label' => 'image de présentation',
+                'constraints' => [
+                    new File([
+                        'maxSize' => '10M',
+                        'mimeTypes' => [
+                            'image/*',
+                        ],
+                        'mimeTypesMessage' => 'Vous devez uploader une image'
+                    ])
+                ]
+            ])            ->add('category', EntityType::class, [
                 'class' => Category::class,
                 'query_builder' => function (CategoryRepository $categoryRepository) {
                     return $categoryRepository->QueryBuilderFindAll();

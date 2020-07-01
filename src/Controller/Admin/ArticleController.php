@@ -5,8 +5,10 @@ namespace App\Controller\Admin;
 use App\Entity\Article;
 use App\Form\ArticleType;
 use App\Repository\ArticleRepository;
+use App\Service\FileService;
 use phpDocumentor\Reflection\Types\This;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -19,9 +21,11 @@ class ArticleController extends AbstractController
     /**
      * @Route("/new", name="admin_article_new", methods={"GET","POST"})
      * @param Request $request
+     * @param ParameterBagInterface $parameterBag
+     * @param FileService $fileService
      * @return Response
      */
-    public function new(Request $request): Response
+    public function new(Request $request, ParameterBagInterface $parameterBag, FileService $fileService): Response
     {
         $article = new Article();
         $form = $this->createForm(ArticleType::class, $article);
@@ -29,6 +33,12 @@ class ArticleController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $article->setUser($this->getUser());
+
+            $image = $form->get('image')->getData();
+            $newFilename = $fileService->getFileName($image);
+
+            $image->move($parameterBag->get('article_directory') . '/image/', $newFilename);
+            $article->setImage($newFilename);
 
             if (!$form->get('isAlert')->getData())
             {

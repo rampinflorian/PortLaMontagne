@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\Article;
+use App\Entity\Category;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -17,12 +18,17 @@ class AppFixtures extends Fixture
         $user = (new User())
             ->setEmail('contact@florianrampin.fr')
             ->setPassword('$argon2id$v=19$m=65536,t=4,p=1$ZnlsdnBzZmdsRGxzOFNQUw$TNcmf6eNHpehasfT0X24SxXsg3vMYrwWmVZb8XB7cug')
-            ->setRoles(['ROLE_USER'])
+            ->setRoles(['ROLE_ADMIN'])
             ->setFirstname('Florian')
             ->setLastname('Rampin')
             ->setDescription($faker->text(90));
 
         $this->addReference('User_DEV', $user);
+
+        $category = (new Category())
+        ->setTitle('Information')
+        ;
+
 
         $manager->persist($user);
 
