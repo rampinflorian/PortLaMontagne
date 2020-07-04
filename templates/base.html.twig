@@ -112,16 +112,16 @@
                                                         class="fa fa-weather-sunny fs-18"></i>&nbsp;Météo </a>
                                         </li>
 
-                                        {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-                                            <li class="dropdown header-search-wrap">
-                                                <a class="dropdown-item dropdown-toggle pr-5" href="{{ path('app_login') }}"><i class="fa fa-user-circle fs-18"></i>&nbsp;Mon
-                                                    compte</a>
-                                            </li>
-                                        {% else %}
-                                            <li class="dropdown header-search-wrap">
-                                                <a class="dropdown-item dropdown-toggle pr-5" href="{{ path('app_login') }}"><i class="fa fa-user-circle fs-18"></i>&nbsp;Connexion</a>
-                                            </li>
-                                        {% endif %}
+{#                                        {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}#}
+{#                                            <li class="dropdown header-search-wrap">#}
+{#                                                <a class="dropdown-item dropdown-toggle pr-5" href="{{ path('app_login') }}"><i class="fa fa-user-circle fs-18"></i>&nbsp;Mon#}
+{#                                                    compte</a>#}
+{#                                            </li>#}
+{#                                        {% else %}#}
+{#                                            <li class="dropdown header-search-wrap">#}
+{#                                                <a class="dropdown-item dropdown-toggle pr-5" href="{{ path('app_login') }}"><i class="fa fa-user-circle fs-18"></i>&nbsp;Connexion</a>#}
+{#                                            </li>#}
+{#                                        {% endif %}#}
 
                                         {#                                        <li class="dropdown header-search-wrap">#}
                                         {#                                            <a class="dropdown-item dropdown-toggle pr-5" href="#"><i class="fa fa-search3 fs-18"></i> </a>#}
