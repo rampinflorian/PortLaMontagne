@@ -7,8 +7,6 @@
 {% block title %}Article{% endblock %}
 
 {% block body %}
-<div class="page">
-    <div class="page has-sidebar has-right-sidebar bordered blog-single-post">
 
         <div class="page-inner t-bordered">
             <div class="container">
@@ -19,14 +17,14 @@
                         <div class="post-content-wrap">
                             <figure class="item-shadow">
                                 <a href="#" class="link-to-post">
-                                    <img itemprop="image" src="{{ asset('img/articles/article_header_guid.jpg') }}" alt="">
+                                    <img itemprop="image" src="{{ asset('article/image/' ~ article.image ) }}" alt="">
                                     <div class="post-overlay"></div>
                                 </a>
                             </figure>
 
                             <div class="post-author-wrap mnt-50">
                                 <div class="author-avatar">
-                                    <img alt="" src="{{ asset('img/avatars/a1.jpeg') }}" class="avatar photo">
+                                    <img alt="" src="{{ 'https://api.adorable.io/avatars/285/' ~ article.user.email }}" class="avatar photo">
                                 </div>
                             </div>
 
@@ -80,43 +78,13 @@
                                             <i class="si-icon-facebook"></i>
                                             <i class="si-icon-facebook"></i>
                                         </a>
-
-                                        <a href="#" class="social-icon si-light si-small si-delicious" title="Delicious">
-                                            <i class="si-icon-delicious"></i>
-                                            <i class="si-icon-delicious"></i>
-                                        </a>
-
-                                        <a href="#" class="social-icon si-light si-small si-paypal" title="Paypal">
-                                            <i class="si-icon-paypal"></i>
-                                            <i class="si-icon-paypal"></i>
-                                        </a>
-
-                                        <a href="#" class="social-icon si-light si-small si-flattr" title="Flattr">
-                                            <i class="si-icon-flattr"></i>
-                                            <i class="si-icon-flattr"></i>
-                                        </a>
-
-                                        <a href="#" class="social-icon si-light si-small si-android" title="Android">
-                                            <i class="si-icon-android"></i>
-                                            <i class="si-icon-android"></i>
-                                        </a>
-
-                                        <a href="#" class="social-icon si-light si-small si-smashmag" title="Smashmag">
-                                            <i class="si-icon-smashmag"></i>
-                                            <i class="si-icon-smashmag"></i>
-                                        </a>
-
-                                        <a href="#" class="social-icon si-light si-small si-gplus" title="Google Plus">
-                                            <i class="si-icon-gplus"></i>
-                                            <i class="si-icon-gplus"></i>
-                                        </a>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="post-meta-section clearfix">
                                 <div class="post-author-avatar">
-                                    <img alt="" src="img/team/team01.jpg" class="avatar avatar-100 photo" height="75" width="75">
+                                    <img alt="" src="{{ 'https://api.adorable.io/avatars/285/' ~ article.user.email }}" class="avatar avatar-100 photo" height="75" width="75">
                                 </div>
                                 <div class="post-author-info">
                                     <h2 class="name title">A propos de l'auteur</h2>
@@ -131,121 +99,6 @@
                                     </div>
                                 </div>
                             </div>
-                            {#                        BLOCK COMMENTAIRE #}
-                            {#                        <div class="post-meta-section clearfix">#}
-
-                            {#                            <div class="post-block post-comments clearfix">#}
-                            {#                                <div class="post-meta-section-title b-bordered pb-30">#}
-                            {#                                    <h4><i class="ion-android-chat pr-sm fs-16"></i> Comments (5)</h4>#}
-                            {#                                </div>#}
-
-                            {#                                <ul class="comments pt-30">#}
-                            {#                                    <li>#}
-                            {#                                        <div class="comment">#}
-                            {#                                            <div class="img-thumbnail">#}
-                            {#                                                <img class="avatar" alt="Vertex" src="img/avatars/a2.jpeg">#}
-                            {#                                            </div>#}
-                            {#                                            <div class="comment-block">#}
-                            {#                                          <span class="comment-by">#}
-                            {#                                             <strong>John Doe</strong>#}
-                            {#                                          </span>#}
-                            {#                                                <span class="date">November 12, 2016 at 1:38 pm</span>#}
-                            {#                                                <p class="desc">#}
-                            {#                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida#}
-                            {#                                                    pellentesque urna varius vitae, gravida pellentesque urna varius vitae. Lorem ipsum dolor sit amet.#}
-                            {#                                                    Sed dui lorem, adipiscing in adipiscing et, interdum nec metus.#}
-                            {#                                                </p>#}
-                            {#                                                <div class="clearfix mt-10">#}
-                            {#                                                    <span> <a href="#" class="reply">Reply</a></span>#}
-                            {#                                                </div>#}
-                            {#                                            </div>#}
-                            {#                                        </div>#}
-
-                            {#                                        <ul class="comments reply">#}
-                            {#                                            <li>#}
-                            {#                                                <div class="comment">#}
-                            {#                                                    <div class="img-thumbnail">#}
-                            {#                                                        <img class="avatar" alt="Vertex" src="img/avatars/a1.jpeg">#}
-                            {#                                                    </div>#}
-                            {#                                                    <div class="comment-block">#}
-                            {#                                                <span class="comment-by">#}
-                            {#                                                   <strong>Willie Clark</strong>#}
-                            {#                                                </span>#}
-                            {#                                                        <span class="date">November 12, 2016 at 1:25 pm</span>#}
-                            {#                                                        <p class="desc">#}
-                            {#                                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio,#}
-                            {#                                                            gravida pellentesque urna varius vitae, gravida pellentesque urna varius vitae.#}
-                            {#                                                        </p>#}
-                            {#                                                        <div class="clearfix mt-10">#}
-                            {#                                                            <span> <a href="#" class="reply">Reply</a></span>#}
-                            {#                                                        </div>#}
-                            {#                                                    </div>#}
-                            {#                                                </div>#}
-                            {#                                            </li>#}
-                            {#                                        </ul>#}
-                            {#                                    </li>#}
-                            {#                                    <li>#}
-                            {#                                        <div class="comment">#}
-                            {#                                            <div class="img-thumbnail">#}
-                            {#                                                <img class="avatar" alt="Vertex" src="img/avatars/a3.jpeg">#}
-                            {#                                            </div>#}
-                            {#                                            <div class="comment-block">#}
-                            {#                                          <span class="comment-by">#}
-                            {#                                             <strong>Willie Clark</strong>#}
-                            {#                                          </span>#}
-                            {#                                                <span class="date">November 12, 2016 at 2:10 pm</span>#}
-                            {#                                                <p class="desc">#}
-                            {#                                                    Lorem ipsum dolor sit amet, consectetur adipiscing#}
-                            {#                                                    elit Sed dui lorem, adipiscing in adipiscing et, interdum nec metus.#}
-                            {#                                                    Mauris ultricies, justo eu convallis placerat, felis enim ornare#}
-                            {#                                                    nisi, vitae mattis nulla ante id dui..#}
-                            {#                                                </p>#}
-                            {#                                                <div class="clearfix mt-10">#}
-                            {#                                                    <span> <a href="#" class="reply">Reply</a></span>#}
-                            {#                                                </div>#}
-                            {#                                            </div>#}
-                            {#                                        </div>#}
-                            {#                                    </li>#}
-                            {#                                </ul>#}
-                            {#                            </div>#}
-                            {#                        </div>#}
-
-                            {#                        <div class="post-meta-section clearfix">#}
-                            {#                            <div class="post-meta-section-title">#}
-                            {#                                <h4><i class="fa fa-align-left pr-sm"></i> Leave a comment</h4>#}
-                            {#                            </div>#}
-
-                            {#                            <div class="post-block post-leave-comment">#}
-
-                            {#                                <form action="actionName" method="post">#}
-                            {#                                    <div class="form-group">#}
-                            {#                                        <div class="row">#}
-                            {#                                            <div class="col-md-6">#}
-                            {#                                                <!--<label>Your name *</label>-->#}
-                            {#                                                <input type="text" value="" maxlength="100" placeholder="Your name *" class="form-control" name="name" id="name">#}
-                            {#                                            </div>#}
-                            {#                                            <div class="col-md-6">#}
-                            {#                                                <!--<label>Your email address *</label>-->#}
-                            {#                                                <input type="email" value="" maxlength="100" placeholder="Your email address *" class="form-control" name="email" id="email">#}
-                            {#                                            </div>#}
-                            {#                                        </div>#}
-                            {#                                    </div>#}
-                            {#                                    <div class="form-group">#}
-                            {#                                        <div class="row">#}
-                            {#                                            <div class="col-md-12">#}
-                            {#                                                <!--<label>Comment *</label>-->#}
-                            {#                                                <textarea maxlength="5000" rows="9" placeholder="Comment *" class="form-control" name="comment" id="comment"></textarea>#}
-                            {#                                            </div>#}
-                            {#                                        </div>#}
-                            {#                                    </div>#}
-                            {#                                    <div class="row">#}
-                            {#                                        <div class="col-md-12 pt-md">#}
-                            {#                                            <input type="submit" value="Post Comment" class="btn btn-primary" data-loading-text="Loading...">#}
-                            {#                                        </div>#}
-                            {#                                    </div>#}
-                            {#                                </form>#}
-                            {#                            </div>#}
-                            {#                        </div>#}
                         </div>
                     </div>
 

@@ -9,6 +9,7 @@ use App\Service\FileService;
 use phpDocumentor\Reflection\Types\This;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -37,7 +38,8 @@ class ArticleController extends AbstractController
             $image = $form->get('image')->getData();
             $newFilename = $fileService->getFileName($image);
 
-            $image->move($parameterBag->get('partner_directory') . '/image/', $newFilename);
+            $image->move($parameterBag->get('article_directory') . '/image/', $newFilename);
+
             $article->setImage($newFilename);
 
             if (!$form->get('isAlert')->getData())
@@ -65,6 +67,11 @@ class ArticleController extends AbstractController
      */
     public function edit(Request $request, Article $article): Response
     {
+
+        $article->setImage(
+            new File($this->getParameter('article_directory') . '/' . $article->getImage())
+        );
+
         $form = $this->createForm(ArticleType::class, $article);
         $form->handleRequest($request);
 
