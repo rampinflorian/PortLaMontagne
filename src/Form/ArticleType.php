@@ -32,7 +32,8 @@ class ArticleType extends AbstractType
                         'mimeTypesMessage' => 'Vous devez uploader une image'
                     ])
                 ]
-            ])            ->add('category', EntityType::class, [
+            ])
+            ->add('category', EntityType::class, [
                 'class' => Category::class,
                 'query_builder' => function (CategoryRepository $categoryRepository) {
                     return $categoryRepository->QueryBuilderFindAll();

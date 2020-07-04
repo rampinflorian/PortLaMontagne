@@ -30,7 +30,7 @@ class Partner
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $imageUrl;
+    private $image;
 
     public function getId(): ?int
     {
@@ -61,14 +61,14 @@ class Partner
         return $this;
     }
 
-    public function getImageUrl(): ?string
+    public function getImage(): ?string
     {
-        return $this->imageUrl;
+        return $this->image;
     }
 
-    public function setImageUrl(string $imageUrl): self
+    public function setImage(string $image): self
     {
-        $this->imageUrl = $imageUrl;
+        $this->image = $image;
 
         return $this;
     }

@@ -37,7 +37,7 @@ class ArticleController extends AbstractController
             $image = $form->get('image')->getData();
             $newFilename = $fileService->getFileName($image);
 
-            $image->move($parameterBag->get('article_directory') . '/image/', $newFilename);
+            $image->move($parameterBag->get('partner_directory') . '/image/', $newFilename);
             $article->setImage($newFilename);
 
             if (!$form->get('isAlert')->getData())
