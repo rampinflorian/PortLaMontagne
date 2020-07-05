@@ -1,6 +1,13 @@
 {% extends 'base.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    <!-- Smart Forms CSS -->
+    <link href="{{ asset('smartforms/Templates/css/smart-loader.css') }}" rel="stylesheet" />
+    <link href="{{ asset('smartforms/Templates/css/smart-addons.css') }}" rel="stylesheet" />
+    <link href="{{ asset('smartforms/Templates/css/smart-forms.css') }}" rel="stylesheet" />
 
-{% block title %}Edit Article{% endblock %}
+{% endblock %}
+{% block title %}Edition de l'article {{ article.title }}{% endblock %}
 
 {% block body %}
     <h1>Edit Article</h1>

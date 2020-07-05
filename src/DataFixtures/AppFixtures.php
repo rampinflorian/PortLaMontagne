@@ -24,13 +24,14 @@ class AppFixtures extends Fixture
             ->setDescription($faker->text(90));
 
         $this->addReference('User_DEV', $user);
+        $manager->persist($user);
 
         $category = (new Category())
         ->setTitle('Information')
         ;
 
+        $manager->persist($category);
 
-        $manager->persist($user);
 
         for ($i = 0; $i < 19; $i++) {
             $faker = Factory::create('fr_FR');

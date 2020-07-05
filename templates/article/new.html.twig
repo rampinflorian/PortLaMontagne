@@ -1,10 +1,18 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Article{% endblock %}
+{% block stylesheets %}
+{{ parent() }}
+    <!-- Smart Forms CSS -->
+    <link href="{{ asset('smartforms/Templates/css/smart-loader.css') }}" rel="stylesheet" />
+    <link href="{{ asset('smartforms/Templates/css/smart-addons.css') }}" rel="stylesheet" />
+    <link href="{{ asset('smartforms/Templates/css/smart-forms.css') }}" rel="stylesheet" />
+
+{% endblock %}
+
+{% block title %}Créer un article{% endblock %}
 
 {% block body %}
-    <h1>Create new Article</h1>
-
+</p>
     {{ include('article/_form.html.twig') }}
 
     <a href="{{ path('article_index') }}">back to list</a>

@@ -4,9 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Article;
 use App\Form\ArticleType;
-use App\Repository\ArticleRepository;
 use App\Service\FileService;
-use phpDocumentor\Reflection\Types\This;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\HttpFoundation\File\File;
@@ -22,11 +20,10 @@ class ArticleController extends AbstractController
     /**
      * @Route("/new", name="admin_article_new", methods={"GET","POST"})
      * @param Request $request
-     * @param ParameterBagInterface $parameterBag
      * @param FileService $fileService
      * @return Response
      */
-    public function new(Request $request, ParameterBagInterface $parameterBag, FileService $fileService): Response
+    public function new(Request $request, FileService $fileService): Response
     {
         $article = new Article();
         $form = $this->createForm(ArticleType::class, $article);
@@ -38,12 +35,11 @@ class ArticleController extends AbstractController
             $image = $form->get('image')->getData();
             $newFilename = $fileService->getFileName($image);
 
-            $image->move($parameterBag->get('article_directory') . '/image/', $newFilename);
+            $image->move($this->getParameter('article_directory') . '/image/', $newFilename);
 
             $article->setImage($newFilename);
 
-            if (!$form->get('isAlert')->getData())
-            {
+            if (!$form->get('isAlert')->getData()) {
                 $article->setAlert(null);
             }
             $entityManager = $this->getDoctrine()->getManager();
@@ -63,19 +59,28 @@ class ArticleController extends AbstractController
      * @Route("/{id}/edit", name="admin_article_edit", methods={"GET","POST"})
      * @param Request $request
      * @param Article $article
+     * @param FileService $fileService
      * @return Response
      */
-    public function edit(Request $request, Article $article): Response
+    public function edit(Request $request, Article $article, FileService $fileService): Response
     {
-
+        $orphanImage = $article->getImage();
         $article->setImage(
-            new File($this->getParameter('article_directory') . '/' . $article->getImage())
+            new File($this->getParameter('article_directory') . '/image/' . $article->getImage())
         );
 
         $form = $this->createForm(ArticleType::class, $article);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            if ($article->getImage() !== $orphanImage) {
+                $newImage = $form->get('image')->getData();
+                $newFilename = $fileService->getFileName($newImage);
+                $newImage->move($this->getParameter('article_directory') . '/image/', $newFilename);
+                $fileService->deleteFile($this->getParameter('article_directory') . '/image/' . $orphanImage);
+                $article->setImage($newFilename);
+            }
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('article_index');
@@ -96,7 +101,7 @@ class ArticleController extends AbstractController
      */
     public function delete(Request $request, Article $article): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$article->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $article->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($article);
             $entityManager->flush();

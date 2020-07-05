@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=ArticleRepository::class)
+ * @ORM\HasLifecycleCallbacks()
  */
 class Article
 {
@@ -52,6 +53,14 @@ class Article
      * @ORM\ManyToOne(targetEntity=Alert::class, inversedBy="articles", cascade={"persist", "remove"})
      */
     private $alert;
+
+    /**
+     * @ORM\PrePersist()
+     */
+    public function PrePersistSetCreatedAt()
+    {
+        $this->setCreatedAt(new \DateTime('now'));
+    }
 
     public function getId(): ?int
     {

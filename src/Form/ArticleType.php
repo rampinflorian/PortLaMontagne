@@ -9,6 +9,8 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -18,11 +20,22 @@ class ArticleType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title')
-            ->add('content')
-            ->add('createdAt')
+            ->add('title', TextType::class, [
+                'attr' => [
+                    'class' => 'gui-input',
+                    'placeholder' => 'Titre'
+                ]
+            ])
+            ->add('content', TextareaType::class, [
+                'attr' => [
+                    'class' => 'gui-textarea',
+                    'placeholder' => 'Contenu'
+                ]
+
+            ])
             ->add('image', FileType::class, [
-                'label' => 'image de présentation',
+                'label' => 'Image de couverture',
+                'mapped' => false,
                 'constraints' => [
                     new File([
                         'maxSize' => '10M',
@@ -40,11 +53,18 @@ class ArticleType extends AbstractType
                 },
                 'choice_label' => function ($category) {
                     return $category->getTitle();
-                }
+                },
+                'attr' => [
+                    'class' => 'field select'
+                ]
             ])
             ->add('isAlert', CheckboxType::class, [
                 'mapped' => false,
-                'required' => false
+                'required' => false,
+                'label' => 'Cet article est une alerte',
+                'attr' => [
+                    'class' => 'checkbox'
+                ]
             ])
             ->add('alert', AlertType::class);
     }

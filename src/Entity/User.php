@@ -61,6 +61,12 @@ class User implements UserInterface
      */
     private $climbingGroups;
 
+    /**
+     * @ORM\OneToOne(targetEntity=Newsletter::class, mappedBy="user", cascade={"persist", "remove"})
+     */
+    private $newsletter;
+
+
     public function __construct()
     {
         $this->articles = new ArrayCollection();
@@ -243,6 +249,23 @@ class User implements UserInterface
             if ($climbingGroup->getUser() === $this) {
                 $climbingGroup->setUser(null);
             }
+        }
+
+        return $this;
+    }
+
+    public function getNewsletter(): ?Newsletter
+    {
+        return $this->newsletter;
+    }
+
+    public function setNewsletter(Newsletter $newsletter): self
+    {
+        $this->newsletter = $newsletter;
+
+        // set the owning side of the relation if necessary
+        if ($newsletter->getUser() !== $this) {
+            $newsletter->setUser($this);
         }
 
         return $this;

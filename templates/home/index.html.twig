@@ -192,7 +192,7 @@
                                 {% for article in articles %}
                                     <div class="item exp-animation" data-animation="bottom-to-top" data-delay="200">
                                         <figure class="animated-overlay overlay-alt">
-                                            <img src="{{ asset('img/articles/article_header_guid.jpg') }}"/>
+                                            <img src="{{ asset('article/image/' ~ article.image) }}"/>
                                             <a href="{{ path('article_show', { 'id': article.id }) }}" class="link-to-post"></a>
                                             <figcaption>
                                                 <div class="thumb-info thumb-info-v2"><i class="fa fa-angle-right"></i></div>

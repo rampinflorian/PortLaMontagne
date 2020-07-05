@@ -80,10 +80,10 @@
                                         </li>
                                         <li class="dropdown">
                                             <a class="dropdown-item dropdown-toggle" href="{{ path('article_index') }}">Articles</a>
-{#                                        </li>#}
-{#                                        <li class="dropdown">#}
-{#                                            <a class="dropdown-item dropdown-toggle" href="{{ path('climbing_group_index') }}">Sorties</a>#}
-{#                                        </li>#}
+                                            {#                                        </li>#}
+                                            {#                                        <li class="dropdown">#}
+                                            {#                                            <a class="dropdown-item dropdown-toggle" href="{{ path('climbing_group_index') }}">Sorties</a>#}
+                                            {#                                        </li>#}
                                     </ul>
                                 </nav>
                             </div>
@@ -112,16 +112,16 @@
                                                         class="fa fa-weather-sunny fs-18"></i>&nbsp;Météo </a>
                                         </li>
 
-{#                                        {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}#}
-{#                                            <li class="dropdown header-search-wrap">#}
-{#                                                <a class="dropdown-item dropdown-toggle pr-5" href="{{ path('app_login') }}"><i class="fa fa-user-circle fs-18"></i>&nbsp;Mon#}
-{#                                                    compte</a>#}
-{#                                            </li>#}
-{#                                        {% else %}#}
-{#                                            <li class="dropdown header-search-wrap">#}
-{#                                                <a class="dropdown-item dropdown-toggle pr-5" href="{{ path('app_login') }}"><i class="fa fa-user-circle fs-18"></i>&nbsp;Connexion</a>#}
-{#                                            </li>#}
-{#                                        {% endif %}#}
+                                        {#                                        {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}#}
+                                        {#                                            <li class="dropdown header-search-wrap">#}
+                                        {#                                                <a class="dropdown-item dropdown-toggle pr-5" href="{{ path('app_login') }}"><i class="fa fa-user-circle fs-18"></i>&nbsp;Mon#}
+                                        {#                                                    compte</a>#}
+                                        {#                                            </li>#}
+                                        {#                                        {% else %}#}
+                                        {#                                            <li class="dropdown header-search-wrap">#}
+                                        {#                                                <a class="dropdown-item dropdown-toggle pr-5" href="{{ path('app_login') }}"><i class="fa fa-user-circle fs-18"></i>&nbsp;Connexion</a>#}
+                                        {#                                            </li>#}
+                                        {#                                        {% endif %}#}
 
                                         {#                                        <li class="dropdown header-search-wrap">#}
                                         {#                                            <a class="dropdown-item dropdown-toggle pr-5" href="#"><i class="fa fa-search3 fs-18"></i> </a>#}
@@ -152,6 +152,29 @@
 </header>
 <!--End Header-->
 <div class="wrapper">
+
+    {% for message in app.flashes('error') %}
+        <div class="alert alert-error alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <h4 class="alert-title mt-0 mb-5">Erreur !</h4>
+            {{ message }}
+        </div>
+    {% endfor %}
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <h4 class="alert-title mt-0 mb-5">Succès !</h4>
+            {{ message }}
+        </div>
+    {% endfor %}
+    {% for message in app.flashes('warning') %}
+        <div class="alert alert-warning alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <h4 class="alert-title mt-0 mb-5">Attention !</h4>
+            {{ message }}
+        </div>
+    {% endfor %}
+
 
     {% block body %}{% endblock %}
     <!--Footer-Wrap-->

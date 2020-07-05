@@ -36,10 +36,10 @@ class ArticleRepository extends ServiceEntityRepository
      * @param int $maxResult
      * @return int|mixed|string
      */
-    public function findAllWithMaxResult(int $maxResult)
+    public function FindLastWithMaxResult(int $maxResult)
     {
         return $this->createQueryBuilder('a')
-            ->orderBy('a.id', 'ASC')
+            ->orderBy('a.id', 'DESC')
             ->setMaxResults($maxResult)
             ->getQuery()
             ->getResult()
