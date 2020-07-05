@@ -49,7 +49,7 @@
 
                     <h2 class="fs-30 pt-20 text-center">{{ article.title }}</h2>
 
-                    {{ article.content }}
+                    {{ article.content|raw|nl2br }}
 
                     <div class="blog-single-meta">
 

@@ -28,7 +28,7 @@ class ArticleType extends AbstractType
             ])
             ->add('content', TextareaType::class, [
                 'attr' => [
-                    'class' => 'gui-textarea',
+                    'class' => 'gui-textarea summernote',
                     'placeholder' => 'Contenu'
                 ]
 

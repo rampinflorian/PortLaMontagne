@@ -46,7 +46,7 @@
 
                                         <div itemprop="articleBody">
                                             <p>
-                                                {{ article.content }}
+                                                {{ article.content|striptags|slice(50) ~ ' [...]' }}
                                             </p>
                                             <hr />
                                             <p class="v_blog-item-author">
