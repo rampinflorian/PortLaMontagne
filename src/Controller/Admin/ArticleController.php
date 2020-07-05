@@ -73,7 +73,10 @@ class ArticleController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
+            
+            if (!$form->get('isAlert')->getData()) {
+                $article->setAlert(null);
+            }
             if ($article->getImage() !== $orphanImage) {
                 $newImage = $form->get('image')->getData();
                 $newFilename = $fileService->getFileName($newImage);
