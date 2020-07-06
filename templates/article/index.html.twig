@@ -27,7 +27,7 @@
                             <article class="v_blog-item v_blog-item-related v_blog-grid">
                                 <div class="v_blog-item-inner">
                                     <div class="v_blog-item-media">
-                                        <a href="#">
+                                        <a href="{{ path('article_show', { 'id': article.id }) }}">
                                             <img src="{{ asset('article/image/' ~ article.image ) }}" />
                                         </a>
                                     </div>
