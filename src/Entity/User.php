@@ -6,10 +6,12 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
+ * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
  */
 class User implements UserInterface
 {
@@ -52,7 +54,7 @@ class User implements UserInterface
     private $lastname;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $description;
 
@@ -65,6 +67,16 @@ class User implements UserInterface
      * @ORM\OneToOne(targetEntity=Newsletter::class, mappedBy="user", cascade={"persist", "remove"})
      */
     private $newsletter;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isVerified = false;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $facebookId;
 
 
     public function __construct()
@@ -267,6 +279,30 @@ class User implements UserInterface
         if ($newsletter->getUser() !== $this) {
             $newsletter->setUser($this);
         }
+
+        return $this;
+    }
+
+    public function isVerified(): bool
+    {
+        return $this->isVerified;
+    }
+
+    public function setIsVerified(bool $isVerified): self
+    {
+        $this->isVerified = $isVerified;
+
+        return $this;
+    }
+
+    public function getFacebookId(): ?int
+    {
+        return $this->facebookId;
+    }
+
+    public function setFacebookId(int $facebookId): self
+    {
+        $this->facebookId = $facebookId;
 
         return $this;
     }

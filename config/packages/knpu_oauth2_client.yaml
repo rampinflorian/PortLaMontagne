@@ -1,0 +1,12 @@
+knpu_oauth2_client:
+    clients:
+        # the key "facebook" can be anything, it
+        # will create a service: "knpu.oauth2.client.facebook"
+        facebook:
+            type: facebook
+            client_id: '%env(OAUTH_FACEBOOK_ID)%'
+            client_secret: '%env(OAUTH_FACEBOOK_SECRET)%'
+            # the route that you're redirected to after
+            redirect_route: connect_facebook_check
+            redirect_params: {}
+            graph_api_version: v3.2
