@@ -1,21 +1,141 @@
+
 {% extends 'base.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+
+    <!-- Current Page CSS -->
+    <link href="{{ asset('smartforms/Templates/css/smart-forms.css') }}" rel="stylesheet" />
+{% endblock %}
+
+{% block title %}Connexion{% endblock %}
 
 {% block body %}
-    {% for flashError in app.flashes('verify_email_error') %}
-        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
-    {% endfor %}
 
-    <h1>Register</h1>
+    <div class="page body-sign">
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
+        <div class="page-inner p-none no-border">
 
-        <button type="submit" class="btn">Register</button>
-    {{ form_end(registrationForm) }}
+            <section class="section-big" style="background:url({{ asset('img/login/login.JPG') }});background-size:cover">
+
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-md-6 offset-md-3">
+
+                            <div class="smart-wrap">
+                                <div class="smart-forms smart-container wrap-3">
+
+                                    <div class="form-header header-primary">
+                                        <h4><i class="fa fa-sign-in"></i>Se connecter</h4>
+                                    </div><!-- end .form-header section -->
+
+                                    <form method="post">
+                                        <div class="form-body">
+                                            {% if error %}
+                                                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                                            {% endif %}
+
+                                            {% if app.user %}
+                                                <div class="mb-3">
+                                                    You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+                                                </div>
+                                            {% endif %}
+                                            <div class="spacer-b30">
+                                                <div class="tagline"><span> inscrivez-vous </span></div><!-- .tagline -->
+                                            </div>
+
+                                            <div class="section text-center">
+                                                <a href="{{ path('app_register') }}" class="btn btn-primary"> <span><i class="fa fa-sign-in"></i></span> S'inscrire </a>
+
+                                            </div><!-- end section -->
+
+                                            <div class="spacer-t30 spacer-b30">
+                                                <div class="tagline"><span> Ou connectez-vous </span></div><!-- .tagline -->
+                                            </div>
+
+                                            <div class="section">
+                                                <label class="field prepend-icon">
+                                                    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="gui-input form-control" placeholder="Adresse email" required autofocus>
+                                                    <span class="field-icon"><i class="fa fa-user"></i></span>
+                                                </label>
+                                            </div><!-- end section -->
+
+                                            <div class="section">
+                                                <label class="field prepend-icon">
+                                                    <input type="password" name="password" id="inputPassword" class="form-control gui-input" placeholder="Mot de passe" required>
+                                                    <span class="field-icon"><i class="fa fa-lock"></i></span>
+                                                </label>
+                                            </div><!-- end section -->
+
+
+                                            <div class="section">
+                                                <label class="switch block">
+                                                    <input type="checkbox" name="_remember_me" checked>
+                                                    <span class="switch-label" for="remember" data-on="OUI" data-off="NON"></span>
+                                                    <span> Rester connecté ?</span>
+                                                </label>
+                                            </div><!-- end section -->
+                                        </div><!-- end .form-body section -->
+                                        <div class="form-footer">
+                                            <button type="submit" class="button btn-primary">Connexion</button>
+                                        </div><!-- end .form-footer section -->
+
+                                        <input type="hidden" name="_csrf_token"
+                                               value="{{ csrf_token('authenticate') }}"
+                                        >
+                                    </form>
+                                </div><!-- end .smart-forms section -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section-primary main-color">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="feature-box left-icon-v2 exp-animation" data-animation="right-to-left" data-delay="200">
+                                <i class="fa fa-cogs v-icon icn-holder medium"></i>
+                                <div class="feature-box-text">
+                                    <h3>Découvrir</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="feature-box left-icon-v2 exp-animation" data-animation="right-to-left" data-delay="400">
+                                <i class="fa fa-compress v-icon icn-holder medium"></i>
+                                <div class="feature-box-text">
+                                    <h3>Rechercher</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="feature-box left-icon-v2 exp-animation" data-animation="right-to-left" data-delay="600">
+                                <i class="fa fa-fire v-icon icn-holder medium"></i>
+                                <div class="feature-box-text">
+                                    <h3>Alerter</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="feature-box left-icon-v2 exp-animation" data-animation="right-to-left" data-delay="800">
+                                <i class="fa fa-comments-o v-icon icn-holder medium"></i>
+                                <div class="feature-box-text">
+                                    <h3>Partager</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block javascripts %}
+    {{ parent() }}
 {% endblock %}

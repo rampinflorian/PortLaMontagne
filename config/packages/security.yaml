@@ -20,8 +20,8 @@ security:
             provider: app_user_provider
             guard:
                 authenticators:
-#                    - App\Security\AppAuthentificatorAuthenticator
-                    - App\Security\FacebookAuthenticator
+                    - App\Security\AppAuthentificatorAuthenticator
+#                    - App\Security\FacebookAuthenticator
             logout:
                 path: app_logout
                 # where to redirect after logout
