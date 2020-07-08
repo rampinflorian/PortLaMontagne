@@ -1,11 +1,10 @@
-
 {% extends 'base.html.twig' %}
 
 {% block stylesheets %}
     {{ parent() }}
 
     <!-- Current Page CSS -->
-    <link href="{{ asset('smartforms/Templates/css/smart-forms.css') }}" rel="stylesheet" />
+    <link href="{{ asset('smartforms/Templates/css/smart-forms.css') }}" rel="stylesheet"/>
 {% endblock %}
 
 {% block title %}Connexion{% endblock %}
@@ -25,67 +24,70 @@
 
                             <div class="smart-wrap">
                                 <div class="smart-forms smart-container wrap-3">
-
-                                    <div class="form-header header-primary">
-                                        <h4><i class="fa fa-sign-in"></i>Se connecter</h4>
-                                    </div><!-- end .form-header section -->
-
                                     <form method="post">
                                         <div class="form-body">
-                                            {% if error %}
-                                                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-                                            {% endif %}
 
-                                            {% if app.user %}
-                                                <div class="mb-3">
-                                                    You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
-                                                </div>
-                                            {% endif %}
-                                            <div class="spacer-b30">
-                                                <div class="tagline"><span> inscrivez-vous </span></div><!-- .tagline -->
-                                            </div>
-
-                                            <div class="section text-center">
-                                                <a href="{{ path('app_register') }}" class="btn btn-primary"> <span><i class="fa fa-sign-in"></i></span> S'inscrire </a>
-
-                                            </div><!-- end section -->
 
                                             <div class="spacer-t30 spacer-b30">
-                                                <div class="tagline"><span> Ou connectez-vous </span></div><!-- .tagline -->
+                                                <div class="tagline"><span> Infos de connexion </span></div><!-- .tagline -->
+                                            </div>
+                                            {{ form_start(registrationForm) }}
+
+
+                                            <div class="section">
+                                                {{ form_errors(registrationForm.email) }}
+                                                <label class="field prepend-icon">
+                                                    {{ form_widget(registrationForm.email) }}
+                                                    <span class="field-icon"><i class="fa fa-user"></i></span>
+                                                </label>
+                                            </div>
+
+                                            <div class="section">
+                                                {{ form_errors(registrationForm.plainPassword.first) }}
+                                                <label class="field prepend-icon">
+                                                    {{ form_widget(registrationForm.plainPassword.first) }}
+                                                    <span class="field-icon"><i class="fa fa-user"></i></span>
+                                                </label>
+                                            </div>
+
+                                            <div class="section">
+                                                {{ form_errors(registrationForm.plainPassword.second) }}
+                                                <label class="field prepend-icon">
+                                                    {{ form_widget(registrationForm.plainPassword.second) }}
+                                                    <span class="field-icon"><i class="fa fa-user"></i></span>
+                                                </label>
+                                            </div>
+
+                                            <div class="spacer-t30 spacer-b30">
+                                                <div class="tagline"><span> Qui es-tu ? </span></div><!-- .tagline -->
                                             </div>
 
                                             <div class="section">
                                                 <label class="field prepend-icon">
-                                                    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="gui-input form-control" placeholder="Adresse email" required autofocus>
+                                                    {{ form_widget(registrationForm.firstname) }}
                                                     <span class="field-icon"><i class="fa fa-user"></i></span>
                                                 </label>
-                                            </div><!-- end section -->
+                                            </div>
 
                                             <div class="section">
                                                 <label class="field prepend-icon">
-                                                    <input type="password" name="password" id="inputPassword" class="form-control gui-input" placeholder="Mot de passe" required>
-                                                    <span class="field-icon"><i class="fa fa-lock"></i></span>
+                                                    {{ form_widget(registrationForm.lastname) }}
+                                                    <span class="field-icon"><i class="fa fa-user"></i></span>
                                                 </label>
-                                            </div><!-- end section -->
+                                            </div>
+
+                                            {#                                            {{ form_row(registrationForm.agreeTerms) }}#}
 
 
-                                            <div class="section">
-                                                <label class="switch block">
-                                                    <input type="checkbox" name="_remember_me" checked>
-                                                    <span class="switch-label" for="remember" data-on="OUI" data-off="NON"></span>
-                                                    <span> Rester connecté ?</span>
-                                                </label>
-                                            </div><!-- end section -->
-                                        </div><!-- end .form-body section -->
+                                        </div><!-- end .smart-forms section -->
+
                                         <div class="form-footer">
-                                            <button type="submit" class="button btn-primary">Connexion</button>
+                                            <button type="submit" class="button btn-primary">S'INSCRIRE</button>
                                         </div><!-- end .form-footer section -->
 
-                                        <input type="hidden" name="_csrf_token"
-                                               value="{{ csrf_token('authenticate') }}"
-                                        >
+                                        {{ form_end(registrationForm) }}
                                     </form>
-                                </div><!-- end .smart-forms section -->
+                                </div>
                             </div>
                         </div>
                     </div>
