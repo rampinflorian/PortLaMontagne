@@ -1,0 +1,80 @@
+{% extends 'base_app_user.html.twig' %}
+
+{% block title %}Hello DashboardController!{% endblock %}
+
+{% block bodyApp %}
+    <div class="col-md-9 right-side-sidebar">
+
+        <section class="section-primary pt-none">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3 class="xspecial-heading v2"><span>Informations générales</span></h3>
+                    </div>
+                    <div class="col-md-12 counters">
+
+                        <div class="row">
+
+                            <div class="col-md-4 col-sm-6">
+                                <div class="counter">
+                                    <strong class="counter-number" data-to="0">0</strong>
+                                    <span>Mes sorties</span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4 col-sm-6">
+                                <div class="counter">
+                                    <strong data-to="0">0</strong>
+                                    <span>Articles commentés</span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4 col-sm-6">
+                                <div class="counter">
+                                    <strong data-to="0">0</strong>
+                                    <span>Sorties organisées</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-primary pt-none">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3 class="xspecial-heading v2"><span>Mon activité</span></h3>
+                    </div>
+                    <div class="col-md-12">
+
+                        <div class="row text-center">
+                            <div class="col-md-4">
+                                <div class="xcircle-chart xcircle-x chart-center" data-linewidth="4" data-percent="0" data-animatepercent="0" data-size="170" data-barcolor="#8cc747" data-trackcolor="#e4e4e4">
+                                    <span>0</span></div>
+                                <h3>Sorties disponibles</h3>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="xcircle-chart xcircle-x chart-center" data-linewidth="4" data-percent="0" data-animatepercent="10" data-size="170" data-barcolor="#1dc6df" data-trackcolor="#e4e4e4">
+                                          <span>
+                                             <i class="ion-ios-star"></i>
+                                          </span>
+                                </div>
+                                <h3>Grade : novice</h3>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="xcircle-chart xcircle-x chart-center" data-linewidth="4" data-percent="0" data-animatepercent="0" data-size="170" data-barcolor="#37ba85" data-trackcolor="#e4e4e4">
+                                    <span>0%</span></div>
+                                <h3>sorties où j'ai participé</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+{% endblock %}

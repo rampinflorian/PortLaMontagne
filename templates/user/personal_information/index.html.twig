@@ -1,0 +1,96 @@
+{% extends 'base_app_user.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+
+    <!-- Current Page CSS -->
+    <link href="{{ asset('smartforms/Templates/css/smart-forms.css') }}" rel="stylesheet"/>
+{% endblock %}
+{% block title %}Mes informations personnelles{% endblock %}
+
+{% block bodyApp %}
+    <div class="col-md-9 right-side-sidebar">
+
+        <div class="smart-wrap">
+            <div class="smart-forms smart-container wrap-12">
+
+                <div class="form-header header-primary">
+                    <h4><i class="fa fa-comments"></i> Mes informations personnelles </h4>
+                </div><!-- end .form-header section -->
+                {{ form_start(formUser) }}
+
+                <div class="form-body">
+
+
+                    <div class="spacer-t40 spacer-b40">
+                        <div class="tagline"><span>Administratif</span></div><!-- .tagline -->
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="section">
+                                {{ form_errors(formUser.firstname) }}
+                                <label class="field prepend-icon">
+                                    {{ form_widget(formUser.firstname) }}
+                                    <span class="field-icon"><i class="fa fa-user"></i></span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="section">
+                                {{ form_errors(formUser.lastname) }}
+                                <label class="field prepend-icon">
+                                    {{ form_widget(formUser.lastname) }}
+                                    <span class="field-icon"><i class="fa fa-user"></i></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="spacer-t40 spacer-b40">
+                        <div class="tagline"><span>changer mon mot de passe</span></div><!-- .tagline -->
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="section">
+                                {{ form_errors(formUser.password.first) }}
+                                <label class="field prepend-icon">
+                                    {{ form_widget(formUser.password.first) }}
+                                    <span class="field-icon"><i class="fa fa-user"></i></span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="section">
+                                {{ form_errors(formUser.password.second) }}
+                                <label class="field prepend-icon">
+                                    {{ form_widget(formUser.password.second) }}
+                                    <span class="field-icon"><i class="fa fa-user"></i></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="spacer-t40 spacer-b40">
+                        <div class="tagline"><span>Un peu plus !</span></div><!-- .tagline -->
+                    </div>
+                    <div class="section">
+                        {{ form_errors(formUser.description) }}
+                        <label class="field prepend-icon">
+                            {{ form_widget(formUser.description) }}
+                            <span class="field-icon"><i class="fa fa-user"></i></span>
+                        </label>
+                    </div>
+
+                </div><!-- end .form-body section -->
+                <div class="form-footer">
+                    <button class="btn btn-primary float-right">{{ button_label|default('Modifier') }}</button>
+
+                </div><!-- end .form-footer section -->
+
+                {{ form_end(formUser) }}
+
+            </div><!-- end .smart-forms section -->
+        </div><!-- end .smart-wrap section -->
+    </div>
+{% endblock %}
