@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Article;
 use App\Form\ArticleType;
+use App\Repository\ArticleRepository;
 use App\Service\FileService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
@@ -17,6 +18,18 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class ArticleController extends AbstractController
 {
+    /**
+     * @Route("/", name="admin_article_index", methods={"GET"})
+     * @param ArticleRepository $articleRepository
+     * @return Response
+     */
+    public function index(ArticleRepository $articleRepository): Response
+    {
+        return $this->render('article/index_admin.html.twig', [
+            'articles' => $articleRepository->findAllByOrder('DESC'),
+        ]);
+    }
+
     /**
      * @Route("/new", name="admin_article_new", methods={"GET","POST"})
      * @param Request $request

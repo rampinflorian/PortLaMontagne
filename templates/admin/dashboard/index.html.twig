@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_app_admin.html.twig' %}
 
 {% block stylesheets %}
     {{ parent() }}
@@ -6,118 +6,85 @@
 
 {% block title %}Tableau de bord Admin{% endblock %}
 
-{% block body %}
+{% block bodyApp %}
 
-    <section class="page-header b-bordered">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-12">
-                    <h1 class="title">Tableau de bord d'administration</h1>
-                </div>
-            </div>
-        </div>
-    </section>
+    <div class="col-md-9 right-side-sidebar">
 
-    <div class="page-inner no-border">
-
-        <div class="container">
-
-            <div class="row">
-
-                <div class="col-md-3 left-side-sidebar pr-none">
-
-                    <div class="docs-navigation">
-
-                        <ul class="nav nav-list nav-shortcodes">
-                            <li class="active">
-                                <label class="tree-toggler nav-header">Articles</label>
-                                <ul class="nav nav-list tree">
-                                    <li><a href="{{ path('admin_article_new') }}"><i class="fa fa-globe"></i>Créer</a></li>
-                                </ul>
-                            </li>
-                        </ul>
+        <section class="section-primary pt-none">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3 class="xspecial-heading v2"><span>Informations générales</span></h3>
                     </div>
-                </div>
+                    <div class="col-md-12 counters">
 
-                <div class="col-md-9 right-side-sidebar">
+                        <div class="row">
 
-                    <section class="section-primary pt-none">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <h3 class="xspecial-heading v2"><span>Informations générales</span></h3>
+                            <div class="col-md-4 col-sm-6">
+                                <div class="counter">
+                                    <strong class="counter-number" data-to="{{ usersCount }}">{{ usersCount }}</strong>
+                                    <span>Utilisateurs enregistrés</span>
                                 </div>
-                                <div class="col-md-12 counters">
+                            </div>
 
-                                    <div class="row">
+                            <div class="col-md-4 col-sm-6">
+                                <div class="counter">
+                                    <strong data-to="{{ articlesCount }}">{{ articlesCount }}</strong>
+                                    <span>Articles rédigés</span>
+                                </div>
+                            </div>
 
-                                        <div class="col-md-4 col-sm-6">
-                                            <div class="counter">
-                                                <strong class="counter-number" data-to="{{ usersCount }}">{{ usersCount }}</strong>
-                                                <span>Utilisateurs enregistrés</span>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-4 col-sm-6">
-                                            <div class="counter">
-                                                <strong data-to="{{ articlesCount }}">{{ articlesCount }}</strong>
-                                                <span>Articles rédigés</span>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-4 col-sm-6">
-                                            <div class="counter">
-                                                <strong data-to="120">120</strong>
-                                                <span>Sorties organisées</span>
-                                            </div>
-                                        </div>
-                                    </div>
+                            <div class="col-md-4 col-sm-6">
+                                <div class="counter">
+                                    <strong data-to="120">120</strong>
+                                    <span>Sorties organisées</span>
                                 </div>
                             </div>
                         </div>
-                    </section>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-                    <section class="section-primary pt-none">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <h3 class="xspecial-heading v2"><span>Informations générales</span></h3>
-                                </div>
-                                <div class="col-md-12">
+        <section class="section-primary pt-none">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3 class="xspecial-heading v2"><span>Informations générales</span></h3>
+                    </div>
+                    <div class="col-md-12">
 
-                                    <div class="row text-center">
-                                        <div class="col-md-4">
-                                            <div class="xcircle-chart xcircle-x chart-center" data-linewidth="4" data-percent="0" data-animatepercent="70" data-size="170" data-barcolor="#8cc747" data-trackcolor="#e4e4e4">
-                                                <span>{{ usersCount }}</span></div>
-                                            <h3>Nombre d'utilisateurs</h3>
-                                        </div>
+                        <div class="row text-center">
+                            <div class="col-md-4">
+                                <div class="xcircle-chart xcircle-x chart-center" data-linewidth="4" data-percent="0" data-animatepercent="70" data-size="170" data-barcolor="#8cc747" data-trackcolor="#e4e4e4">
+                                    <span>{{ usersCount }}</span></div>
+                                <h3>Nombre d'utilisateurs</h3>
+                            </div>
 
-                                        <div class="col-md-4">
-                                            <div class="xcircle-chart xcircle-x chart-center" data-linewidth="4" data-percent="0" data-animatepercent="75" data-size="170" data-barcolor="#1dc6df" data-trackcolor="#e4e4e4">
+                            <div class="col-md-4">
+                                <div class="xcircle-chart xcircle-x chart-center" data-linewidth="4" data-percent="0" data-animatepercent="75" data-size="170" data-barcolor="#1dc6df" data-trackcolor="#e4e4e4">
                                           <span>
                                              <i class="ion-ios-star"></i>
                                           </span>
-                                            </div>
-                                            <h3>Cups Of Coffee</h3>
-                                        </div>
+                                </div>
+                                <h3>Cups Of Coffee</h3>
+                            </div>
 
-                                        <div class="col-md-4">
-                                            <div class="xcircle-chart xcircle-x chart-center" data-linewidth="4" data-percent="0" data-animatepercent="25" data-size="170" data-barcolor="#37ba85" data-trackcolor="#e4e4e4">
-                                                <span>25%</span></div>
-                                            <h3>Fineshed Projects</h3>
-                                        </div>
-                                    </div>
-                                </div>                            </div>
+                            <div class="col-md-4">
+                                <div class="xcircle-chart xcircle-x chart-center" data-linewidth="4" data-percent="0" data-animatepercent="25" data-size="170" data-barcolor="#37ba85" data-trackcolor="#e4e4e4">
+                                    <span>25%</span></div>
+                                <h3>Fineshed Projects</h3>
+                            </div>
                         </div>
-                    </section>
-
+                    </div>
                 </div>
             </div>
-        </div>
+        </section>
+
     </div>
 
-        {% endblock %}
+{% endblock %}
 
-        {% block javascripts %}
-        {{ parent() }}
+{% block javascripts %}
+    {{ parent() }}
 {% endblock %}

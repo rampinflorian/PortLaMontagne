@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_app_admin.html.twig' %}
 
 {% block stylesheets %}
 {{ parent() }}
@@ -11,7 +11,7 @@
 
 {% block title %}Créer un article{% endblock %}
 
-{% block body %}
+{% block bodyApp %}
 </p>
     {{ include('article/_form.html.twig') }}
 

@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+
+    <section class="page-header b-bordered">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h1 class="title">Tableau de bord d'administration</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="page-inner no-border">
+
+        <div class="container">
+
+            <div class="row">
+
+                <div class="col-md-3 left-side-sidebar pr-none">
+
+                    <div class="docs-navigation">
+
+                        <ul class="nav nav-list nav-shortcodes">
+                            <li class="active">
+                                <label class="tree-toggler nav-header">Administration</label>
+                                <ul class="nav nav-list tree">
+                                    <li><a href="{{ path('admin_dashboard_index') }}"><i class="fa fa-dashboard"></i>Tableau de bord</a></li>
+                                </ul>
+                            </li>
+                            <li class="active">
+                                <label class="tree-toggler nav-header">Articles</label>
+                                <ul class="nav nav-list tree">
+                                    <li><a href="{{ path('admin_article_index') }}"><i class="fa fa-list"></i>Liste</a></li>
+                                    <li><a href="{{ path('admin_article_new') }}"><i class="fa fa-pencil"></i>Créer</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                {% block bodyApp %}
+
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}
