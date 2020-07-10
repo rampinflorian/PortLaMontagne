@@ -76,8 +76,16 @@
                                                 </label>
                                             </div>
 
+                                            <div class="spacer-t30 spacer-b30">
+                                                <div class="tagline"><span> un peu de sécurité </span></div><!-- .tagline -->
+                                            </div>
                                             {#                                            {{ form_row(registrationForm.agreeTerms) }}#}
-
+                                            <div class="section">
+                                                {{ form_errors(registrationForm.captcha) }}
+                                                <label class="field prepend-icon">
+                                                    {{ form_widget(registrationForm.captcha) }}
+                                                </label>
+                                            </div>
 
                                         </div><!-- end .smart-forms section -->
 

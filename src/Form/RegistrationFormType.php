@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\User;
+use Gregwar\CaptchaBundle\Type\CaptchaType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -50,7 +51,7 @@ class RegistrationFormType extends AbstractType
             ->add('plainPassword', RepeatedType::class, [
                 'mapped' => false,
                 'type' => PasswordType::class,
-                'required' =>true,
+                'required' => true,
                 'invalid_message' => 'Les mots de passe ne correspondent pas',
 
                 'options' => [
@@ -69,7 +70,16 @@ class RegistrationFormType extends AbstractType
                     ]
                 ]
 
+            ])
+            ->add('captcha', CaptchaType::class, [
+                'mapped' => false,
+                'attr' => [
+                    'class' => 'form-control gui-input',
+                    'placeholder' => 'Saisir le code de sécurité'
+                ],
             ]);
+
+
     }
 
     public function configureOptions(OptionsResolver $resolver)
