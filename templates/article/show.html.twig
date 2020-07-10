@@ -65,10 +65,9 @@
                             <div class="blog-single-sharing-box">
                                 <h4>Partager cet article </h4>
                                 <div id="fb-root">
-
                                     <div class="blog-social-networks boxed-icons">
                                         <div class="fb-share-button"
-                                             data-href="{{ absolute_url(app.request.attributes.get('_route')) }}"
+                                             data-href="{{ absolute_url(app.request.uri) }}"
                                              data-layout="button_count">
                                         </div>
                                     </div>
