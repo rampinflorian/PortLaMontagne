@@ -1,0 +1,42 @@
+{% extends 'base_app_admin.html.twig' %}
+
+{% block title %}Utilisateurs{% endblock %}
+
+{% block bodyApp %}
+    <div class="col-md-9">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h3 class="xspecial-heading v2"><span>Liste des utilisateurs</span></h3>
+                </div>
+
+                <div class="col-md-12">
+                    <table class="table table-striped custab">
+                        <thead>
+                        <tr>
+                            <th>Nom</th>
+                            <th>Prenom</th>
+                            <th>Email</th>
+                            <th>Vérifié</th>
+                        </tr>
+                        </thead>
+                        {% for user in users %}
+
+                        <tr>
+                            <td>{{ user.lastname }}</td>
+                            <td>{{ user.firstname }}</td>
+                            <td>{{ user.email }}</td>
+                            <td>
+                                {% if user.verified %}
+                                    <span class="label label-success">OUI</span>
+                                {% endif %}
+                            </td>
+
+                            {% endfor %}
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
