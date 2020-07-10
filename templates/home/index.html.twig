@@ -193,14 +193,14 @@
                                     <div class="item exp-animation" data-animation="bottom-to-top" data-delay="200">
                                         <figure class="animated-overlay overlay-alt">
                                             <img src="{{ asset('article/image/' ~ article.image) }}"/>
-                                            <a href="{{ path('article_show', { 'id': article.id }) }}" class="link-to-post"></a>
+                                            <a href="{{ path('article_show', { 'slug': article.slug }) }}" class="link-to-post"></a>
                                             <figcaption>
                                                 <div class="thumb-info thumb-info-v2"><i class="fa fa-angle-right"></i></div>
                                             </figcaption>
                                         </figure>
                                         <div class="portfolio-item-info">
                                             <h3 class="portfolio-item-title">
-                                                <a href="{{ path('article_show', { 'id': article.id }) }}" class="link-to-post">{{ article.title }}</a>
+                                                <a href="{{ path('article_show', { 'slug': article.slug }) }}" class="link-to-post">{{ article.title }}</a>
                                             </h3>
                                         </div>
                                     </div>

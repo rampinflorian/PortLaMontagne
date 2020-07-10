@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\ArticleRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity(repositoryClass=ArticleRepository::class)
@@ -53,6 +54,13 @@ class Article
      * @ORM\ManyToOne(targetEntity=Alert::class, inversedBy="articles", cascade={"persist", "remove"})
      */
     private $alert;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     *
+     * @Gedmo\Slug(fields={"title"})
+     */
+    private $slug;
 
     /**
      * @ORM\PrePersist()
@@ -147,6 +155,18 @@ class Article
     public function setAlert(?Alert $alert): self
     {
         $this->alert = $alert;
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
 
         return $this;
     }

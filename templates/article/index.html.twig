@@ -27,7 +27,7 @@
                             <article class="v_blog-item v_blog-item-related v_blog-grid">
                                 <div class="v_blog-item-inner">
                                     <div class="v_blog-item-media">
-                                        <a href="{{ path('article_show', { 'id': article.id }) }}">
+                                        <a href="{{ path('article_show', { 'slug': article.slug }) }}">
                                             <img src="{{ asset('article/image/' ~ article.image ) }}" />
                                         </a>
                                     </div>
@@ -39,7 +39,7 @@
                                                 </li>
                                             </ul>
 
-                                            <a href="{{ path('article_show', { 'id': article.id }) }}" rel="bookmark">
+                                            <a href="{{ path('article_show', { 'slug': article.slug }) }}" rel="bookmark">
                                                 <h2 class="v_blog-item-title" itemprop="name headline">{{ article.title }}</h2>
                                             </a>
                                         </div>

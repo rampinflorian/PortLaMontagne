@@ -40,7 +40,7 @@
 
                                 <li class="float-right">
                                     {% if is_granted('ROLE_ADMIN') %}
-                                        <i class="fa fa-edit"></i> <a href="{{ path('admin_article_edit', { id:article.id }) }}"> éditer</a>
+                                        <i class="fa fa-edit"></i> <a href="{{ path('admin_article_edit', { 'slug':article.slug }) }}"> éditer</a>
                                     {% endif %}
                                 </li>
                             </ul>

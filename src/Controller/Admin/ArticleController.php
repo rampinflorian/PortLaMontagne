@@ -69,7 +69,7 @@ class ArticleController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="admin_article_edit", methods={"GET","POST"})
+     * @Route("/{slug}/edit", name="admin_article_edit", methods={"GET","POST"})
      * @param Request $request
      * @param Article $article
      * @param FileService $fileService
@@ -110,7 +110,7 @@ class ArticleController extends AbstractController
 
 
     /**
-     * @Route("/{id}", name="admin_article_delete", methods={"DELETE"})
+     * @Route("/{slug}", name="admin_article_delete", methods={"DELETE"})
      * @param Request $request
      * @param Article $article
      * @return Response
@@ -123,6 +123,6 @@ class ArticleController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('article_index');
+        return $this->redirectToRoute('admin_article_index');
     }
 }
