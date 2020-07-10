@@ -12,6 +12,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @UniqueEntity(fields={"email"}, message="Un utilisateur existe déjà avec cette adresse email !")
+ * @ORM\HasLifecycleCallbacks()
  */
 class User implements UserInterface
 {
@@ -78,11 +79,23 @@ class User implements UserInterface
      */
     private $facebookId;
 
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $createdAt;
 
     public function __construct()
     {
         $this->articles = new ArrayCollection();
         $this->climbingGroups = new ArrayCollection();
+    }
+
+    /**
+     * @ORM\PrePersist()
+     */
+    public function PrePersistSetCreatedAt()
+    {
+        $this->setCreatedAt(new \DateTime('now'));
     }
 
     public function getId(): ?int
@@ -303,6 +316,18 @@ class User implements UserInterface
     public function setFacebookId(int $facebookId): self
     {
         $this->facebookId = $facebookId;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    {
+        $this->createdAt = $createdAt;
 
         return $this;
     }
