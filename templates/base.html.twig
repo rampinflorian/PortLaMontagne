@@ -186,8 +186,7 @@
 
                         <ul class="list-inline fs-13 mb-none">
                             <li><p class="mb-0 fw-6">© 2020 PortLaMontagne - Version 1.0.3</p></li>
-                            <li><a href="pages-about.html">A Propos</a></li>
-                            <li><a href="pages-contact.html">Contact</a></li>
+                            <li><a href="{{ path('contact') }}">Contact</a></li>
                             <li><a href="{{ path('privacy_policy') }}">Politique de confidentialité</a></li>
 
                             {% if is_granted('ROLE_ADMIN') %}
