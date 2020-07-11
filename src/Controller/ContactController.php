@@ -25,7 +25,6 @@ class ContactController extends AbstractController
     {
         $data = [];
         $form = $this->createForm(ContactType::class, $data);
-        $form->handleRequest($request);
 
         if ($this->getUser()) {
             /* @var User $user*/
@@ -33,6 +32,9 @@ class ContactController extends AbstractController
             $form->get('fullName')->setData($user->getFullName());
             $form->get('email')->setData($user->getEmail());
         }
+
+        $form->handleRequest($request);
+
 
         if ($form->isSubmitted() && $form->isValid()) {
             $email = (new Email())
