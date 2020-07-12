@@ -101,6 +101,29 @@
                         <div class="header-nav header-nav-top-line justify-content-end">
                             <div class="header-nav-main header-nav-main-effect-2 header-nav-main-sub-effect-1">
                                 <nav class="collapse">
+
+                                    <ul class="nav nav-pills" id="mainNav">
+
+                                        {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                                            <li class="dropdown">
+                                                <a class="dropdown-item dropdown-toggle" href="#"><i class="fa fa-user-circle fs-18"></i>&nbsp;{{ app.user.firstname }} </a>
+                                                <ul class="dropdown-menu">
+                                                    <li>
+                                                        <a class="dropdown-item" href="{{ path('user_dashboard') }}"><i class="fa fa-dashboard fs-18"></i>&nbsp;MON COMPTE</a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="dropdown-item" href="{{ path('app_logout') }}"><i class="fa fa-outbox fs-18"></i>&nbsp;DECONNEXION</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        {% else %}
+                                            <li class="dropdown header-search-wrap">
+                                                <a class="dropdown-item dropdown-toggle pr-5" href="{{ path('app_login') }}"><i class="fa fa-user-circle fs-18"></i>&nbsp;Connexion</a>
+                                            </li>
+                                        {% endif %}
+                                    </ul>
+
+
                                     <ul class="nav nav-pills" id="mainNav">
                                         <li id='alerts-li' style="display:none;" class="dropdown header-search-wrap">
                                             <a class="dropdown-item dropdown-toggle pr-5" href="{{ path('article_alert_index') }}"><i
@@ -112,34 +135,6 @@
                                             <a class="dropdown-item dropdown-toggle pr-5" href="https://www.meteoblue.com/fr/meteo/semaine/toulon_france_2972328"><i
                                                         class="fa fa-weather-sunny fs-18"></i>&nbsp;Météo </a>
                                         </li>
-
-                                        {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-                                            <li class="dropdown header-search-wrap">
-                                                <a class="dropdown-item dropdown-toggle pr-5" href="{{ path('user_dashboard') }}"><i class="fa fa-user-circle fs-18"></i>&nbsp;Mon compte</a>
-                                            </li>
-                                        {% else %}
-                                            <li class="dropdown header-search-wrap">
-                                                <a class="dropdown-item dropdown-toggle pr-5" href="{{ path('app_login') }}"><i class="fa fa-user-circle fs-18"></i>&nbsp;Connexion</a>
-                                            </li>
-                                        {% endif %}
-
-                                        {#                                        <li class="dropdown header-search-wrap">#}
-                                        {#                                            <a class="dropdown-item dropdown-toggle pr-5" href="#"><i class="fa fa-search3 fs-18"></i> </a>#}
-                                        {#                                            <ul class="dropdown-menu">#}
-                                        {#                                                <li>#}
-                                        {#                                                    <div class="header-search">#}
-                                        {#                                                        <form id="searchForm" action="pages-search-result.html" method="get" novalidate="novalidate">#}
-                                        {#                                                            <div class="input-group">#}
-                                        {#                                                                <input type="text" class="form-control" name="q" id="q" placeholder="Search..." required="">#}
-                                        {#                                                                <span class="input-group-btn">#}
-                                        {#                                                         <button class="btn btn-light" type="submit"><i class="fa fa-search"></i></button>#}
-                                        {#                                                      </span>#}
-                                        {#                                                            </div>#}
-                                        {#                                                        </form>#}
-                                        {#                                                    </div>#}
-                                        {#                                                </li>#}
-                                        {#                                            </ul>#}
-                                        {#                                        </li>#}
                                     </ul>
                                 </nav>
                             </div>
