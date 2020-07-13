@@ -41,7 +41,7 @@ class AppFixtures extends Fixture
                 ->setTitle($faker->text(20))
                 ->setContent($faker->paragraph)
                 ->setUser($this->getReference('User_DEV'))
-                ->setImage('todo');
+                ->setImage('flopaulwelcome-5f01f39c5558f.png');
 
             $manager->persist($article);
         }
