@@ -98,7 +98,7 @@
                         <section class="clean-sidebar sidebar-widget text-center">
                             <div class="join-us-form mt-35">
                                 <h4 class="fs-16"><b>Restez informé des nouveaux articles </b></h4>
-                                {% if app.user.newsletter is null or not app.user.newsletter.isActivated %}
+                                {% if not app.user or (app.user.newsletter is null or not app.user.newsletter.isActivated) %}
                                     <div class="input-group mt-15">
                                         <a href="{{ path('newsletter_add') }}" class="btn btn-primary btn-shadow content-center w-100" type="submit">S'INSCRIRE</a>
                                     </div>
