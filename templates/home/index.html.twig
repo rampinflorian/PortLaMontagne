@@ -594,17 +594,18 @@
                     <div class="col-sm-12">
                         <div class="clients-wrap carousel-wrap">
 
-                            <div class="owl-carousel" data-plugin-options='{"items": {{ partners|length }}, "singleItem": false, "autoPlay": true, "dots":false}'>
+                            <div class="owl-carousel" data-plugin-options='{"items": {{ partners|length }}, "singleItem": false, "autoPlay": false, "dots":true}'>
                                 {% for partner in partners %}
-                                <div class="item">
-                                    <figure>
-                                        <a href="{{ partner.website }}" target="_blank">
-                                            <img src="{{ asset('partner/image/' ~ partner.image) }}"/>
-                                        </a>
-                                    </figure>
-                                </div>
+                                    <div class="item">
+                                        <figure>
+                                            <a href="{{ partner.website }}" target="_blank">
+                                                <img src="{{ asset('partner/image/' ~ partner.image) }}"/>
+                                            </a>
+                                        </figure>
+                                    </div>
+                                {% endfor %}
+
                             </div>
-                            {% endfor %}
                             <div class="customNavigation">
                                 <a class="prev"><i class="fa fa-angle-left"></i></a>
                                 <a class="next"><i class="fa fa-angle-right"></i></a>
