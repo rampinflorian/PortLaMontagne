@@ -28,22 +28,7 @@ class ArticleRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('a')
             ->orderBy('a.createdAt', $order)
             ->getQuery()
-            ->getResult()
-        ;
-    }
-
-    /**
-     * @param int $maxResult
-     * @return int|mixed|string
-     */
-    public function FindLastWithMaxResult(int $maxResult)
-    {
-        return $this->createQueryBuilder('a')
-            ->orderBy('a.id', 'DESC')
-            ->setMaxResults($maxResult)
-            ->getQuery()
-            ->getResult()
-            ;
+            ->getResult();
     }
 
     /**
@@ -53,8 +38,30 @@ class ArticleRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('a')
             ->andWhere('a.alert IS NOT NULL')
+            ->andWhere('a.isPublished = :value')
+            ->setParameter('value', true)
             ->getQuery()
-            ->getResult()
-            ;
+            ->getResult();
+    }
+
+    public function FindLastActiveWithMaxResult(int $maxResult)
+    {
+        return $this->createQueryBuilder('a')
+            ->where('a.isPublished = :value')
+            ->setParameter('value', true)
+            ->orderBy('a.createdAt', 'DESC')
+            ->setMaxResults($maxResult)
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function FindAllActive()
+    {
+        return $this->createQueryBuilder('a')
+            ->where('a.isPublished = :value')
+            ->setParameter('value', true)
+            ->orderBy('a.createdAt', 'DESC')
+            ->getQuery()
+            ->getResult();
     }
 }

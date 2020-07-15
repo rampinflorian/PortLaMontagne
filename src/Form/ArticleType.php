@@ -58,6 +58,14 @@ class ArticleType extends AbstractType
                     'class' => 'field select'
                 ]
             ])
+
+            ->add('isPublished', CheckboxType::class, [
+                'required' => false,
+                'label' => 'Publier l\'article',
+                'attr' => [
+                    'class' => 'checkbox'
+                ]
+            ])
             ->add('isAlert', CheckboxType::class, [
                 'mapped' => false,
                 'required' => false,

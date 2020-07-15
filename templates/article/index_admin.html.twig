@@ -24,6 +24,7 @@
                             <th>Date création</th>
                             <th>Titre</th>
                             <th>Est une alerte ?</th>
+                            <th>publié</th>
                             <th class="text-center">Action</th>
                         </tr>
                         </thead>
@@ -34,6 +35,11 @@
                             <td><a href="{{ path('article_show', { 'slug': article.slug }) }}"> {{ article.title }} </a></td>
                             <td>
                                 {% if article.alert %}
+                                    <span class="label label-danger">OUI</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if article.isPublished %}
                                     <span class="label label-success">OUI</span>
                                 {% endif %}
                             </td>

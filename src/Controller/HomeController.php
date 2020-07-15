@@ -25,7 +25,7 @@ class HomeController extends AbstractController
     {
         return $this->render('home/index.html.twig', [
             'countArticles' => count($articleRepository->findAll()),
-            'articles' => $articleRepository->FindLastWithMaxResult(4),
+            'articles' => $articleRepository->FindLastActiveWithMaxResult(4),
             'countGroups' => count($climbingGroupRepository->findAll()),
             'partners' => $partnerRepository->findAll(),
             'partners_directory' => $parameterBag->get('partner_directory')

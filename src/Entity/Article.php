@@ -63,6 +63,11 @@ class Article
     private $slug;
 
     /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isPublished;
+
+    /**
      * @ORM\PrePersist()
      */
     public function PrePersistSetCreatedAt()
@@ -167,6 +172,18 @@ class Article
     public function setSlug(string $slug): self
     {
         $this->slug = $slug;
+
+        return $this;
+    }
+
+    public function getIsPublished(): ?bool
+    {
+        return $this->isPublished;
+    }
+
+    public function setIsPublished(bool $isPublished): self
+    {
+        $this->isPublished = $isPublished;
 
         return $this;
     }

@@ -42,6 +42,18 @@
                     {{ form_errors(form.category) }}
                     {{ form_label(form.category) }}
                     {{ form_widget(form.category) }}
+
+                    <div class="spacer-t40 spacer-b40">
+                        <div class="tagline"><span>Publier</span></div><!-- .tagline -->
+                    </div>
+                    <div class="section">
+                        <label class="option">
+                            {{ form_errors(form.isPublished) }}
+                            {{ form_widget(form.isPublished) }}
+                            {{ form_label(form.isPublished) }}
+                        </label>
+                    </div><!-- end section -->
+
                     <div class="spacer-t40 spacer-b40">
                         <div class="tagline"><span>Alerte</span></div><!-- .tagline -->
                     </div>
