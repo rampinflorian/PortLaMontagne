@@ -49,6 +49,17 @@
         <!-- Style Swicher -->
         <link href="{{ asset('vendor/style-switcher/style-switcher.css') }}" rel="stylesheet"/>
         <link href="{{ asset('vendor/style-switcher/bootstrap-colorpicker/css/bootstrap-colorpicker.css') }}" rel="stylesheet"/>
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-172843657-1"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'UA-172843657-1');
+        </script>
+
     {% endblock %}
 </head>
 
