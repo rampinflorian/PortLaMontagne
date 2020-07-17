@@ -49,7 +49,7 @@ class ContactController extends AbstractController
                 ');
 
             $mailer->send($email);
-            $this->addFlash('success', 'Votre message a été envoyé, une réponse vous sera apportée au plus vite !');
+            $this->addFlash('success', 'Contact;Ton message a été envoyé, nous allons te répondre rapidement !');
             $this->redirectToRoute('home');
         }
 

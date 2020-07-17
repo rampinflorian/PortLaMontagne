@@ -51,6 +51,9 @@
         <link href="{{ asset('vendor/style-switcher/style-switcher.css') }}" rel="stylesheet"/>
         <link href="{{ asset('vendor/style-switcher/bootstrap-colorpicker/css/bootstrap-colorpicker.css') }}" rel="stylesheet"/>
 
+        <!-- Toastr style -->
+        <link href="{{ asset('css/plugins/toastr/toastr.min.css') }}" rel="stylesheet">
+
     {% endblock %}
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-172843657-1"></script>
@@ -157,25 +160,13 @@
 <div class="wrapper">
 
     {% for message in app.flashes('error') %}
-        <div class="alert alert-error alert-dismissable">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-            <h4 class="alert-title mt-0 mb-5">Erreur !</h4>
-            {{ message }}
-        </div>
+        <div id="toast-error" data-message="{{ message }}"></div>
     {% endfor %}
     {% for message in app.flashes('success') %}
-        <div class="alert alert-success alert-dismissable">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-            <h4 class="alert-title mt-0 mb-5">Succès !</h4>
-            {{ message }}
-        </div>
+        <div id="toast-success" data-message="{{ message }}"></div>
     {% endfor %}
     {% for message in app.flashes('warning') %}
-        <div class="alert alert-warning alert-dismissable">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-            <h4 class="alert-title mt-0 mb-5">Attention !</h4>
-            {{ message }}
-        </div>
+        <div id="toast-warning" data-message="{{ message }}"></div>
     {% endfor %}
 
 
@@ -258,8 +249,50 @@
         })
     </script>
 
+    <!-- Toastr script -->
+    <script src="{{ asset('js/plugins/toastr/toastr.min.js') }}"></script>
+    <script>
+        //Attempt to get the element using document.getElementById
+        var elementSuccess = document.getElementById("toast-success");
+        var elementError = document.getElementById("toast-error");
+        var elementWarning = document.getElementById("toast-warning");
+        var element = null;
+        var error = false;
+        var warning = false;
+        var success = false;
 
+        if (elementError) {
+            element = elementError;
+            error = true;
+        } else if (elementSuccess) {
+            element = elementSuccess;
+            success = true;
+        } else {
+            element = elementWarning;
+            warning = true;
+        }
+        if (typeof (element) != 'undefined' && element != null) {
+            var i = -1;
+            var $toastlast;
+            var message = element.dataset.message;
+            var array = message.split(";");
 
+            toastr.options = {
+                "progressBar": true,
+                "preventDuplicates": true,
+                "timeOut": "3000"
+            }
+
+            if (error) {
+                toastr.error(array[1], array[0])
+            } else if (success) {
+                toastr.success(array[1], array[0])
+            } else if (warning) {
+                toastr.warning(array[1], array[0])
+            }
+
+        }
+    </script>
 
 {% endblock %}
 

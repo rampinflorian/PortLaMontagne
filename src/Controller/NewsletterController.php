@@ -29,10 +29,10 @@ class NewsletterController extends AbstractController
 
             $this->getDoctrine()->getManager()->flush();
 
-            $this->addFlash('success', "Vous avez été ajouté à la Newsletter !");
+            $this->addFlash('success', "Newsletter;Tu es inscris à la Newsletter !");
             return $this->redirectToRoute('article_index');
         } else {
-            $this->addFlash('error', "Vous devez vous connecter !");
+            $this->addFlash('error', "Newsletter;Oops! Tu dois être connecté");
             return $this->redirectToRoute('article_index');
         }
     }
@@ -45,6 +45,8 @@ class NewsletterController extends AbstractController
         $entityManager = $this->getDoctrine()->getManager();
         $this->getUser()->getNewsletter()->setIsActivated(false);
         $entityManager->flush();
+
+        $this->addFlash('success', "Newsletter;Tu n'es plus inscris à la Newsletter");
 
         return $this->redirectToRoute('article_index');
 

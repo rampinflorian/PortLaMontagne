@@ -40,7 +40,7 @@ class PersonalInformationController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-            $this->addFlash('success', 'Fiche mise à jour');
+            $this->addFlash('success', 'Utilisateur; Ta fiche utilisateur a été mise à jour');
 
             return $this->redirectToRoute('user_dashboard', []);
         }
