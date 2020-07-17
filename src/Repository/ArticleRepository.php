@@ -40,6 +40,7 @@ class ArticleRepository extends ServiceEntityRepository
             ->andWhere('a.alert IS NOT NULL')
             ->andWhere('a.isPublished = :value')
             ->setParameter('value', true)
+            ->orderBy('a.createdAt', 'DESC')
             ->getQuery()
             ->getResult();
     }
