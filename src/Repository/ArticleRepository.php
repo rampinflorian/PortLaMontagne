@@ -64,4 +64,17 @@ class ArticleRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function FindLastActiveWithMaxResultWithoutOne(int $maxResult, Article $article)
+    {
+        return $this->createQueryBuilder('a')
+            ->where('a.isPublished = :value')
+            ->andWhere('a.id != :value2')
+            ->setParameter('value', true)
+            ->setParameter('value2', $article->getId())
+            ->orderBy('a.createdAt', 'DESC')
+            ->setMaxResults($maxResult)
+            ->getQuery()
+            ->getResult();
+    }
 }

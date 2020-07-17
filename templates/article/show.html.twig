@@ -110,6 +110,34 @@
                                 <small>Aucun spam ne sera envoyé.</small>
                             </div>
                         </section>
+                        <section class="sidebar-widget">
+                            <div class="heading">
+                                <h4 class="title">Articles récents</h4>
+                            </div>
+                            <div class="sidebar-widget-inner">
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="popular" role="tabpanel">
+                                        {% for a in articles %}
+
+                                            <div class="spost clearfix">
+                                                <div class="entry-image">
+                                                    <a href="{{ path('article_show', {'slug': a.slug }) }}" class="nobg"><img class="img-circle" src="{{ asset('article/image/' ~ a.image ) }}" alt=""></a>
+                                                </div>
+                                                <div class="entry-c">
+                                                    <div class="entry-title">
+                                                        <h4><a href="{{ path('article_show', {'slug': a.slug }) }}">{{ a.title }}</a></h4>
+                                                    </div>
+                                                    <ul class="entry-meta">
+                                                        <li><i class="ion-ios-calendar-outline"></i> {{ a.createdAt|date('d/m/Y') }}</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
                     </aside>
                 </div>
             </div>

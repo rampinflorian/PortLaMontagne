@@ -42,12 +42,14 @@ class ArticleController extends AbstractController
     /**
      * @Route("/{slug}", name="article_show", methods={"GET"})
      * @param Article $article
+     * @param ArticleRepository $articleRepository
      * @return Response
      */
-    public function show(Article $article): Response
+    public function show(Article $article, ArticleRepository $articleRepository): Response
     {
         return $this->render('article/show.html.twig', [
             'article' => $article,
+            'articles' =>  $articleRepository->FindLastActiveWithMaxResultWithoutOne(3, $article)
         ]);
     }
 }
