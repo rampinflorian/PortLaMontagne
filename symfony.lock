@@ -180,6 +180,9 @@
     "psr/event-dispatcher": {
         "version": "1.0.0"
     },
+    "psr/http-client": {
+        "version": "1.0.1"
+    },
     "psr/http-message": {
         "version": "1.0.1"
     },
@@ -603,6 +606,9 @@
     },
     "twig/extra-bundle": {
         "version": "v3.0.3"
+    },
+    "twig/intl-extra": {
+        "version": "v3.0.4"
     },
     "twig/twig": {
         "version": "v3.0.3"
