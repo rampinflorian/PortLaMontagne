@@ -3,8 +3,13 @@
 namespace App\Controller;
 
 use App\Entity\Article;
+use App\Entity\Comment;
+use App\Entity\User;
 use App\Form\ArticleType;
+use App\Form\CommentType;
 use App\Repository\ArticleRepository;
+use App\Repository\CommentRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use phpDocumentor\Reflection\Types\This;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -40,16 +45,50 @@ class ArticleController extends AbstractController
     }
 
     /**
-     * @Route("/{slug}", name="article_show", methods={"GET"})
+     * @Route("/{slug}", name="article_show", methods={"GET","POST"})
      * @param Article $article
      * @param ArticleRepository $articleRepository
+     * @param CommentRepository $commentRepository
+     * @param Request $request
+     * @param EntityManagerInterface $entityManager
      * @return Response
      */
-    public function show(Article $article, ArticleRepository $articleRepository): Response
+    public function show(Article $article, ArticleRepository $articleRepository, CommentRepository $commentRepository, Request $request, EntityManagerInterface $entityManager): Response
     {
+        $alreadyCommented = false;
+        foreach ($article->getComments() as $comment)
+        {
+            /* @var Comment $comment */
+            $alreadyCommented = ($comment->getUser() == $this->getUser()) ? true : $alreadyCommented;
+        }
+
+
+        $comment = new Comment();
+        /* @var User $user */
+        $user = $this->getUser();
+
+        $formComment = $this->createForm(CommentType::class,$comment);
+
+        $formComment->handleRequest($request);
+        if ($formComment->isSubmitted() && $formComment->isValid()) {
+
+            $comment->setUser($user);
+            $comment->setArticle($article);
+
+            $entityManager->persist($comment);
+            $entityManager->flush();
+
+            $this->addFlash('success', 'Commentaire;Ton commentaire a été ajouté !');
+
+            return $this->redirect($request->headers->get('referer') ?? $this->generateUrl('article_index'));
+        }
+
         return $this->render('article/show.html.twig', [
             'article' => $article,
-            'articles' =>  $articleRepository->FindLastActiveWithMaxResultWithoutOne(3, $article)
+            'articles' =>  $articleRepository->FindLastActiveWithMaxResultWithoutOne(3, $article),
+            'comments' => $commentRepository->findByArticle($article),
+            'formComment' => $formComment->createView(),
+            'alreadyComment' => $alreadyCommented
         ]);
     }
 }

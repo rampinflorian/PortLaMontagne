@@ -84,6 +84,11 @@ class User implements UserInterface
      */
     private $createdAt;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="user", orphanRemoval=false)
+     */
+    private $comments;
+
     public function __construct()
     {
         $this->articles = new ArrayCollection();

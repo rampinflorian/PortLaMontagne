@@ -30,7 +30,7 @@
 
                         <div class="post-meta text-center">
                             <ul>
-                                <li><i class="ion-android-time"></i> {{ article.createdAt|date('D M Y') }}</li>
+                                <li><i class="ion-android-time"></i> {{ article.createdAt|format_datetime(locale='fr') }}</li>
                                 {#                                    <li class="post-meta-seperator"></li>#}
                                 {#                                    <li>#}
                                 {#                                        <div class="love-it-wrapper">#}
@@ -88,8 +88,80 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="post-meta-section clearfix">
+
+                            <div class="post-block post-comments clearfix">
+                                <div class="post-meta-section-title b-bordered pb-30">
+                                    <h4><i class="ion-android-chat pr-sm fs-16"></i> COMMENTAIRES ({{ comments|length }})</h4>
+                                </div>
+                                {% for comment in comments %}
+                                    <ul class="comments pt-30">
+                                        <li>
+                                            <div class="comment">
+                                                <div class="img-thumbnail">
+                                                    <img class="avatar" alt="Vertex" src="{{ 'https://api.adorable.io/avatars/285/' ~ comment.user.email }}">
+                                                </div>
+                                                <div class="comment-block">
+                                          <span class="comment-by">
+                                             <strong>{{ comment.user.fullName }}</strong>
+                                              {% if (comment.user == app.user) %}
+                                                  <div class="pull-right">
+                                                   <a href="{{ path('comment_delete', {'comment': comment.id}) }}" class="href"><button><i class="ion-android-delete"></i></button></a>
+                                                  </div>
+                                              {% endif %}
+                                          </span>
+                                                    <span class="date">{{ comment.createdAt|format_datetime(locale='fr') }}</span>
+                                                    <p class="desc">
+                                                        {{ comment.content|raw|nl2br }}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                        <div class="post-meta-section clearfix">
+                            <div class="post-meta-section-title">
+                                <h4><i class="fa fa-align-left pr-sm"></i> JE COMMENTE !</h4>
+                            </div>
+                            {% if app.user %}
+                                {% if not alreadyComment %}
+                                    <div class="post-block post-leave-comment">
+                                        {{ form_start(formComment) }}
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    {{ form_errors(formComment.content) }}
+                                                    {{ form_widget(formComment.content) }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12 pt-md">
+                                                <input type="submit" value="COMMENTER" class="btn btn-primary" data-loading-text="Chargement...">
+                                            </div>
+                                        </div>
+                                        {{ form_end(formComment) }}
+                                    </div>
+                                {% else %}
+                                    <i>Hé..psstt ! Tu as déjà commenté cet article !</i>
+                                {% endif %}
+                            {% else %}
+                                <i>Tu dois d'abord te connecter pour commenter l'article</i>
+                                <div class="pull-right">
+                                    <a href="{{ path('app_login') }}" class="href">
+                                        <button class="btn btn-primary">SE CONNECTER</button>
+                                    </a>
+                                </div>
+                            {% endif %}
+                        </div>
+
                     </div>
                 </div>
+
 
                 <div class="col-md-4 right-side-sidebar">
 
