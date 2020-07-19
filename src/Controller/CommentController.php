@@ -23,6 +23,8 @@ class CommentController extends AbstractController
         $entityManager->remove($comment);
         $entityManager->flush();
 
+        $this->addFlash('success', 'Commentaire;Ton commentaire a été supprimé !');
+
         return $this->redirect($request->headers->get('referer') ?? $this->generateUrl('article_index'));
 
     }

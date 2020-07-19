@@ -1,24 +1,30 @@
 <?php
 
-namespace App\Controller\User;
+namespace App\Controller\Admin;
 
+use App\Entity\Comment;
 use App\Repository\CommentRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class DashboardController extends AbstractController
+/**
+ * @Route("admin/comment")
+ */
+class CommentController extends AbstractController
 {
     /**
-     * @Route("/user/dashboard", name="user_dashboard")
+     * @Route("/", name="admin_comment_index")
      * @param CommentRepository $commentRepository
      * @return Response
      */
     public function index(CommentRepository $commentRepository)
     {
 
-        return $this->render('user/dashboard/index.html.twig', [
-            'articlesCommented' => count($commentRepository->findByUser($this->getUser()))
+        return $this->render('admin/comment/index.html.twig', [
+            'comments' => $commentRepository->findAll(),
         ]);
+
     }
 }

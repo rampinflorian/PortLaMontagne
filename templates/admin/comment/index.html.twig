@@ -1,0 +1,42 @@
+{% extends 'base_app_admin.html.twig' %}
+
+{% block title %}Commentaires{% endblock %}
+
+{% block bodyApp %}
+    <div class="col-md-9">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h3 class="xspecial-heading v2"><span>Liste des commentaires</span></h3>
+                </div>
+
+                <div class="col-md-12">
+                    <table class="table table-striped custab">
+                        <thead>
+                        <tr>
+                            <th>Article</th>
+                            <th>Utilisateur</th>
+                            <th>Créé le</th>
+                            <th>Commentaire</th>
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+                        {% for comment in comments %}
+                            <tr>
+                                <td>{{ comment.article.title }}</td>
+                                <td>{{ comment.user.fullName }}</td>
+                                <td>{{ comment.createdAt|date('d/m/Y') }}</td>
+                                <td>{{ comment.content|slice(0,50) ~ ' [...]' }}</td>
+                                <td><a href="{{ path('comment_delete', {'comment': comment.id}) }}">
+                                        <button class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> suppr</button>
+                                    </a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
