@@ -8,77 +8,77 @@
             </div><!-- end .form-header section -->
             {{ form_start(form) }}
 
-                <div class="form-body">
+            <div class="form-body">
+                <div class="spacer-b30">
+                    <div class="tagline"><span>Contenu</span></div><!-- .tagline -->
+                </div>
 
-                    <div class="section">
-                        {{ form_errors(form.title) }}
-                        <label class="field prepend-icon">
-                            {{ form_widget(form.title) }}
-                            <span class="field-icon"><i class="fa fa-user"></i></span>
-                        </label>
-                    </div>
+                <div class="section">
+                    {{ form_errors(form.title) }}
+                    <label class="field prepend-icon">
+                        {{ form_widget(form.title) }}
+                        <span class="field-icon"><i class="fa fa-user"></i></span>
+                    </label>
+                </div>
 
-                    <div class="section">
-                        <label class="field prepend-icon">
-                            {{ form_errors(form.content) }}
-                            {{ form_widget(form.content) }}
-                            <span class="field-icon"><i class="fa fa-comments"></i></span>
-                            <span class="input-hint"> <strong>Utiliser les balises:</strong>
+                <div class="section">
+                    <label class="field prepend-icon">
+                        {{ form_errors(form.content) }}
+                        {{ form_widget(form.content) }}
+                        <span class="field-icon"><i class="fa fa-comments"></i></span>
+                        <span class="input-hint"> <strong>Utiliser les balises:</strong>
                             	&lt;blockquote&gt;, &lt;strong&gt;&lt;a&gt;, &lt;b&gt;, &lt;ul&gt;, &lt;li&gt;, &lt;code&gt;
                             </span>
-                        </label>
-                    </div><!-- end section -->
-                    <div class="spacer-t40 spacer-b40">
-                        <div class="tagline"><span>Image de couverture</span></div><!-- .tagline -->
-                    </div>
+                    </label>
+                </div><!-- end section -->
+                <div class="spacer-t40 spacer-b40">
+                    <div class="tagline"><span>Image de couverture</span></div><!-- .tagline -->
+                </div>
 
-                            {{ form_errors(form.image) }}
-                            {{ form_label(form.image) }}
-                            {{ form_widget(form.image) }}
+                {{ form_errors(form.image) }}
+                {{ form_label(form.image) }}
+                {{ form_widget(form.image) }}
 
-                    <div class="spacer-t40 spacer-b40">
-                        <div class="tagline"><span>Catégorie</span></div><!-- .tagline -->
-                    </div>
-                    {{ form_errors(form.category) }}
-                    {{ form_label(form.category) }}
-                    {{ form_widget(form.category) }}
+                <div class="spacer-t40 spacer-b40">
+                    <div class="tagline"><span>Catégorie</span></div><!-- .tagline -->
+                </div>
+                {{ form_errors(form.category) }}
+                {{ form_label(form.category) }}
+                {{ form_widget(form.category) }}
 
-                    <div class="spacer-t40 spacer-b40">
-                        <div class="tagline"><span>Publier</span></div><!-- .tagline -->
-                    </div>
-                    <div class="section">
-                        <label class="option">
-                            {{ form_errors(form.isPublished) }}
-                            {{ form_widget(form.isPublished) }}
-                            {{ form_label(form.isPublished) }}
-                        </label>
-                    </div><!-- end section -->
+                <div class="spacer-t40 spacer-b40">
+                    <div class="tagline"><span>Publier</span></div><!-- .tagline -->
+                </div>
+                <div class="section">
+                    <label class="option">
+                        {{ form_errors(form.isPublished) }}
+                        {{ form_widget(form.isPublished) }}
+                        {{ form_label(form.isPublished) }}
+                    </label>
+                </div><!-- end section -->
 
-                    <div class="spacer-t40 spacer-b40">
-                        <div class="tagline"><span>Alerte</span></div><!-- .tagline -->
-                    </div>
-                    <div class="section">
-                        <label class="option">
-                            {{ form_errors(form.isAlert) }}
-                            {{ form_widget(form.isAlert) }}
-                            {{ form_label(form.isAlert) }}
-                        </label>
-                    </div><!-- end section -->
-                    {{ form_errors(form.alert) }}
-                    {{ form_label(form.alert) }}
-                    {{ form_widget(form.alert) }}
-                    <div class="spacer-b30">
-                        <div class="tagline"><span>Just a moment </span></div><!-- .tagline -->
-                    </div>
+                <div class="spacer-t40 spacer-b40">
+                    <div class="tagline"><span>Alerte</span></div><!-- .tagline -->
+                </div>
+                <div class="section">
+                    <label class="option">
+                        {{ form_errors(form.isAlert) }}
+                        {{ form_widget(form.isAlert) }}
+                        {{ form_label(form.isAlert) }}
+                    </label>
+                </div><!-- end section -->
+                {{ form_errors(form.alert) }}
+                {{ form_label(form.alert) }}
+                {{ form_widget(form.alert) }}
 
 
-                </div><!-- end .form-body section -->
-                <div class="form-footer">
-                    <button class="btn btn-primary float-right">{{ button_label|default('Publier') }}</button>
+            </div><!-- end .form-body section -->
+            <div class="form-footer">
+                {{ include('article/_delete_form.html.twig') }}
+                <button class="btn btn-primary float-right">{{ button_label|default('Publier') }}</button>
+            </div><!-- end .form-footer section -->
 
-                </div><!-- end .form-footer section -->
-
-                {{ form_end(form) }}
+            {{ form_end(form) }}
 
         </div><!-- end .smart-forms section -->
     </div><!-- end .smart-wrap section -->

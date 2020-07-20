@@ -1,0 +1,37 @@
+<div class="col-md-9 right-side-sidebar">
+
+    <div class="smart-wrap">
+        <div class="smart-forms smart-container wrap-12">
+
+            <div class="form-header header-primary">
+                <h4><i class="fa fa-comments"></i> Créer/modifier un article </h4>
+            </div><!-- end .form-header section -->
+            {{ form_start(form) }}
+
+            <div class="form-body">
+                <div class="spacer-b30">
+                    <div class="tagline"><span>Contenu </span></div><!-- .tagline -->
+                </div>
+                <div class="section">
+                    {{ form_errors(form.title) }}
+                    <label class="field prepend-icon">
+                        {{ form_widget(form.title) }}
+                        <span class="field-icon"><i class="fa fa-user"></i></span>
+                    </label>
+                </div>
+
+            </div><!-- end .form-body section -->
+            <div class="form-footer">
+                {% if category.id and category.articles|length == 0 %}
+                    {{ include('admin/category/_delete_form.html.twig') }}
+                {% endif %}
+                <button class="btn btn-primary float-right">{{ button_label|default('Enregistrer') }}</button>
+
+            </div><!-- end .form-footer section -->
+
+            {{ form_end(form) }}
+
+        </div><!-- end .smart-forms section -->
+    </div><!-- end .smart-wrap section -->
+</div>
+

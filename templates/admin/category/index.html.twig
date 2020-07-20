@@ -1,0 +1,61 @@
+{% extends 'base_app_admin.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('css/blog.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('css/ss-gizmo.css') }}" rel="stylesheet"/>
+
+{% endblock %}
+
+{% block title %}Catégories{% endblock %}
+
+{% block bodyApp %}
+    <div class="col-md-9">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h3 class="xspecial-heading v2"><span>Liste des catégories</span></h3>
+                </div>
+
+                <div class="col-md-12">
+                    <table class="table table-striped custab">
+                        <thead>
+                        <tr>
+                            <th>Titre</th>
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+                        {% for category in categories %}
+
+                            <tr>
+                                <td>{{ category.title }}</td>
+                                <td>
+                                    <a class='btn btn-info btn-xs' href="{{ path('admin_category_edit', {'id': category.id}) }}"><span class="glyphicon glyphicon-edit"></span> éditer</a>
+                                    {% if category.id and category.articles|length == 0 %}
+                                        <form method="post" action="{{ path('admin_category_delete', {'id': category.id}) }}" onsubmit="return confirm('Voulez-vous vraiment supprimer cet catégorie ?');">
+                                            <input type="hidden" name="_method" value="DELETE">
+                                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ category.id) }}">
+                                            <button class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> suppr</button>
+                                        </form>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $('.masonary-post-wrap').isotope({
+            itemSelector: '.masonary-post-item',
+            percentPosition: true
+        })
+    </script>
+{% endblock %}
