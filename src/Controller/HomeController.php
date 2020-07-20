@@ -24,9 +24,9 @@ class HomeController extends AbstractController
     public function index(ArticleRepository $articleRepository, PartnerRepository $partnerRepository, ClimbingGroupRepository $climbingGroupRepository, ParameterBagInterface $parameterBag)
     {
         return $this->render('home/index.html.twig', [
-            'countArticles' => count($articleRepository->findAll()),
+            'countArticles' => $articleRepository->count([]),
+            'countGroups' => $climbingGroupRepository->count([]),
             'articles' => $articleRepository->FindLastActiveWithMaxResult(4),
-            'countGroups' => count($climbingGroupRepository->findAll()),
             'partners' => $partnerRepository->findAll(),
             'partners_directory' => $parameterBag->get('partner_directory')
         ]);
