@@ -95,10 +95,16 @@
                                         </li>
                                         <li class="dropdown">
                                             <a class="dropdown-item dropdown-toggle" href="{{ path('article_index') }}">Articles</a>
-                                            {#                                        </li>#}
-                                            {#                                        <li class="dropdown">#}
-                                            {#                                            <a class="dropdown-item dropdown-toggle" href="{{ path('climbing_group_index') }}">Sorties</a>#}
-                                            {#                                        </li>#}
+                                        </li>
+                                        {#                                        <li class="dropdown">#}
+                                        {#                                            <a class="dropdown-item dropdown-toggle" href="{{ path('climbing_group_index') }}">Sorties</a>#}
+                                        {#                                        </li>#}
+                                        <li id='alerts-li' style="display:none;" class="dropdown header-search-wrap">
+                                            <a class="dropdown-item dropdown-toggle pr-5" href="{{ path('article_alert_index') }}"><i
+                                                        class="fa fa-exclamation-triangle fs-18"></i>&nbsp;Alertes
+                                                &nbsp;<span id='alerts-counter' class="badge badge-pill badge-danger"></span>
+                                            </a>
+                                        </li>
                                     </ul>
                                 </nav>
                             </div>
@@ -117,12 +123,7 @@
                                 <nav class="collapse">
 
                                     <ul class="nav nav-pills" id="mainNav">
-                                        <li id='alerts-li' style="display:none;" class="dropdown header-search-wrap">
-                                            <a class="dropdown-item dropdown-toggle pr-5" href="{{ path('article_alert_index') }}"><i
-                                                        class="fa fa-exclamation-triangle fs-18"></i>&nbsp;Alertes
-                                                &nbsp;<span id='alerts-counter' class="badge badge-pill badge-danger"></span>
-                                            </a>
-                                        </li>
+
                                         {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
                                             <li class="dropdown">
                                                 <a class="dropdown-item dropdown-toggle" href="#"><i class="fa fa-user-circle fs-18"></i>&nbsp;{{ app.user.firstname }} </a>
