@@ -1,8 +1,6 @@
 <!DOCTYPE html>
-
 <html>
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>{% block title %}{% endblock %} portlamontagne.fr - Ça grimpe autour de Toulon !</title>
@@ -11,15 +9,10 @@
     <meta name="description" content="Vous souhaitez grimpez autour de Toulon ? Venez découvrir l'association PortLaMontagne, ses derniers articles, ses alertes sécurité et sa recherche de groupe !">
     <meta name="author" content="florianrampin.fr">
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
-
     {% block stylesheets %}
-
         <link rel="shortcut icon" href="{{ asset('img/favicon.png') }}" type="image/x-icon"/>
         <link rel="apple-touch-icon" href="{{ asset('img/apple-touch-icon.png') }}">
-
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,700|Cabin:400,600,700" rel="stylesheet">
-
         <!-- Vendor CSS -->
         <link rel="stylesheet" href="{{ asset('vendor/tether/tether.min.css') }}"/>
         <link rel="stylesheet" href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}">
@@ -31,7 +24,6 @@
         <link rel="stylesheet" href="{{ asset('vendor/owl-carousel/owl.carousel.css') }}"/>
         <link rel="stylesheet" href="{{ asset('vendor/magnific-popup/magnific-popup.css') }}"/>
         <link rel="stylesheet" href="{{ asset('vendor/lite-tooltip/css/litetooltip.css') }}"/>
-
         <!-- Theme CSS -->
         <link href="{{ asset('css/main.css') }}" rel="stylesheet"/>
         <link href="{{ asset('css/main-shortcodes.css') }}" rel="stylesheet"/>
@@ -43,31 +35,29 @@
         <link href="{{ asset('css/responsive.css') }}" rel="stylesheet"/>
         <link href="{{ asset('css/utilities.css') }}" rel="stylesheet"/>
         <link href="{{ asset('css/skins/default.css') }}" rel="stylesheet"/>
-
         <!-- Theme Custom CSS -->
         <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
-
         <!-- Style Swicher -->
         <link href="{{ asset('vendor/style-switcher/style-switcher.css') }}" rel="stylesheet"/>
         <link href="{{ asset('vendor/style-switcher/bootstrap-colorpicker/css/bootstrap-colorpicker.css') }}" rel="stylesheet"/>
-
         <!-- Toastr style -->
         <link href="{{ asset('css/plugins/toastr/toastr.min.css') }}" rel="stylesheet">
-
     {% endblock %}
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-172843657-1"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
         gtag('js', new Date());
 
         gtag('config', 'UA-172843657-1');
     </script>
 </head>
-
 <body>
-
 <!--Header-->
 <header id="header" class="header-narrow header-full-width"
         data-plugin-options="{'stickyEnabled': true, 'stickyEnableOnBoxed': true, 'stickyEnableOnMobile': true, 'stickyStartAt': 0, 'stickySetTop': '0', 'stickyChangeLogo': false}">
@@ -96,9 +86,6 @@
                                         <li class="dropdown">
                                             <a class="dropdown-item dropdown-toggle" href="{{ path('article_index') }}">Articles</a>
                                         </li>
-                                        {#                                        <li class="dropdown">#}
-                                        {#                                            <a class="dropdown-item dropdown-toggle" href="{{ path('climbing_group_index') }}">Sorties</a>#}
-                                        {#                                        </li>#}
                                         <li id='alerts-li' style="display:none;" class="dropdown header-search-wrap">
                                             <a class="dropdown-item dropdown-toggle pr-5" href="{{ path('article_alert_index') }}"><i
                                                         class="fa fa-exclamation-triangle fs-18"></i>&nbsp;Alertes
@@ -114,16 +101,12 @@
                         </div>
                     </div>
                 </div>
-
-
                 <div class="header-column justify-content-end">
                     <div class="header-row">
                         <div class="header-nav header-nav-top-line justify-content-end">
                             <div class="header-nav-main header-nav-main-effect-2 header-nav-main-sub-effect-1">
                                 <nav class="collapse">
-
                                     <ul class="nav nav-pills" id="mainNav">
-
                                         {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
                                             <li class="dropdown">
                                                 <a class="dropdown-item dropdown-toggle" href="#"><i class="fa fa-user-circle fs-18"></i>&nbsp;{{ app.user.firstname }} </a>
@@ -141,11 +124,9 @@
                                                 <a class="dropdown-item dropdown-toggle pr-5" href="{{ path('app_login') }}"><i class="fa fa-user-circle fs-18"></i>&nbsp;Connexion</a>
                                             </li>
                                         {% endif %}
-
-
                                         <li class="dropdown header-search-wrap">
-                                            <a class="dropdown-item dropdown-toggle pr-5" href="https://www.meteoblue.com/fr/meteo/semaine/toulon_france_2972328"><i
-                                                        class="fa fa-weather-sunny fs-18"></i>&nbsp;Météo </a>
+                                            <a class="dropdown-item dropdown-toggle pr-5" href="https://www.meteoblue.com/fr/meteo/semaine/toulon_france_2972328">
+                                                <i class="fa fa-weather-sunny fs-18"></i>&nbsp;Météo </a>
                                         </li>
                                     </ul>
                                 </nav>
@@ -170,7 +151,6 @@
         <div id="toast-warning" data-message="{{ message }}"></div>
     {% endfor %}
 
-
     {% block body %}{% endblock %}
     <!--Footer-Wrap-->
     <footer class="footer footer-wrap">
@@ -178,12 +158,10 @@
             <div class="container">
                 <div class="row">
                     <div class="col-sm-8">
-
                         <ul class="list-inline fs-13 mb-none">
                             <li><p class="mb-0 fw-6">© 2020 PortLaMontagne - Version 1.0.3</p></li>
                             <li><a href="{{ path('contact') }}">Contact</a></li>
                             <li><a href="{{ path('privacy_policy') }}">Politique de confidentialité</a></li>
-
                             {% if is_granted('ROLE_ADMIN') %}
                                 <li><a href="{{ path('admin_dashboard_index') }}">Administration</a></li>
                             {% endif %}
@@ -218,17 +196,13 @@
     <script src="{{ asset('vendor/lite-tooltip/js/litetooltip.js') }}"></script>
     <script src="{{ asset('vendor/smoothscroll/smooth.scroll.min.js') }}"></script>
     <script src="{{ asset('js/theme-plugins.js') }}"></script>
-
     <!-- Current Page Vendor and Views -->
     <script src="{{ asset('vendor/rs-plugin/js/jquery.themepunch.tools.min.js') }}"></script>
     <script src="{{ asset('vendor/rs-plugin/js/jquery.themepunch.revolution.min.js') }}"></script>
-
     <!-- Theme Initialization -->
     <script src="{{ asset('js/theme.js') }}"></script>
-
     <!-- Custom JS -->
     <script src="{{ asset('js/custom.js') }}"></script>
-
     <!-- Style Swicher -->
     <!--<script src="vendor/style-switcher/style.switcher.js" id="styleSwitcherScript" data-base-path="" data-skin-src=""></script>
     <script src="vendor/style-switcher/style.switcher.localstorage.js"></script>-->
@@ -246,7 +220,6 @@
                 }
             });
             return false; // this stops normal button behaviour from executing;
-
         })
     </script>
 
@@ -291,12 +264,8 @@
             } else if (warning) {
                 toastr.warning(array[1], array[0])
             }
-
         }
     </script>
-
 {% endblock %}
-
-
 </body>
 </html>

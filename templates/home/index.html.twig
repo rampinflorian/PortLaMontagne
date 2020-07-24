@@ -11,7 +11,6 @@
 {% block title %}{% endblock %}
 
 {% block body %}
-
     <div class="slider-container rev_slider_wrapper" style="height: 650px;">
         <div id="revolutionSlider" class="slider rev_slider" data-plugin-revolution-slider data-plugin-options="{'delay': 9000, 'gridwidth': 1170, 'gridheight': 650}">
             <ul>
@@ -159,7 +158,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
             <video class="parallax-video" poster="{{ asset('img/main/climb1.jpg') }}" preload="auto" autoplay loop="loop" muted="muted">
                 <source src="" type="video/mp4"/>
@@ -169,25 +167,20 @@
         <section class="section-primary main-color b-bordered">
             <div class="container">
                 <div class="row">
-
                     <div class="col-md-12">
                         <h2 class="mb-5"><span>Dernières nouvelles </span></h2>
                         <p class="section-sub-title">
                             Retrouvez des articles détaillés sur l'escalade autour de Toulon !
                         </p>
-
                         <div class="exp-separator">
                             <div class="exp-separator-inner">
                             </div>
                         </div>
                     </div>
                 </div>
-
                 <div class="row">
-
                     <div class="col-sm-12">
                         <div class="carousel-wrap mb-30">
-
                             <div class="owl-carousel" data-plugin-options='{"items": {{ articles|length }}, "singleItem": false, "autoPlay": true, "margin":20, "dots":false}'>
                                 {% for article in articles %}
                                     <div class="item exp-animation" data-animation="bottom-to-top" data-delay="200">
@@ -205,9 +198,7 @@
                                         </div>
                                     </div>
                                 {% endfor %}
-
                             </div>
-
                             <div class="customNavigation">
                                 <a class="prev"><i class="fa fa-angle-left"></i></a>
                                 <a class="next"><i class="fa fa-angle-right"></i></a>
@@ -215,7 +206,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="row text-center">
                     <div class="col-md-12">
                         <a class="btn standard lightgrey btn-icon-reveal item-shadow-2x" href="{{ path('article_index') }}">
@@ -243,7 +233,6 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
                 <video class="parallax-video" poster="{{ asset('img/main/massifs.png') }}" preload="auto" autoplay loop="loop" muted="muted">
                     <source src="" type="video/mp4"/>
@@ -251,7 +240,6 @@
             </div>
         </section>
         <section class="section-primary alternate-color b-bordered">
-
             <div class="container">
                 <div class="row">
                     <div class="col-md-10 offset-md-1 counters counters-emel">
@@ -297,12 +285,10 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
         </section>
-
         <section class="section-medium section-arrow--bottom-center" style="background-color: #262626;">
             <div class="container">
                 <div class="row">
@@ -313,13 +299,9 @@
                 </div>
             </div>
         </section>
-
-
         <section class="section-big main-color">
-
             <div class="container">
                 <div class="row">
-
                     <div class="col-sm-12">
                         <div class="v-heading-v3">
                             <h2 class="mb-5"><span>Nos Partenaires</span></h2>
@@ -343,7 +325,6 @@
                                         </figure>
                                     </div>
                                 {% endfor %}
-
                             </div>
                             <div class="customNavigation">
                                 <a class="prev"><i class="fa fa-angle-left"></i></a>
@@ -356,7 +337,6 @@
         </section>
     </div>
 {% endblock %}
-
 
 {% block javascripts %}
     {{ parent() }}

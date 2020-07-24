@@ -7,13 +7,10 @@
 {% block title %}Article{% endblock %}
 
 {% block body %}
-
     <div class="page-inner t-bordered">
         <div class="container">
             <div class="row">
-
                 <div class="col-md-8 left-side-sidebar">
-
                     <div class="post-content-wrap">
                         <figure class="item-shadow">
                             <a href="#" class="link-to-post">
@@ -21,23 +18,14 @@
                                 <div class="post-overlay"></div>
                             </a>
                         </figure>
-
                         <div class="post-author-wrap mnt-50">
                             <div class="author-avatar">
                                 <img alt="" src="{{ 'https://api.adorable.io/avatars/285/' ~ article.user.email }}" class="avatar photo">
                             </div>
                         </div>
-
                         <div class="post-meta text-center">
                             <ul>
                                 <li><i class="ion-android-time"></i> {{ article.createdAt|format_datetime(locale='fr') }}</li>
-                                {#                                    <li class="post-meta-seperator"></li>#}
-                                {#                                    <li>#}
-                                {#                                        <div class="love-it-wrapper">#}
-                                {#                                            <a href="#" class="love-it"> <i class="ion-heart"></i> <span class="love-count">581 likes</span></a>#}
-                                {#                                        </div>#}
-                                {#                                    </li>#}
-
                                 <li class="float-right">
                                     {% if is_granted('ROLE_ADMIN') %}
                                         <i class="fa fa-edit"></i> <a href="{{ path('admin_article_edit', { 'slug':article.slug }) }}"> éditer</a>
@@ -46,18 +34,13 @@
                             </ul>
                         </div>
                     </div>
-
                     <h1 class="fs-30 pt-20 text-center">{{ article.title }}</h1>
-
                     {{ article.content|raw|nl2br }}
-
                     <div class="blog-single-meta">
-
                         <div class="post-meta-section clearfix mb-none">
                             <div class="tag-cloud clearfix">
                                 <ul class="tag-cloud-inner">
                                     <li><a href="#">{{ article.category.title }}</a></li>
-
                                 </ul>
                             </div>
                         </div>
@@ -74,7 +57,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="post-meta-section clearfix">
                             <div class="post-author-avatar">
                                 <img alt="" src="{{ 'https://api.adorable.io/avatars/285/' ~ article.user.email }}" class="avatar avatar-100 photo" height="75" width="75">
@@ -88,9 +70,7 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="post-meta-section clearfix">
-
                             <div class="post-block post-comments clearfix">
                                 <div class="post-meta-section-title b-bordered pb-30">
                                     <h4><i class="ion-android-chat pr-sm fs-16"></i> COMMENTAIRES ({{ comments|length }})</h4>
@@ -122,7 +102,6 @@
                                 {% endfor %}
                             </div>
                         </div>
-
                         <div class="post-meta-section clearfix">
                             <div class="post-meta-section-title">
                                 <h4><i class="fa fa-align-left pr-sm"></i> JE COMMENTE !</h4>
@@ -158,15 +137,10 @@
                                 </div>
                             {% endif %}
                         </div>
-
                     </div>
                 </div>
-
-
                 <div class="col-md-4 right-side-sidebar">
-
                     <aside class="sidebar">
-
                         <section class="clean-sidebar sidebar-widget text-center">
                             <div class="join-us-form mt-35">
                                 <h4 class="fs-16"><b>Restez informé des nouveaux articles </b></h4>
@@ -204,7 +178,6 @@
                                                     </ul>
                                                 </div>
                                             </div>
-
                                         {% endfor %}
                                     </div>
                                 </div>
@@ -214,9 +187,7 @@
                 </div>
             </div>
         </div>
-        F
     </div>
-
 {% endblock %}
 
         {% block javascripts %}

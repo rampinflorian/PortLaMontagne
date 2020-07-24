@@ -6,16 +6,14 @@
     <link href="{{ asset('smartforms/Templates/css/smart-loader.css') }}" rel="stylesheet" />
     <link href="{{ asset('smartforms/Templates/css/smart-addons.css') }}" rel="stylesheet" />
     <link href="{{ asset('smartforms/Templates/css/smart-forms.css') }}" rel="stylesheet" />
-
     <link href="{{ asset('css/plugins/summernote/summernote-bs4.css') }}" rel="stylesheet">
-
-
 {% endblock %}
 
 {% block title %}Créer un article{% endblock %}
 
 {% block bodyApp %}
 </p>
+
     {{ include('article/_form.html.twig') }}
 
 {% endblock %}
@@ -28,5 +26,4 @@
             $('.summernote').summernote();
         });
     </script>
-
 {% endblock %}

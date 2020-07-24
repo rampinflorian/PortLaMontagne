@@ -12,7 +12,6 @@
 {% block body %}
     <div class="page">
     <div class="page-inner p-none">
-
         <section class="section-primary pt-40">
             <div class="container">
                 {% if is_granted('ROLE_ADMIN') %}
@@ -20,10 +19,8 @@
                 {% endif %}
                 <div class="sort-destination-loader sort-destination-loader-showing mt-4 pt-2">
                     <div class="row portfolio-list sort-destination" data-sort-id="portfolio">
-
                         {% for article in articles %}
                         <div class="col-lg-6 isotope-item websites">
-
                             <article class="v_blog-item v_blog-item-related v_blog-grid">
                                 <div class="v_blog-item-inner">
                                     <div class="v_blog-item-media">
@@ -38,12 +35,10 @@
                                                   {{ article.createdAt|date('d/m/Y') }} - <i>Commentaires ( {{ article.comments|length }} )</i>
                                                 </li>
                                             </ul>
-
                                             <a href="{{ path('article_show', { 'slug': article.slug }) }}" rel="bookmark">
                                                 <h2 class="v_blog-item-title" itemprop="name headline">{{ article.title }}</h2>
                                             </a>
                                         </div>
-
                                         <div itemprop="articleBody">
                                             <p>
                                                 {{ article.content|striptags|slice(0,200) ~ ' [...]' }}
@@ -61,7 +56,6 @@
                             </article>
                         </div>
                         {% endfor %}
-
                     </div>
                 </div>
             </div>

@@ -4,7 +4,6 @@
     {{ parent() }}
     <link href="{{ asset('css/blog.css') }}" rel="stylesheet"/>
     <link href="{{ asset('css/ss-gizmo.css') }}" rel="stylesheet"/>
-
 {% endblock %}
 
 {% block title %}Articles{% endblock %}
@@ -16,7 +15,6 @@
                 <div class="col-md-12">
                     <h3 class="xspecial-heading v2"><span>Liste des articles</span></h3>
                 </div>
-
                 <div class="col-md-12">
                     <table class="table table-striped custab">
                         <thead>
@@ -29,7 +27,6 @@
                         </tr>
                         </thead>
                         {% for article in articles %}
-
                         <tr>
                             <td>{{ article.createdAt|date('d/m/Y') }}</td>
                             <td><a href="{{ path('article_show', { 'slug': article.slug }) }}"> {{ article.title }} </a></td>
@@ -58,7 +55,6 @@
             </div>
         </div>
     </div>
-
 {% endblock %}
 
 {% block javascripts %}

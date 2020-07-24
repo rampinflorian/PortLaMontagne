@@ -4,7 +4,6 @@
     {{ parent() }}
     <link href="{{ asset('css/blog.css') }}" rel="stylesheet"/>
     <link href="{{ asset('css/ss-gizmo.css') }}" rel="stylesheet"/>
-
 {% endblock %}
 
 {% block title %}Catégories{% endblock %}
@@ -16,7 +15,6 @@
                 <div class="col-md-12">
                     <h3 class="xspecial-heading v2"><span>Liste des catégories</span></h3>
                 </div>
-
                 <div class="col-md-12">
                     <table class="table table-striped custab">
                         <thead>
@@ -26,7 +24,6 @@
                         </tr>
                         </thead>
                         {% for category in categories %}
-
                             <tr>
                                 <td>{{ category.title }}</td>
                                 <td>
@@ -41,13 +38,11 @@
                                 </td>
                             </tr>
                         {% endfor %}
-
                     </table>
                 </div>
             </div>
         </div>
     </div>
-
 {% endblock %}
 
 {% block javascripts %}
