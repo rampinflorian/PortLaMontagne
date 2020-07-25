@@ -62,6 +62,50 @@
 <header id="header" class="header-narrow header-full-width"
         data-plugin-options="{'stickyEnabled': true, 'stickyEnableOnBoxed': true, 'stickyEnableOnMobile': true, 'stickyStartAt': 0, 'stickySetTop': '0', 'stickyChangeLogo': false}">
     <div class="header-body">
+        <div class="header-top dark-topbar">
+            <div class="container">
+                <div class="header-row py-1">
+                    <div class="header-column justify-content-start">
+                        <div class="header-row">
+                            <p>
+                                <a href="http://www.var.gouv.fr/acces-aux-massifs-forestiers-du-var-a2898.html"><i class="fa fa-info-circle mr-1 va-text-top"></i> Carte des massifs</a>
+                                &nbsp;&nbsp;|&nbsp;&nbsp;
+                                <a href="https://www.meteoblue.com/fr/meteo/semaine/toulon_france_2972328"><i class="fa fa-weather-partly-sunny mr-1 va-text-top"></i> Météo</a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="header-column justify-content-end">
+                        <div class="header-row">
+                            <nav class="header-nav-top">
+                                <ul class="nav nav-pills">
+                                    <li class="nav-item d-none d-lg-block">
+                                        <a class="nav-link" href="pages-contact.html"><i class="fa fa-angle-right"></i> Contactez-nous</a>
+                                    </li>
+
+                                    <li class="nav-item dropdown">
+                                        {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+
+                                            <a class="nav-link" href="#" role="button" id="dropdownLanguage" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="fa fa-user"></i>&nbsp;Bonjour, {{ app.user.fullName }} <i class="fa fa-angle-down"></i>
+                                        </a>
+                                            <div class="dropdown-menu" aria-labelledby="dropdownLanguage">
+                                                <a class="dropdown-item" href="{{ path('user_dashboard') }}"> <i class="fa fa-user"></i>&nbsp;&nbsp;Mon compte</a>
+                                                <a class="dropdown-item" href="{{ path('app_logout') }}"> <i class="fa fa-power-off"></i>&nbsp;&nbsp;Déconnexion</a>
+                                        </div>
+                                        {% else %}
+
+                                            <a class="nav-link" href="{{ path('app_login') }}" role="button" >
+                                                <i class="fa fa-user"></i>&nbsp;Connexion
+                                            </a>
+                                        {% endif %}
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <span class="v-header-shadow"></span>
         <div class="header-container container">
             <div class="header-row">
@@ -106,31 +150,15 @@
                         <div class="header-nav header-nav-top-line justify-content-end">
                             <div class="header-nav-main header-nav-main-effect-2 header-nav-main-sub-effect-1">
                                 <nav class="collapse">
-                                    <ul class="nav nav-pills" id="mainNav">
-                                        {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-                                            <li class="dropdown">
-                                                <a class="dropdown-item dropdown-toggle" href="#"><i class="fa fa-user-circle fs-18"></i>&nbsp;{{ app.user.firstname }} </a>
-                                                <ul class="dropdown-menu">
-                                                    <li>
-                                                        <a class="dropdown-item" href="{{ path('user_dashboard') }}"><i class="fa fa-dashboard fs-18"></i>&nbsp;MON COMPTE</a>
-                                                    </li>
-                                                    <li>
-                                                        <a class="dropdown-item" href="{{ path('app_logout') }}"><i class="fa fa-outbox fs-18"></i>&nbsp;DECONNEXION</a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                        {% else %}
-                                            <li class="dropdown header-search-wrap">
-                                                <a class="dropdown-item dropdown-toggle pr-5" href="{{ path('app_login') }}"><i class="fa fa-user-circle fs-18"></i>&nbsp;Connexion</a>
-                                            </li>
-                                        {% endif %}
-                                        <li class="dropdown header-search-wrap">
-                                            <a class="dropdown-item dropdown-toggle pr-5" href="https://www.meteoblue.com/fr/meteo/semaine/toulon_france_2972328">
-                                                <i class="fa fa-weather-sunny fs-18"></i>&nbsp;Météo </a>
-                                        </li>
-                                    </ul>
+
                                 </nav>
+
                             </div>
+                            <ul class="header-social-icons social-icons d-none d-sm-block">
+                                <li class="social-icons-facebook"><a href="https://www.facebook.com/groups/portlamontagne/" target="_blank" title="Facebook"><i class="fa fa-facebook"></i></a></li>
+                                <li class="social-icons-twitter"><a href="https://twitter.com/PLMToulon" target="_blank" title="Twitter"><i class="fa fa-twitter"></i></a></li>
+                                <li class="social-icons-instagram"><a href="https://www.instagram.com/Port_la_montagne/" target="_blank" title="Instagram"><i class="fa fa-instagram"></i></a></li>
+                            </ul>
                         </div>
                     </div>
                 </div>
