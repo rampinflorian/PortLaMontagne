@@ -24,7 +24,9 @@ class FacebookController extends AbstractController
             ->getClient('facebook')
             ->redirect([
                 'public_profile', 'email' // the scopes you want to access
-            ]);
+            ],
+                []
+            );
     }
 
     /**

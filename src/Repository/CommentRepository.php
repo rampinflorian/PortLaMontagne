@@ -12,6 +12,7 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method Comment[]    findAll()
  * @method Comment[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  * @method findByArticle(\App\Entity\Article $article)
+ * @method findByUser(object|\Symfony\Component\Security\Core\User\UserInterface|null $getUser)
  */
 class CommentRepository extends ServiceEntityRepository
 {
