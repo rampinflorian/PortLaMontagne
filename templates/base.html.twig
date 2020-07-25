@@ -86,7 +86,7 @@
                                         {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
 
                                             <a class="nav-link" href="#" role="button" id="dropdownLanguage" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <i class="fa fa-user"></i>&nbsp;Bonjour, {{ app.user.fullName }} <i class="fa fa-angle-down"></i>
+                                                <i class="fa fa-user"></i> {{ app.user.firstname }}&nbsp;&nbsp;<i class="fa fa-angle-down"></i>
                                         </a>
                                             <div class="dropdown-menu" aria-labelledby="dropdownLanguage">
                                                 <a class="dropdown-item" href="{{ path('user_dashboard') }}"> <i class="fa fa-user"></i>&nbsp;&nbsp;Mon compte</a>
