@@ -16,7 +16,9 @@
             </div>
         </div>
     </section>
+
     <div class="page-inner no-border">
+
         <div class="container">
             <div class="row">
                 <div class="col-md-3 left-side-sidebar pr-none">
@@ -37,7 +39,20 @@
                         </ul>
                     </div>
                 </div>
-                {% block bodyApp %}
+
+                <div class="col-md-9 right-side-sidebar">
+                    {% if not app.user.verified %}
+
+                    <div class="alert alert-warning alert-dismissable">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <strong>Attention!</strong> Ton email n'a pas été vérifié, tu veux recevoir une nouvelle validation ?
+                        <a href="{{ path('app_send_new_verification_email') }}" class="alert-link">Cliques ici !</a>
+                    </div>
+
+                    {% endif %}
+
+                    {% block bodyApp %}
+                </div>
 
                 {% endblock %}
             </div>

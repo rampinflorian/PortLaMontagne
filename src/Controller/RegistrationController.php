@@ -6,8 +6,10 @@ use App\Entity\User;
 use App\Form\RegistrationFormType;
 use App\Security\EmailVerifier;
 use App\Security\AppAuthentificatorAuthenticator;
+use App\Service\SendMailService;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mime\Address;
@@ -31,9 +33,10 @@ class RegistrationController extends AbstractController
      * @param UserPasswordEncoderInterface $passwordEncoder
      * @param GuardAuthenticatorHandler $guardHandler
      * @param AppAuthentificatorAuthenticator $authenticator
+     * @param SendMailService $sendMailService
      * @return Response
      */
-    public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, GuardAuthenticatorHandler $guardHandler, AppAuthentificatorAuthenticator $authenticator): Response
+    public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, GuardAuthenticatorHandler $guardHandler, AppAuthentificatorAuthenticator $authenticator, SendMailService $sendMailService): Response
     {
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
@@ -54,13 +57,7 @@ class RegistrationController extends AbstractController
             $entityManager->flush();
 
             // generate a signed url and email it to the user
-            $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
-                (new TemplatedEmail())
-                    ->from(new Address('florian@portlamontagne.fr', 'Portlamontagne'))
-                    ->to($user->getEmail())
-                    ->subject('Confirmation de votre email')
-                    ->htmlTemplate('registration/confirmation_email.html.twig')
-            );
+            $sendMailService->sendEmailConfirmation($user);
             // do anything else you need here, like send an email
 
             return $guardHandler->authenticateUserAndHandleSuccess(
@@ -99,5 +96,18 @@ class RegistrationController extends AbstractController
         $this->addFlash('success', 'Utilisateur;Ton adresse email a été vérifiée !');
 
         return $this->redirectToRoute('home');
+    }
+
+    /**
+     * @Route("/register/send-new-verification-email", name="app_send_new_verification_email")
+     * @param SendMailService $sendMailService
+     * @param Request $request
+     * @return RedirectResponse
+     */
+    public function sendNewVerificationEmailAction(SendMailService $sendMailService, Request $request) : Response
+    {
+            $sendMailService->sendEmailConfirmation($this->getUser());
+            $this->addFlash('success', 'Vérification email; Un nouveau email de vérification vient d\'être envoyé !');
+        return $this->redirect($request->headers->get('referer') ?? $this->generateUrl('article_index'));
     }
 }
