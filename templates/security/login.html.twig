@@ -71,14 +71,13 @@
                                                 <span> Rester connecté ?</span>
                                             </label>
                                         </div><!-- end section -->
+                                        <a href="{{ path('app_forgot_password_request') }}">Mot de passe oublié ?</a>
                                     </div><!-- end .form-body section -->
                                     <div class="form-footer">
                                         <button type="submit" class="button btn-primary">CONNEXION</button>
                                     </div><!-- end .form-footer section -->
 
-                                    <input type="hidden" name="_csrf_token"
-                                           value="{{ csrf_token('authenticate') }}"
-                                    >
+                                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
                                 </form>
                             </div><!-- end .smart-forms section -->
                         </div>

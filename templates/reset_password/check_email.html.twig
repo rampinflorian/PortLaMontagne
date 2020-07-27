@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Email envoyé !{% endblock %}
+
+{% block body %}
+    <h1>Réinitialise ton mot de passe !</h1>
+
+    <p>Un email vient d'être envoyé, fait gaffe, le lien expire dans {{ tokenLifetime|date('g') }} heure(s) !</p>
+    <p>Tu ne l'as pas reçu ? Essai de l'envoyer à nouveau... <a href="{{ path('app_forgot_password_request') }}">cliques ici !</a>.</p>
+{% endblock %}

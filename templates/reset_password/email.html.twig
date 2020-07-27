@@ -1,0 +1,11 @@
+<h1>Réinitialisation mot de passe portlamontagne.fr !</h1>
+
+<p>
+    Pour réinitialiser ton email et accéder de nouveau au site portlamontagne,
+    <a href="{{ url('app_reset_password', {token: resetToken.token}) }}"> cliques-ici !</a><br>
+    Fais gaffe ! Ce lien expire dans {{ tokenLifetime|date('g') }} heure(s)..
+</p>
+
+<p>
+    A très vite sur portlamontagne.fr !
+</p>

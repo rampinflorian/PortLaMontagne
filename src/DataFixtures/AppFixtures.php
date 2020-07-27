@@ -27,11 +27,9 @@ class AppFixtures extends Fixture
         $manager->persist($user);
 
         $category = (new Category())
-        ->setTitle('Information')
-        ;
+            ->setTitle('Information');
 
         $manager->persist($category);
-
 
         for ($i = 0; $i < 19; $i++) {
             $faker = Factory::create('fr_FR');
@@ -41,7 +39,8 @@ class AppFixtures extends Fixture
                 ->setTitle($faker->text(20))
                 ->setContent($faker->paragraph)
                 ->setUser($this->getReference('User_DEV'))
-                ->setImage('flopaulwelcome-5f01f39c5558f.png');
+                ->setImage('flopaulwelcome-5f01f39c5558f.png')
+                ->setIsPublished(true);
 
             $manager->persist($article);
         }
