@@ -4,6 +4,7 @@ namespace App\DataFixtures;
 
 use App\Entity\Article;
 use App\Entity\Category;
+use App\Entity\Topo;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -30,6 +31,22 @@ class AppFixtures extends Fixture
             ->setTitle('Information');
 
         $manager->persist($category);
+
+        for ($i = 0; $i < 4; $i++) {
+            $faker = Factory::create('fr_FR');
+
+            $topo = (new Topo())
+                ->setTitle($faker->text(10))
+                ->setLink('https://fake.fr')
+                ->setPrice($faker->numberBetween(0.99, 59.99))
+                ->setCreatedAt(new \DateTime())
+                ->setImage('defaultTopo-5f01f39c5558f.png')
+                ->setImageSecond('defaultTopo-2-5f01f39c5558f.png')
+                ->setStar($faker->numberBetween(1, 5))
+                ->setIsSoldOut($faker->boolean);
+            $manager->persist($topo);
+
+        }
 
         for ($i = 0; $i < 19; $i++) {
             $faker = Factory::create('fr_FR');
