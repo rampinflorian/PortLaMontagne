@@ -36,6 +36,7 @@ class ArticleType extends AbstractType
             ->add('image', FileType::class, [
                 'label' => 'Image de couverture',
                 'mapped' => false,
+                'required' => $options['required_header_image'],
                 'constraints' => [
                     new File([
                         'maxSize' => '10M',
@@ -81,6 +82,7 @@ class ArticleType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Article::class,
+            'required_header_image' => true
         ]);
     }
 }

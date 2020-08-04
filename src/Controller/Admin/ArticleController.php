@@ -82,7 +82,9 @@ class ArticleController extends AbstractController
             new File($this->getParameter('article_directory') . '/image/' . $article->getImage())
         );
 
-        $form = $this->createForm(ArticleType::class, $article);
+        $form = $this->createForm(ArticleType::class, $article, [
+            'required_header_image' => false
+        ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -90,12 +92,14 @@ class ArticleController extends AbstractController
             if (!$form->get('isAlert')->getData()) {
                 $article->setAlert(null);
             }
-            if ($article->getImage() !== $orphanImage) {
+            if ($article->getImage() !== $orphanImage && $form->get('image')->getData() != null) {
                 $newImage = $form->get('image')->getData();
                 $newFilename = $fileService->getFileName($newImage);
                 $newImage->move($this->getParameter('article_directory') . '/image/', $newFilename);
                 $fileService->deleteFile($this->getParameter('article_directory') . '/image/' . $orphanImage);
                 $article->setImage($newFilename);
+            } else {
+                $article->setImage($orphanImage);
             }
             $this->getDoctrine()->getManager()->flush();
 
