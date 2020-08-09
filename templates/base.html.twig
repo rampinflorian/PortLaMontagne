@@ -255,7 +255,7 @@
             $.ajax('{{ path('default_open-weather-map', {  }) }}', {
                 success: function (data) {
 
-                    const url = "http://openweathermap.org/img/wn/" + data['weather'][0]['icon'] + "@2x.png";
+                    const url = "https://openweathermap.org/img/wn/" + data['weather'][0]['icon'] + "@2x.png";
                     const temp = data['weather'][0]['temp'];
 
                     document.getElementById('weather-img-id').src = url;
