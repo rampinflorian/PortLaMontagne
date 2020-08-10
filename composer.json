@@ -38,8 +38,7 @@
         "symfony/yaml": "5.1.*",
         "symfonycasts/reset-password-bundle": "^1.1",
         "symfonycasts/verify-email-bundle": "^1.0",
-        "twig/intl-extra": "^3.0",
-      "ext-mysql_xdevapi": "*"
+        "twig/intl-extra": "^3.0"
     },
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "^3.3",
