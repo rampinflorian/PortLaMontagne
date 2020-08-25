@@ -59,9 +59,9 @@
                         {{ form_label(form.isAlert) }}
                     </label>
                 </div><!-- end section -->
-                {{ form_errors(form.alert) }}
-                {{ form_label(form.alert) }}
-                {{ form_widget(form.alert) }}
+                {{ form_errors(form.alert.startedAt) }}
+                {{ form_label(form.alert.startedAt) }}
+                {{ form_widget(form.alert.startedAt, {'attr': {'class': 'js-datepicker'}}) }}
             </div><!-- end .form-body section -->
             <div class="form-footer">
                 <button class="btn btn-primary float-right">{{ button_label|default('Publier') }}</button>

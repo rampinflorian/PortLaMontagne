@@ -7,8 +7,10 @@ use App\Form\ArticleType;
 use App\Repository\ArticleRepository;
 use App\Service\FileService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -88,7 +90,7 @@ class ArticleController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            
+
             if (!$form->get('isAlert')->getData()) {
                 $article->setAlert(null);
             }
@@ -128,5 +130,32 @@ class ArticleController extends AbstractController
         }
 
         return $this->redirectToRoute('admin_article_index');
+    }
+
+    /**
+     * @Route("/uploadimage", name="admin_article_uploadimage", methods={"POST"})
+     * @param Request $request
+     */
+    public function uploadImage(Request $request)
+    {
+        /** @var UploadedFile $file */
+        $file = $request->files->get('image');
+        $status = [
+            'status' => "error",
+            "fileUploaded" => false,
+        ];
+        if (!is_null($file)) {
+            $filename = 'articleImageContent_' . uniqid() . "." . $file->getClientOriginalExtension();
+            $path = $this->getParameter('article_directory') . '/content/';
+            $file->move($path,$filename);
+
+            $status = [
+                'status' => "success",
+                "fileUploaded" => true,
+                "filename" => $filename,
+            ];
+        }
+
+        return $this->json($status, 200);
     }
 }
