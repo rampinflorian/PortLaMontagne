@@ -14,9 +14,6 @@
     <div class="page-inner p-none">
         <section class="section-primary pt-40">
             <div class="container">
-                {% if is_granted('ROLE_ADMIN') %}
-                    <i class="fa fa-edit"></i> <a href="{{ path('admin_article_new') }}"> Créer un article</a>
-                {% endif %}
                 <div class="sort-destination-loader sort-destination-loader-showing mt-4 pt-2">
                     <div class="row portfolio-list sort-destination" data-sort-id="portfolio">
                         {% for article in articles %}

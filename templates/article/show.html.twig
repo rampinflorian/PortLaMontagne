@@ -23,13 +23,13 @@
                                 <img alt="" src="{{ 'https://api.adorable.io/avatars/285/' ~ article.user.email }}" class="avatar photo">
                             </div>
                         </div>
-                        <div class="post-meta text-center">
+                        <div class="post-meta">
                             <ul>
-                                <li><i class="ion-android-time"></i> {{ article.createdAt|format_datetime(locale='fr') }}</li>
+                                <li>
+                                    <i class="ion-android-time"></i> {{ article.createdAt|format_datetime(locale='fr') }}
+                                </li>
                                 <li class="float-right">
-                                    {% if is_granted('ROLE_ADMIN') %}
-                                        <i class="fa fa-edit"></i> <a href="{{ path('admin_article_edit', { 'slug':article.slug }) }}"> éditer</a>
-                                    {% endif %}
+                                    <i class="ion-edit"></i> {{ article.user.fullName }}
                                 </li>
                             </ul>
                         </div>
@@ -65,6 +65,7 @@
                                 <h2 class="name title">A propos de l'auteur</h2>
                                 <div class="post-author-description mb-20">
                                     <p>
+                                        <b>{{ article.user.fullName }}</b> <br>
                                         {{ article.user.description }}
                                     </p>
                                 </div>
