@@ -24,7 +24,6 @@
     <script src="{{ asset('assets/js/plugins/datapicker/bootstrap-datepicker.js') }}"></script>
 
     <script>
-
         $(document).ready(function () {
             $('.summernote').summernote({
                 height: 400,
@@ -34,26 +33,6 @@
                     }
                 }
             });
-
-            function uploadImage(image) {
-                var data = new FormData();
-                data.append("image", image);
-                $.ajax({
-                    data: data,
-                    type: "POST",
-                    url: "{{ path('admin_article_uploadimage') }}",// this file uploads the picture and
-                    // returns a chain containing the path
-                    cache: false,
-                    contentType: false,
-                    processData: false,
-                    success: function (url) {
-                        $('#summernote').summernote("insertImage",'{{ asset('article/content/articleImageContent_5f457e47c329b.png') }}');
-                    },
-                    error: function (data) {
-                        console.log(data);
-                    }
-                });
-            }
         });
     </script>
 
