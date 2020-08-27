@@ -7,8 +7,11 @@
 /public/bundles/
 /public/article
 /public/partner
+/public/user
+/public/topo
 /var/
 /vendor/
+
 ###< symfony/framework-bundle ###
 
 ###> symfony/phpunit-bridge ###
