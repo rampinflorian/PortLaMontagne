@@ -20,7 +20,7 @@
                         </figure>
                         <div class="post-author-wrap mnt-50">
                             <div class="author-avatar">
-                                <img alt="" src="{{ 'https://api.adorable.io/avatars/285/' ~ article.user.email }}" class="avatar photo">
+                                <img alt="" src="{{ (article.user.image != '') ? asset('user/image/') ~ article.user.image : 'https://api.adorable.io/avatars/285/' ~ article.user.email }}" class="avatar photo">
                             </div>
                         </div>
                         <div class="post-meta">
@@ -59,7 +59,7 @@
                         </div>
                         <div class="post-meta-section clearfix">
                             <div class="post-author-avatar">
-                                <img alt="" src="{{ 'https://api.adorable.io/avatars/285/' ~ article.user.email }}" class="avatar avatar-100 photo" height="75" width="75">
+                                <img alt="" src="{{ (article.user.image != '') ? asset('user/image/') ~ article.user.image : 'https://api.adorable.io/avatars/285/' ~ article.user.email }}" class="avatar avatar-100 photo" height="75" width="75">
                             </div>
                             <div class="post-author-info">
                                 <h2 class="name title">A propos de l'auteur</h2>

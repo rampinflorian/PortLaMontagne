@@ -3,7 +3,9 @@
 namespace App\Controller\User;
 
 use App\Entity\User;
+use App\Form\ProfileImageType;
 use App\Form\UserType;
+use App\Service\FileService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,24 +19,35 @@ class PersonalInformationController extends AbstractController
      * @Route("user/personal-information", name="user_personal_information")
      * @param Request $request
      * @param UserPasswordEncoderInterface $passwordEncoder
+     * @param FileService $fileService
      * @return RedirectResponse|Response
      */
-    public function index(Request $request, UserPasswordEncoderInterface $passwordEncoder)
+    public function index(Request $request, UserPasswordEncoderInterface $passwordEncoder, FileService $fileService)
     {
         $user = $this->getUser();
+        $profileImage = null;
 
-        $form = $this->createForm(UserType::class, $user)->handleRequest($request);
+        $formPersonalInformation = $this->createForm(UserType::class, $user)->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($formPersonalInformation->isSubmitted() && $formPersonalInformation->isValid()) {
 
-            if ($form->get('password')->getData()) {
+            if ($formPersonalInformation->get('password')->getData()) {
                 $user->setPassword(
                     $passwordEncoder->encodePassword(
                         $user,
-                        $form->get('password')->getData()
+                        $formPersonalInformation->get('password')->getData()
                     )
                 );
             }
+
+            $image = $formPersonalInformation->get('image')->getData();
+
+            if ($image) {
+                $newFilename = $fileService->getFileName($image);
+                $image->move($this->getParameter('user_directory') . '/image/', $newFilename);
+                $user->setImage($newFilename);
+            }
+
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
@@ -46,7 +59,7 @@ class PersonalInformationController extends AbstractController
         }
 
         return $this->render('user/personal_information/index.html.twig', [
-            'formUser' => $form->createView(),
+            'formUser' => $formPersonalInformation->createView(),
         ]);
     }
 }

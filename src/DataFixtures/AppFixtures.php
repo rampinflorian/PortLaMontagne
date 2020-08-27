@@ -22,6 +22,7 @@ class AppFixtures extends Fixture
             ->setRoles(['ROLE_ADMIN'])
             ->setFirstname('Florian')
             ->setLastname('Rampin')
+            ->setImage('')
             ->setDescription($faker->text(90));
 
         $this->addReference('User_DEV', $user);

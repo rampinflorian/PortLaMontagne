@@ -71,6 +71,17 @@
                     </div>
 
                     <div class="spacer-t40 spacer-b40">
+                        <div class="tagline"><span>Stand photo</span></div><!-- .tagline -->
+                    </div>
+                    <div class="section">
+                        {{ form_errors(formUser.image) }}
+                        <label class="field prepend-icon">
+                            {{ form_widget(formUser.image) }}
+                            <span class="field-icon"><i class="fa fa-upload"></i></span>
+                        </label>
+                        {{ form_label(formUser.image) }}
+                    </div>
+                    <div class="spacer-t40 spacer-b40">
                         <div class="tagline"><span>Un peu plus !</span></div><!-- .tagline -->
                     </div>
                     <div class="section">
