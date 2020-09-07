@@ -7,7 +7,7 @@ use App\Entity\Category;
 use App\Entity\Topo;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
 
 class AppFixtures extends Fixture
