@@ -5,13 +5,9 @@
 /.env.*.local
 /config/secrets/prod/prod.decrypt.private.php
 /public/bundles/
-/public/article
-/public/partner
-/public/user
-/public/topo
+/src/preload.php
 /var/
 /vendor/
-
 ###< symfony/framework-bundle ###
 
 ###> symfony/phpunit-bridge ###
