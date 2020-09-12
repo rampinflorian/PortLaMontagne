@@ -4,6 +4,7 @@ namespace App\DataFixtures;
 
 use App\Entity\Article;
 use App\Entity\Category;
+use App\Entity\MarketProduct;
 use App\Entity\Topo;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -61,6 +62,26 @@ class AppFixtures extends Fixture
                 ->setIsPublished(true);
 
             $manager->persist($article);
+        }
+
+        for ($i = 0 ; $i < 29 ; $i++) {
+            $faker = Factory::create('fr_FR');
+
+            $date = $faker->dateTimeBetween('-1 years', '-1 months');
+
+            $marketProduct = (new MarketProduct())
+                ->setTitle($faker->text(20))
+                ->setDescription($faker->text(255))
+                ->setPrice($faker->randomFloat(2, 9.99, 999.99))
+                ->setIsSold($faker->boolean)
+                ->setIsSuspended($faker->boolean)
+                ->setCreatedAt($date)
+                ->setUpdatedAt($date)
+                ->setBuyer($user)
+                ->setVendor($user)
+                ;
+
+            $manager->persist($marketProduct);
         }
 
         $manager->flush();

@@ -89,9 +89,21 @@ class User implements UserInterface
      */
     private $image;
 
+    /**
+     * @ORM\OneToMany(targetEntity=MarketProduct::class, mappedBy="vendor", orphanRemoval=true)
+     */
+    private $marketProducts;
+
+    /**
+     * @ORM\OneToMany(targetEntity=MarketProduct::class, mappedBy="buyer")
+     */
+    private $marketBuyers;
+
     public function __construct()
     {
         $this->articles = new ArrayCollection();
+        $this->marketProducts = new ArrayCollection();
+        $this->marketBuyers = new ArrayCollection();
     }
 
     /**
@@ -313,6 +325,68 @@ class User implements UserInterface
     public function setImage(?string $image): self
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|MarketProduct[]
+     */
+    public function getMarketProducts(): Collection
+    {
+        return $this->marketProducts;
+    }
+
+    public function addMarketProduct(MarketProduct $marketProduct): self
+    {
+        if (!$this->marketProducts->contains($marketProduct)) {
+            $this->marketProducts[] = $marketProduct;
+            $marketProduct->setVendor($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMarketProduct(MarketProduct $marketProduct): self
+    {
+        if ($this->marketProducts->contains($marketProduct)) {
+            $this->marketProducts->removeElement($marketProduct);
+            // set the owning side to null (unless already changed)
+            if ($marketProduct->getVendor() === $this) {
+                $marketProduct->setVendor(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|MarketProduct[]
+     */
+    public function getMarketBuyers(): Collection
+    {
+        return $this->marketBuyers;
+    }
+
+    public function addMarketBuyer(MarketProduct $marketBuyer): self
+    {
+        if (!$this->marketBuyers->contains($marketBuyer)) {
+            $this->marketBuyers[] = $marketBuyer;
+            $marketBuyer->setBuyer($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMarketBuyer(MarketProduct $marketBuyer): self
+    {
+        if ($this->marketBuyers->contains($marketBuyer)) {
+            $this->marketBuyers->removeElement($marketBuyer);
+            // set the owning side to null (unless already changed)
+            if ($marketBuyer->getBuyer() === $this) {
+                $marketBuyer->setBuyer(null);
+            }
+        }
 
         return $this;
     }

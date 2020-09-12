@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit MarketProduct{% endblock %}
+
+{% block body %}
+    <h1>Edit MarketProduct</h1>
+
+    {{ include('market_product/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('market_product_index') }}">back to list</a>
+
+    {{ include('market_product/_delete_form.html.twig') }}
+{% endblock %}

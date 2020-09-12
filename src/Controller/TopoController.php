@@ -7,17 +7,17 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class ShopController extends AbstractController
+class TopoController extends AbstractController
 {
     /**
-     * @Route("/shop", name="shop_index")
+     * @Route("/topo", name="topo_index")
      * @param TopoRepository $topoRepository
      * @return Response
      */
     public function index(TopoRepository $topoRepository)
     {
 
-        return $this->render('shop/index.html.twig', [
+        return $this->render('topo/index.html.twig', [
             'topos' => $topoRepository->findAll()
         ]);
     }

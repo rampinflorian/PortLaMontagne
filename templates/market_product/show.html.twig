@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}MarketProduct{% endblock %}
+
+{% block body %}
+    <h1>MarketProduct</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ market_product.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ market_product.title }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ market_product.description }}</td>
+            </tr>
+            <tr>
+                <th>Price</th>
+                <td>{{ market_product.price }}</td>
+            </tr>
+            <tr>
+                <th>IsSold</th>
+                <td>{{ market_product.isSold ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>IsSuspended</th>
+                <td>{{ market_product.isSuspended ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>CreatedAt</th>
+                <td>{{ market_product.createdAt ? market_product.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>SoldedAt</th>
+                <td>{{ market_product.soldedAt ? market_product.soldedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>UpdatedAt</th>
+                <td>{{ market_product.updatedAt ? market_product.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('market_product_index') }}">back to list</a>
+
+    <a href="{{ path('market_product_edit', {'slug': market_product.id}) }}">edit</a>
+
+    {{ include('market_product/_delete_form.html.twig') }}
+{% endblock %}
