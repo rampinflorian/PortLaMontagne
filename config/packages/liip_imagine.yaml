@@ -1,0 +1,37 @@
+liip_imagine:
+    # As mentioned above, gd, imagick or gmagick are possible
+    driver: "gd"
+
+    # This is where all the filters sets are located
+    filter_sets:
+        table: # The name of the filter, can be later used in the twig template
+            quality: 75 # Compression quality, this image will be 75% the quality
+            filters: # These are the filters of the filter set, many filters can be applied
+                # Scale and shrink the image to the given size, with a possible crop of the image
+                thumbnail:
+                    size: [150, 150]
+                    mode: outbound
+
+        square: # The name of the filter, can be later used in the twig template
+            quality: 75 # Compression quality, this image will be 75% the quality
+            filters: # These are the filters of the filter set, many filters can be applied
+                # Scale and shrink the image to the given size, with a possible crop of the image
+                thumbnail:
+                    size: [200, 200]
+                    mode: outbound
+
+        # Shrink the image to 350px wide, the image will keep aspect ratio and adapt the height accordingly
+        small:
+            quality: 80
+            filters:
+                relative_resize:
+                    widen: 350
+
+        # Shrink/upscale the image to 800px of height, with full quality
+        big:
+            filters:
+                relative_resize:
+                    heighten: 800
+                    # Will allow smaller images to take 800px of height, 
+                    # width will change accordingly since aspect ration is still valid.
+                    allow_upscale: true 
