@@ -122,20 +122,56 @@
                             </thead>
                             <tbody>
                             {% for mp in market_products|slice(12) %}
-                            <tr>
-                                <td>
-                                    <div class="img-wrap first-image">
-                                        <img src="{{ asset('topo/image/defaultTopo-5f01f39c5558f.png'|imagine_filter('big')) }}">
-                                    </div>
-                                </td>
-                                <td>{{ mp.title }}</td>
-                                <td>{{ mp.description|nl2br }}</td>
-                                <td>{{ mp.price|number_format(2) ~ '€' }}</td>
-                                <td>{{ mp.vendor.firstname }}</td>
-                                <td>
-                                    <button class="btn btn-xs btn-primary">Voir</button>
-                                </td>
-                            </tr>
+                                <tr>
+                                    <td>
+                                        <figure class="product-item product-item-style-1">
+                                            <div class="product-media">
+                                                <div class="badge-wrap">
+                                                    {% if mp.isSold %}
+                                                        <span class="out-of-stock-badge">VENDU</span>
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                        </figure>
+                                        <div class="img-wrap first-image">
+                                            <img src="{{ asset('topo/image/defaultTopo-5f01f39c5558f.png'|imagine_filter('big')) }}">
+                                        </div>
+                                    </td>
+                                    <td>{{ mp.title }}</td>
+                                    <td>{{ mp.description|nl2br }}</td>
+                                    <td>{{ mp.price|number_format(2) ~ '€' }}</td>
+                                    <td>{{ mp.vendor.firstname }}</td>
+                                    <td>
+                                        {% if not mp.isSold %}
+                                            <div class="col-md-12">
+                                                <button type="button" class="btn btn-xs btn-primary" data-toggle="modal" data-target="#exampleModalLabel">
+                                                    Contacter
+                                                </button>
+
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="exampleModalLabel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                Modal body here.
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn standard lightgrey" data-dismiss="modal">Close</button>
+                                                                <button type="button" class="btn btn-primary">Save changes</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {% endif %}
+                                    </td>
+                                </tr>
                             {% endfor %}
                             </tbody>
                         </table>
@@ -213,4 +249,15 @@
 
     {% block javascripts %}
     {{ parent() }}
+    <script>
+        $(function () {
+            $('[role=dialog]')
+                .on('show.bs.modal', function (e) {
+                    $(this)
+                        .find('[role=document]')
+                        .removeClass()
+                        .addClass('modal-dialog ' + $(e.relatedTarget).data('ui-class'))
+                })
+        })
+    </script>
 {% endblock %}
