@@ -7,6 +7,7 @@ parameters:
     partner_directory: '%kernel.project_dir%/public/partner'
     article_directory: '%kernel.project_dir%/public/article'
     user_directory: '%kernel.project_dir%/public/user'
+    market_directory: '%kernel.project_dir%/public/market'
 
 services:
     # default configuration for services in *this* file

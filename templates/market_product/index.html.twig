@@ -11,7 +11,7 @@
 
 {% block body %}
 <div class="page">
-    <div class="page-inner p-none no-border">
+    <div class="page-inner no-border">
         <section class="section-primary alternate-color">
             <div class="container">
                 <div class="row">
@@ -31,7 +31,6 @@
 
                                 {% for mp in market_products|slice(0, 12) %}
                                     <div class="item">
-
                                         <figure class="product-item product-item-style-1">
                                             <div class="product-media">
                                                 <div class="badge-wrap">
@@ -40,10 +39,10 @@
                                                     {% endif %}
                                                 </div>
                                                 <div class="img-wrap first-image">
-                                                    <img src="{{ asset('topo/image/defaultTopo-5f01f39c5558f.png'|imagine_filter('square')) }}">
+                                                    <img src="{{ asset(('market/image/' ~ mp.imageFirst)|imagine_filter('square')) }}">
                                                 </div>
                                                 <div class="img-wrap second-image">
-                                                    <img src="{{ asset('topo/image/defaultTopo-2-5f01f39c5558f.png'|imagine_filter('square')) }}">
+                                                    <img src="{{ asset(('market/image/' ~ mp.imageSecond)|imagine_filter('square')) }}">
                                                 </div>
                                             </div>
 
@@ -74,14 +73,17 @@
         </section>
 
         <section class="section-primary main-color pt-40">
-
             <div class="container">
                 <div class="row">
-
                     <div class="col-md-9">
                         <h2 class="section-title mb-none fs-26">
                             Fait ton Shopping !
+                            {% if app.user %}
+                                <a href="{{ path('market_product_new') }}"><button class="btn btn-primary pull-right">Créer une annonce</button></a>
+                            {% endif %}
                         </h2>
+
+
                         <p class="mb-25">
                         </p>
                     </div>
@@ -113,10 +115,10 @@
                                                     {% endif %}
                                                 </div>
                                                 <div class="img-wrap first-image">
-                                                    <img src="{{ asset('topo/image/defaultTopo-5f01f39c5558f.png'|imagine_filter('square')) }}">
+                                                    <img src="{{ asset(('market/image/' ~ mp.imageFirst)|imagine_filter('square')) }}">
                                                 </div>
                                                 <div class="img-wrap second-image">
-                                                    <img src="{{ asset('topo/image/defaultTopo-2-5f01f39c5558f.png'|imagine_filter('square')) }}">
+                                                    <img src="{{ asset(('market/image/' ~ mp.imageSecond)|imagine_filter('square')) }}">
                                                 </div>
                                             </div>
 

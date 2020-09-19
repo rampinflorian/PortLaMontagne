@@ -146,13 +146,11 @@
                                                 &nbsp;<span id='alerts-counter' class="badge badge-pill badge-danger"></span>
                                             </a>
                                         </li>
-
-                                        {% if app.user %}
+                                        {% if is_granted('ROLE_ADMIN') %}
                                             <li class="dropdown">
                                                 <a class="dropdown-item dropdown-toggle" href="{{ path('market_product_index') }}">Market</a>
                                             </li>
                                         {% endif %}
-
                                     </ul>
                                 </nav>
                             </div>
@@ -342,7 +340,7 @@
                 success: function (url) {
                     var origine = location.origin + '{{ asset('article/content/') }}' + url.filename;
                     console.log(origine)
-                    $('.summernote').summernote('insertImage',origine ,function($image) {
+                    $('.summernote').summernote('insertImage', origine, function ($image) {
                         $image.css('width', $image.width() / 3);
                     });
                 },

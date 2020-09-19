@@ -77,6 +77,16 @@ class MarketProduct
     private $slug;
 
     /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $imageFirst;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $imageSecond;
+
+    /**
      * @ORM\PrePersist()
      */
     public function PrePersistSetCreatedAt()
@@ -218,6 +228,30 @@ class MarketProduct
     public function setSlug(string $slug): self
     {
         $this->slug = $slug;
+
+        return $this;
+    }
+
+    public function getImageFirst(): ?string
+    {
+        return $this->imageFirst;
+    }
+
+    public function setImageFirst(string $imageFirst): self
+    {
+        $this->imageFirst = $imageFirst;
+
+        return $this;
+    }
+
+    public function getImageSecond(): ?string
+    {
+        return $this->imageSecond;
+    }
+
+    public function setImageSecond(?string $imageSecond): self
+    {
+        $this->imageSecond = $imageSecond;
 
         return $this;
     }

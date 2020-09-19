@@ -16,11 +16,11 @@
                 <div class="row">
                     <div class="col-md-6">
                         <ul id="image-gallery" class="gallery list-unstyled cS-hidden">
-                            <li data-thumb="{{ asset('topo/image/defaultTopo-5f01f39c5558f.png') }} ">
-                                <img src="{{ asset('topo/image/defaultTopo-5f01f39c5558f.png'|imagine_filter('big')) }}"/>
+                            <li data-thumb="{{ asset('market/image/' ~ market_product.imageFirst) }} ">
+                                <img src="{{ asset(('market/image/' ~ market_product.imageFirst)|imagine_filter('big')) }}"/>
                             </li>
-                            <li data-thumb="{{ asset('topo/image/defaultTopo-2-5f01f39c5558f.png') }}">
-                                <img src="{{ asset('topo/image/defaultTopo-2-5f01f39c5558f.png'|imagine_filter('big')) }}"/>
+                            <li data-thumb="{{ asset('market/image/' ~ market_product.imageSecond) }}">
+                                <img src="{{ asset(('market/image/' ~ market_product.imageSecond)|imagine_filter('big')) }}"/>
                             </li>
                         </ul>
                     </div>
@@ -30,6 +30,12 @@
                             <li><a href="{{ path('market_product_index') }}"><i class="fa fa-home" aria-hidden="true"></i> Market</a></li>
                             <li><a href="#">{{ market_product.title }}</a></li>
                         </ol>
+                        <a href="{{ path('market_product_edit', {'slug': market_product.slug}) }}">
+                            <button class="btn btn-xs btn-primary" {{ market_product.isSold ? 'disabled' : '' }}>Editer</button>
+                        </a>
+                        <a href="{{ path('market_product_sold', {'slug': market_product.slug}) }}">
+                            <button class="btn btn-xs btn-primary" {{ market_product.isSold ? 'disabled' : '' }}>Vendu !</button>
+                        </a>
 
                         <div class="product-details">
                             <h2 class="product-name"><a href="#">{{ market_product.title }}</a></h2>
@@ -83,15 +89,21 @@
                             </div>
                             <br>
                             <br>
-                            <button type="submit" class="btn btn-outline-primary btn-md product-btn" data-toggle="modal" data-target="#modal-contactVendor">
-                                <i class="fa fa-shopping-basket"></i><span>Contacter le vendeur</span>
-                            </button>
+                            {% if market_product.isSold %}
+                                <h2>Le produit a été vendu !</h2>
+                            {% else %}
+                                <button type="submit" class="btn btn-outline-primary btn-md product-btn" data-toggle="modal" data-target="#modal-contactVendor">
+                                    <i class="faf fa-shopping-basket"></i><span>Contacter le vendeur</span>
+                                </button>
+                            {% endif %}
+
                             <br>
                             <br>
                             <br>
                             <br>
                             <p>
-                                <small><b>Portlamontagne décline toutes responsabilités concernant la vente de matériel type EPI (Baudrier, mousquetons...) ou tout matériel lié de près ou de loin à la sécurité du grimpeur.</b><br>
+                                <small><b>Portlamontagne décline toutes responsabilités concernant la vente de matériel type EPI (Baudrier, mousquetons...) ou tout matériel lié de près ou de loin à la sécurité du
+                                        grimpeur.</b><br>
                                     <br>
                                     A toi de t'assurer du matériel avant de l'utiliser au risque de te retrouver en morceaux au pied des voies !!!</small>
                             </p>
@@ -112,16 +124,31 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
+                {{ form_start(form) }}
                 <div class="modal-body">
                     Ce formulaire te permet de rentrer en contact avec le vendeur. N'hésites pas à préciser ton numéro de téléphone si tu préfères !<br>
                     <br>
+                    {{ form_errors(form.fullName) }}
+                    {{ form_widget(form.fullName) }}
+                    <br>
+                    {{ form_errors(form.email) }}
+                    {{ form_widget(form.email) }}
+                    <br>
+                    {{ form_errors(form.subject) }}
+                    {{ form_widget(form.subject) }}
+                    <br>
+                    {{ form_errors(form.message) }}
+                    {{ form_widget(form.message) }}
+                    <br>
+                    {{ form_errors(form.captcha) }}
+                    {{ form_widget(form.captcha) }}
 
-                    {{ form(form) }}
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn standard lightgrey" data-dismiss="modal">Fermer</button>
-                    <button type="button" class="btn btn-primary">Contacter</button>
+                    <button type="submit" class="btn btn-primary">Contacter</button>
                 </div>
+                {{ form_end(form) }}
             </div>
         </div>
     </div>

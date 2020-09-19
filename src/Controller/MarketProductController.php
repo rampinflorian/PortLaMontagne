@@ -7,7 +7,10 @@ use App\Entity\User;
 use App\Form\ContactType;
 use App\Form\MarketProductType;
 use App\Repository\MarketProductRepository;
+use App\Service\FileService;
+use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -36,9 +39,10 @@ class MarketProductController extends AbstractController
     /**
      * @Route("/new", name="market_product_new", methods={"GET","POST"})
      * @param Request $request
+     * @param FileService $fileService
      * @return Response
      */
-    public function new(Request $request): Response
+    public function new(Request $request, FileService $fileService): Response
     {
         $marketProduct = new MarketProduct();
         $form = $this->createForm(MarketProductType::class, $marketProduct);
@@ -49,6 +53,16 @@ class MarketProductController extends AbstractController
             $user = $this->getUser();
 
             $entityManager = $this->getDoctrine()->getManager();
+
+            $image = $form->get('imageFirst')->getData();
+            $newFilename = $fileService->getFileName($image);
+            $marketProduct->setImageFirst($newFilename);
+            $image->move($this->getParameter('market_directory') . '/image/', $newFilename);
+
+            $image = $form->get('imageSecond')->getData();
+            $newFilename = $fileService->getFileName($image);
+            $marketProduct->setImageSecond($newFilename);
+            $image->move($this->getParameter('market_directory') . '/image/', $newFilename);
 
             $marketProduct->setVendor($user);
             $marketProduct->setIsSuspended(false);
@@ -81,7 +95,7 @@ class MarketProductController extends AbstractController
         $form = $this->createForm(ContactType::class, $data);
 
         if ($this->getUser()) {
-            /* @var User $user*/
+            /* @var User $user */
             $user = $this->getUser();
             $form->get('fullName')->setData($user->getFirstname());
             $form->get('email')->setData($user->getEmail());
@@ -117,6 +131,7 @@ class MarketProductController extends AbstractController
 
     /**
      * @Route("/{slug}/edit", name="market_product_edit", methods={"GET","POST"})
+     * @Security("user.getId() == marketProduct.getVendor().getId()")
      * @param Request $request
      * @param MarketProduct $marketProduct
      * @return Response
@@ -146,10 +161,15 @@ class MarketProductController extends AbstractController
      */
     public function delete(Request $request, MarketProduct $marketProduct): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$marketProduct->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($marketProduct);
-            $entityManager->flush();
+        if ($this->isCsrfTokenValid('delete' . $marketProduct->getId(), $request->request->get('_token'))) {
+            if (!$marketProduct->getIsSold()) {
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->remove($marketProduct);
+                $entityManager->flush();
+                $this->addFlash('success', 'Suppression de l\'article;Suppression effectuée !');
+            } else {
+                $this->addFlash('warning', 'Suppression impossible sur un produit vendu');
+            }
         }
 
         return $this->redirectToRoute('market_product_index');
@@ -161,9 +181,10 @@ class MarketProductController extends AbstractController
      * @param EntityManagerInterface $entityManager
      * @return Response
      */
-    public function sold(MarketProduct $marketProduct, EntityManagerInterface $entityManager) : Response
+    public function sold(MarketProduct $marketProduct, EntityManagerInterface $entityManager): Response
     {
         $marketProduct->setIsSold(true);
+        $marketProduct->setSoldedAt(new DateTime());
         $entityManager->flush();
 
         $this->addFlash('success', 'Market; Ton produit a été vendu');

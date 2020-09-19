@@ -1,13 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit MarketProduct{% endblock %}
+{% block title %}{{ market_product.title }} Modification | Market {% endblock %}
 
 {% block body %}
-    <h1>Edit MarketProduct</h1>
+    <h1>Modifier le produit</h1>
 
-    {{ include('market_product/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a href="{{ path('market_product_index') }}">back to list</a>
+    {{ include('market_product/_form.html.twig', {'button_label': 'Mise à jour'}) }}
 
     {{ include('market_product/_delete_form.html.twig') }}
 {% endblock %}
