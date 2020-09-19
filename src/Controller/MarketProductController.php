@@ -4,12 +4,16 @@ namespace App\Controller;
 
 use App\Entity\MarketProduct;
 use App\Entity\User;
+use App\Form\ContactType;
 use App\Form\MarketProductType;
 use App\Repository\MarketProductRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -66,12 +70,48 @@ class MarketProductController extends AbstractController
     /**
      * @Route("/{slug}", name="market_product_show", methods={"GET"})
      * @param MarketProduct $marketProduct
+     * @param Request $request
+     * @param MailerInterface $mailer
      * @return Response
+     * @throws TransportExceptionInterface
      */
-    public function show(MarketProduct $marketProduct): Response
+    public function show(MarketProduct $marketProduct, Request $request, MailerInterface $mailer): Response
     {
+        $data = [];
+        $form = $this->createForm(ContactType::class, $data);
+
+        if ($this->getUser()) {
+            /* @var User $user*/
+            $user = $this->getUser();
+            $form->get('fullName')->setData($user->getFirstname());
+            $form->get('email')->setData($user->getEmail());
+        }
+
+        $form->get('subject')->setData($marketProduct->getTitle());
+        $form->handleRequest($request);
+
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $email = (new Email())
+                ->from('florian@portlamontagne.fr')
+                ->to($marketProduct->getVendor()->getEmail())
+                ->subject("[PortLaMontagne.fr - Market] {$form['fullName']->getData()} s'intéresse à ton produit {$marketProduct->getTitle()} !")
+                ->text("
+                Expéditeur : {$form['fullName']->getData()}
+                Email : {$form['email']->getData()}
+                Objet du market : {$form['subject']->getData()}
+                Message du potentiel acheteur : {$form['message']->getData()}
+                ");
+
+            $mailer->send($email);
+            $this->addFlash('success', 'Contact;Ton message a été envoyé au vendeur !');
+            $this->redirectToRoute('market_product_index');
+        }
+
+
         return $this->render('market_product/show.html.twig', [
             'market_product' => $marketProduct,
+            'form' => $form->createView()
         ]);
     }
 
