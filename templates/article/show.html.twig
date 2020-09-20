@@ -20,7 +20,7 @@
                         </figure>
                         <div class="post-author-wrap mnt-50">
                             <div class="author-avatar">
-                                <img alt="" src="{{ (article.user.image != '') ? asset('user/image/') ~ article.user.image : 'https://api.adorable.io/avatars/285/' ~ article.user.email }}" class="avatar photo">
+                                <img alt="" src="{{ (article.user.image != '') ? (asset('user/image/') ~ article.user.image)|imagine_filter('square') : 'https://api.adorable.io/avatars/285/' ~ article.user.email }}" class="avatar photo">
                             </div>
                         </div>
                         <div class="post-meta">

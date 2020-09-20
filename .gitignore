@@ -5,6 +5,9 @@
 /.env.*.local
 /config/secrets/prod/prod.decrypt.private.php
 /public/bundles/
+/public/article/image/*
+/public/market/image/*
+/public/user/image/*
 /src/preload.php
 /var/
 /vendor/
