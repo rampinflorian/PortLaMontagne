@@ -82,7 +82,7 @@ class MarketProductController extends AbstractController
     }
 
     /**
-     * @Route("/{slug}", name="market_product_show", methods={"GET"})
+     * @Route("/{slug}", name="market_product_show", methods={"GET", "POST"})
      * @param MarketProduct $marketProduct
      * @param Request $request
      * @param MailerInterface $mailer
@@ -119,7 +119,7 @@ class MarketProductController extends AbstractController
 
             $mailer->send($email);
             $this->addFlash('success', 'Contact;Ton message a été envoyé au vendeur !');
-            $this->redirectToRoute('market_product_index');
+            return $this->redirectToRoute('market_product_index');
         }
 
 
