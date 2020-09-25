@@ -1,0 +1,49 @@
+{% extends 'base_app_admin.html.twig' %}
+
+{% block title %}Commentaires{% endblock %}
+
+{% block bodyApp %}
+    <div class="col-md-9">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h3 class="xspecial-heading v2"><span>Liste de mes produits ({{ marketproducts|length }})</span></h3>
+                </div>
+                <div class="col-md-12">
+                    <table class="table table-striped custab">
+                        <thead>
+                        <tr>
+                            <th>Titre</th>
+                            <th>Description</th>
+                            <th>Créé le</th>
+                            <th>Prix</th>
+                            <th>Statut</th>
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+                        {% for mp in marketproducts %}
+                            <tr>
+                                <td>{{ mp.title }}</td>
+                                <td>{{ mp.description }}</td>
+                                <td>{{ mp.createdAt|date('d/m/Y') }}</td>
+                                <td>{{ mp.price|number_format(2) ~ '€' }}</td>
+                                <td>
+                                    {% if mp.isSold %}
+                                        <span class="label label-success">VENDU</span>
+                                    {% elseif mp.isSuspended %}
+                                        <span class="label label-danger">SUSPENDU</span>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <a href="{{ path('market_product_show', {'slug': mp.slug}) }}">
+                                        <button class="btn btn-primary btn-xs">voir</button>
+                                    </a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
