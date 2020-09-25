@@ -8,6 +8,7 @@ use App\Form\ContactType;
 use App\Form\MarketProductType;
 use App\Repository\MarketProductRepository;
 use App\Service\FileService;
+use App\Service\SendMailService;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
@@ -40,9 +41,11 @@ class MarketProductController extends AbstractController
      * @Route("/new", name="market_product_new", methods={"GET","POST"})
      * @param Request $request
      * @param FileService $fileService
+     * @param SendMailService $sendMailService
      * @return Response
+     * @throws TransportExceptionInterface
      */
-    public function new(Request $request, FileService $fileService): Response
+    public function new(Request $request, FileService $fileService, SendMailService $sendMailService): Response
     {
         $marketProduct = new MarketProduct();
         $form = $this->createForm(MarketProductType::class, $marketProduct);
@@ -73,8 +76,10 @@ class MarketProductController extends AbstractController
             $entityManager->persist($marketProduct);
             $entityManager->flush();
 
+            $sendMailService->newMarket($this->getUser(), $marketProduct);
+
             $this->addFlash('success', 'Market; Ton produit a été ajouté');
-            return $this->redirectToRoute('market_product_index');
+            return $this->redirectToRoute('market_product_show', ['slug' => $marketProduct->getSlug()]);
         }
 
         return $this->render('market_product/new.html.twig', [
@@ -121,7 +126,7 @@ class MarketProductController extends AbstractController
 
             $mailer->send($email);
             $this->addFlash('success', 'Contact;Ton message a été envoyé au vendeur !');
-            return $this->redirectToRoute('market_product_index');
+            return $this->redirectToRoute('market_product_show', ['slug' => $marketProduct->getSlug()]);
         }
 
 
