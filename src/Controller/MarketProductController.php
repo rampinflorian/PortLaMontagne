@@ -60,9 +60,11 @@ class MarketProductController extends AbstractController
             $image->move($this->getParameter('market_directory') . '/image/', $newFilename);
 
             $image = $form->get('imageSecond')->getData();
-            $newFilename = $fileService->getFileName($image);
-            $marketProduct->setImageSecond($newFilename);
-            $image->move($this->getParameter('market_directory') . '/image/', $newFilename);
+            if ($image) {
+                $newFilename = $fileService->getFileName($image);
+                $marketProduct->setImageSecond($newFilename);
+                $image->move($this->getParameter('market_directory') . '/image/', $newFilename);
+            }
 
             $marketProduct->setVendor($user);
             $marketProduct->setIsSuspended(false);
@@ -134,23 +136,46 @@ class MarketProductController extends AbstractController
      * @Security("user.getId() == marketProduct.getVendor().getId()")
      * @param Request $request
      * @param MarketProduct $marketProduct
+     * @param FileService $fileService
      * @return Response
      */
-    public function edit(Request $request, MarketProduct $marketProduct): Response
+    public function edit(Request $request, MarketProduct $marketProduct, FileService $fileService): Response
     {
-        $form = $this->createForm(MarketProductType::class, $marketProduct);
+        $orphanImageFirst = $marketProduct->getImageFirst();
+        $orphanImageSecond = $marketProduct->getImageSecond();
+
+        $form = $this->createForm(MarketProductType::class, $marketProduct, [
+            'required_image_first' => false
+        ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            $image = $form->get('imageFirst')->getData();
 
-            return $this->redirectToRoute('market_product_index');
+            if ($orphanImageFirst !== $image && $image != null) {
+                $image = $form->get('imageFirst')->getData();
+                $newFilename = $fileService->getFileName($image);
+                $marketProduct->setImageFirst($newFilename);
+                $image->move($this->getParameter('market_directory') . '/image/', $newFilename);
+            }
+
+            $image = $form->get('imageSecond')->getData();
+
+            if ($orphanImageSecond !== $image && $image != null ) {
+                $image = $form->get('imageSecond')->getData();
+                $newFilename = $fileService->getFileName($image);
+                $marketProduct->setImageSecond($newFilename);
+                $image->move($this->getParameter('market_directory') . '/image/', $newFilename);
+            }
+
+
+            $this->addFlash('success', 'Market; Ton produit a été mis à jour');
+            $this->getDoctrine()->getManager()->flush();
+            return $this->redirectToRoute('market_product_show', ['slug' => $marketProduct->getSlug()]);
         }
 
-        return $this->render('market_product/edit.html.twig', [
-            'market_product' => $marketProduct,
-            'form' => $form->createView(),
-        ]);
+        return $this->render('market_product/edit.html.twig', ['market_product' => $marketProduct,
+            'form' => $form->createView(),]);
     }
 
     /**
@@ -159,7 +184,8 @@ class MarketProductController extends AbstractController
      * @param MarketProduct $marketProduct
      * @return Response
      */
-    public function delete(Request $request, MarketProduct $marketProduct): Response
+    public
+    function delete(Request $request, MarketProduct $marketProduct): Response
     {
         if ($this->isCsrfTokenValid('delete' . $marketProduct->getId(), $request->request->get('_token'))) {
             if (!$marketProduct->getIsSold()) {
@@ -181,7 +207,8 @@ class MarketProductController extends AbstractController
      * @param EntityManagerInterface $entityManager
      * @return Response
      */
-    public function sold(MarketProduct $marketProduct, EntityManagerInterface $entityManager): Response
+    public
+    function sold(MarketProduct $marketProduct, EntityManagerInterface $entityManager): Response
     {
         $marketProduct->setIsSold(true);
         $marketProduct->setSoldedAt(new DateTime());
