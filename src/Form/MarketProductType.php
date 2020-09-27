@@ -26,8 +26,9 @@ class MarketProductType extends AbstractType
                 'label' => 'prix'
             ])
             ->add('imageFirst', FileType::class, [
-                'label' => 'Première image',
                 'mapped' => false,
+                'label' => 'Première image',
+                'required' => $options['required_image_first'],
                 'constraints' => [
                     new File([
                         'maxSize' => '10M',
@@ -39,8 +40,8 @@ class MarketProductType extends AbstractType
                 ]
             ])
             ->add('imageSecond', FileType::class, [
-                'label' => 'Seconde image',
                 'mapped' => false,
+                'label' => 'Seconde image',
                 'required' => false,
                 'constraints' => [
                     new File([
@@ -60,6 +61,7 @@ class MarketProductType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => MarketProduct::class,
+            'required_image_first' => true
         ]);
     }
 }

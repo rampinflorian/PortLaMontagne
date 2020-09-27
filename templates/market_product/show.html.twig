@@ -19,9 +19,11 @@
                             <li data-thumb="{{ asset('market/image/' ~ market_product.imageFirst) }} ">
                                 <img src="{{ asset(('market/image/' ~ market_product.imageFirst)|imagine_filter('big')) }}"/>
                             </li>
-                            <li data-thumb="{{ asset('market/image/' ~ market_product.imageSecond) }}">
-                                <img src="{{ asset(('market/image/' ~ market_product.imageSecond)|imagine_filter('big')) }}"/>
-                            </li>
+                            {% if market_product.imageSecond %}
+                                <li data-thumb="{{ asset('market/image/' ~ market_product.imageSecond) }}">
+                                    <img src="{{ asset(('market/image/' ~ market_product.imageSecond)|imagine_filter('big')) }}"/>
+                                </li>
+                            {% endif %}
                         </ul>
                     </div>
                     <div class="col-md-6">
@@ -30,13 +32,14 @@
                             <li><a href="{{ path('market_product_index') }}"><i class="fa fa-home" aria-hidden="true"></i> Market</a></li>
                             <li><a href="#">{{ market_product.title }}</a></li>
                         </ol>
-                        <a href="{{ path('market_product_edit', {'slug': market_product.slug}) }}">
-                            <button class="btn btn-xs btn-primary" {{ market_product.isSold ? 'disabled' : '' }}>Editer</button>
-                        </a>
-                        <a href="{{ path('market_product_sold', {'slug': market_product.slug}) }}">
-                            <button class="btn btn-xs btn-primary" {{ market_product.isSold ? 'disabled' : '' }}>Vendu !</button>
-                        </a>
-
+                        {% if market_product.vendor == app.user %}
+                            <a href="{{ path('market_product_edit', {'slug': market_product.slug}) }}">
+                                <button class="btn btn-xs btn-primary" {{ market_product.isSold ? 'disabled' : '' }}>Editer</button>
+                            </a>
+                            <a href="{{ path('market_product_sold', {'slug': market_product.slug}) }}">
+                                <button class="btn btn-xs btn-primary" {{ market_product.isSold ? 'disabled' : '' }}>Vendu !</button>
+                            </a>
+                        {% endif %}
                         <div class="product-details">
                             <h2 class="product-name"><a href="#">{{ market_product.title }}</a></h2>
 
@@ -92,9 +95,21 @@
                             {% if market_product.isSold %}
                                 <h2>Le produit a été vendu !</h2>
                             {% else %}
-                                <button type="submit" class="btn btn-outline-primary btn-md product-btn" data-toggle="modal" data-target="#modal-contactVendor">
-                                    <i class="faf fa-shopping-basket"></i><span>Contacter le vendeur</span>
-                                </button>
+                                {% if app.user and not app.user.verified %}
+                                    <h2>Tu veux contacter le vendeur ? Ton compte doit être valide !<br>
+                                        <a href="{{ path('app_send_new_verification_email') }}">[Cliques ici]</a></h2>
+                                {% elseif app.user %}
+                                    <button type="submit" class="btn btn-outline-primary btn-md product-btn" data-toggle="modal" data-target="#modal-contactVendor">
+                                        <i class="fa fa-mail"></i><span>&nbsp;Contacter le vendeur</span>
+                                    </button>
+                                {% else %}
+                                    <a href="{{ path('app_login') }}">
+                                        <button class="btn btn-outline-primary btn-md product-btn">
+                                            <i class="fa fa-mail"></i><span>&nbsp;Contacter le vendeur</span>
+                                        </button>
+                                    </a>
+                                {% endif %}
+
                             {% endif %}
 
                             <br>

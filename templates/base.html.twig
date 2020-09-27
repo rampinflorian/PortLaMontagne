@@ -146,11 +146,9 @@
                                                 &nbsp;<span id='alerts-counter' class="badge badge-pill badge-danger"></span>
                                             </a>
                                         </li>
-                                        {% if is_granted('ROLE_ADMIN') %}
-                                            <li class="dropdown">
-                                                <a class="dropdown-item dropdown-toggle" href="{{ path('market_product_index') }}">Market</a>
-                                            </li>
-                                        {% endif %}
+                                        <li class="dropdown">
+                                            <a class="dropdown-item dropdown-toggle" href="{{ path('market_product_index') }}">Market&nbsp;<span class="label label-primary pull-right">BETA</span></a>
+                                        </li>
                                     </ul>
                                 </nav>
                             </div>

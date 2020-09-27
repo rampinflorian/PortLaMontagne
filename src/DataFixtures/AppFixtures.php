@@ -79,6 +79,7 @@ class AppFixtures extends Fixture
                 ->setUpdatedAt($date)
                 ->setBuyer($user)
                 ->setVendor($user)
+                ->setImageFirst('')
                 ;
 
             $manager->persist($marketProduct);

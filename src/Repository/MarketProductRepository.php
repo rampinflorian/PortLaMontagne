@@ -11,6 +11,7 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method MarketProduct|null findOneBy(array $criteria, array $orderBy = null)
  * @method MarketProduct[]    findAll()
  * @method MarketProduct[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method findByVendor(object|\Symfony\Component\Security\Core\User\UserInterface|null $getUser)
  */
 class MarketProductRepository extends ServiceEntityRepository
 {

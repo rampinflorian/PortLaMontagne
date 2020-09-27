@@ -57,7 +57,7 @@ class RegistrationController extends AbstractController
             $entityManager->flush();
 
             // generate a signed url and email it to the user
-            $sendMailService->sendEmailConfirmation($user);
+            $sendMailService->accountConfirmation($user);
             // do anything else you need here, like send an email
 
             return $guardHandler->authenticateUserAndHandleSuccess(
@@ -106,7 +106,7 @@ class RegistrationController extends AbstractController
      */
     public function sendNewVerificationEmailAction(SendMailService $sendMailService, Request $request) : Response
     {
-            $sendMailService->sendEmailConfirmation($this->getUser());
+            $sendMailService->accountConfirmation($this->getUser());
             $this->addFlash('success', 'Vérification email; Un nouveau email de vérification vient d\'être envoyé !');
         return $this->redirect($request->headers->get('referer') ?? $this->generateUrl('article_index'));
     }
