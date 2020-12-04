@@ -114,7 +114,7 @@ class MarketProductController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $email = (new Email())
-                ->from('florian@portlamontagne.fr')
+                ->from('contact@florianrampin.fr')
                 ->to($marketProduct->getVendor()->getEmail())
                 ->subject("[PortLaMontagne.fr - Market] {$form['fullName']->getData()} s'intéresse à ton produit {$marketProduct->getTitle()} !")
                 ->text("
