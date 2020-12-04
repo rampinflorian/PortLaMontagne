@@ -24,7 +24,7 @@ class SendMailService
         $this->emailVerifier = $emailVerifier;
         $this->mailer = $mailer;
         $this->email = new TemplatedEmail();
-        $this->plmEmail = new Address('florian@portlamontagne.fr');
+        $this->plmEmail = new Address('contact@florianrampin.fr');
         $this->email->from($this->plmEmail);
     }
 
@@ -35,7 +35,7 @@ class SendMailService
     {
         $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
             (new TemplatedEmail())
-                ->from(new Address('florian@portlamontagne.fr', 'Portlamontagne'))
+                ->from(new Address('contact@florianrampin.fr', 'Portlamontagne'))
                 ->to($user->getEmail())
                 ->subject('Confirmation de votre email')
                 ->htmlTemplate('mailer/confirmation_email.html.twig')

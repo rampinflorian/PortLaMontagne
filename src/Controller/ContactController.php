@@ -38,8 +38,8 @@ class ContactController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $email = (new Email())
-                ->from('florian@portlamontagne.fr')
-                ->to('florian@portlamontagne.fr')
+                ->from('contact@florianrampin.fr')
+                ->to('contact@florianrampin.fr')
                 ->subject('[PortLaMontagne.fr] Nouveau mail de contact')
                 ->text('
                 Expéditeur : ' . $form['fullName']->getData() . '

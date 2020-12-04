@@ -18,7 +18,7 @@ class AppFixtures extends Fixture
         $faker = Factory::create('fr_FR');
 
         $user = (new User())
-            ->setEmail('florian@portlamontagne.fr')
+            ->setEmail('contact@florianrampin.fr')
             ->setPassword('$argon2id$v=19$m=65536,t=4,p=1$ZnlsdnBzZmdsRGxzOFNQUw$TNcmf6eNHpehasfT0X24SxXsg3vMYrwWmVZb8XB7cug') //b!
             ->setRoles(['ROLE_ADMIN'])
             ->setFirstname('Florian')
