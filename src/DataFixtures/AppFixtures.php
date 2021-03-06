@@ -58,7 +58,8 @@ class AppFixtures extends Fixture
                 ->setTitle($faker->text(20))
                 ->setContent($faker->paragraph)
                 ->setUser($this->getReference('User_DEV'))
-                ->setImage('flopaulwelcome-5f01f39c5558f.png')
+                ->setImage('1k_merci-5f6759c5d0ce3.jpg')
+                ->setCategory($category)
                 ->setIsPublished(true);
 
             $manager->persist($article);
