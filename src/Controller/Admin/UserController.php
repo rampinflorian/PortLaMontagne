@@ -16,8 +16,6 @@ class UserController extends AbstractController
      */
     public function index(UserRepository $userRepository)
     {
-
-
         return $this->render('admin/user/index.html.twig', [
         'users' => $userRepository->findAll()
         ]);

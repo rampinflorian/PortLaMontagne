@@ -19,7 +19,6 @@ class NewsletterController extends AbstractController
     public function add(Request $request): Response
     {
         if ($this->getUser()) {
-
             if ($this->getUser()->getNewsletter()) {
                 $this->getUser()->getNewsletter()->setIsActivated(true);
             } else {
@@ -44,7 +43,7 @@ class NewsletterController extends AbstractController
      * @param Request $request
      * @return Response
      */
-    public function removeAction(Request $request) : Response
+    public function removeAction(Request $request): Response
     {
         $entityManager = $this->getDoctrine()->getManager();
         $this->getUser()->getNewsletter()->setIsActivated(false);

@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use App\Repository\AlertRepository;
 use App\Repository\ArticleRepository;
 use App\Repository\CommentRepository;
 use App\Repository\PartnerRepository;
@@ -14,15 +13,19 @@ use Symfony\Component\Routing\Annotation\Route;
 class HomeController extends AbstractController
 {
     /**
-     * @Route("/", name="home")
      * @param ArticleRepository $articleRepository
      * @param PartnerRepository $partnerRepository
      * @param ParameterBagInterface $parameterBag
      * @param CommentRepository $commentRepository
      * @return Response
      */
-    public function index(ArticleRepository $articleRepository, PartnerRepository $partnerRepository, ParameterBagInterface $parameterBag, CommentRepository $commentRepository)
-    {
+    #[Route("/", name: "home")]
+    public function index(
+        ArticleRepository $articleRepository,
+        PartnerRepository $partnerRepository,
+        ParameterBagInterface $parameterBag,
+        CommentRepository $commentRepository
+    ): Response {
         return $this->render('home/index.html.twig', [
             'countArticles' => $articleRepository->count([]),
             'countArticlesComments' => $commentRepository->count([]),

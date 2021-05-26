@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Service;
-
 
 use App\Entity\MarketProduct;
 use App\Entity\User;
@@ -33,7 +31,9 @@ class SendMailService
      */
     public function accountConfirmation(User $user): void
     {
-        $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
+        $this->emailVerifier->sendEmailConfirmation(
+            'app_verify_email',
+            $user,
             (new TemplatedEmail())
                 ->from(new Address('contact@florianrampin.fr', 'Portlamontagne'))
                 ->to($user->getEmail())

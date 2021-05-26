@@ -166,7 +166,7 @@ class MarketProductController extends AbstractController
 
             $image = $form->get('imageSecond')->getData();
 
-            if ($orphanImageSecond !== $image && $image != null ) {
+            if ($orphanImageSecond !== $image && $image != null) {
                 $image = $form->get('imageSecond')->getData();
                 $newFilename = $fileService->getFileName($image);
                 $marketProduct->setImageSecond($newFilename);
@@ -189,8 +189,7 @@ class MarketProductController extends AbstractController
      * @param MarketProduct $marketProduct
      * @return Response
      */
-    public
-    function delete(Request $request, MarketProduct $marketProduct): Response
+    public function delete(Request $request, MarketProduct $marketProduct): Response
     {
         if ($this->isCsrfTokenValid('delete' . $marketProduct->getId(), $request->request->get('_token'))) {
             if (!$marketProduct->getIsSold()) {
@@ -212,8 +211,7 @@ class MarketProductController extends AbstractController
      * @param EntityManagerInterface $entityManager
      * @return Response
      */
-    public
-    function sold(MarketProduct $marketProduct, EntityManagerInterface $entityManager): Response
+    public function sold(MarketProduct $marketProduct, EntityManagerInterface $entityManager): Response
     {
         $marketProduct->setIsSold(true);
         $marketProduct->setSoldedAt(new DateTime());

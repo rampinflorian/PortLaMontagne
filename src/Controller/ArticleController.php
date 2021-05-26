@@ -53,11 +53,15 @@ class ArticleController extends AbstractController
      * @param EntityManagerInterface $entityManager
      * @return Response
      */
-    public function show(Article $article, ArticleRepository $articleRepository, CommentRepository $commentRepository, Request $request, EntityManagerInterface $entityManager): Response
-    {
+    public function show(
+        Article $article,
+        ArticleRepository $articleRepository,
+        CommentRepository $commentRepository,
+        Request $request,
+        EntityManagerInterface $entityManager
+    ): Response {
         $alreadyCommented = false;
-        foreach ($article->getComments() as $comment)
-        {
+        foreach ($article->getComments() as $comment) {
             /* @var Comment $comment */
             $alreadyCommented = ($comment->getUser() == $this->getUser()) ? true : $alreadyCommented;
         }
@@ -67,11 +71,10 @@ class ArticleController extends AbstractController
         /* @var User $user */
         $user = $this->getUser();
 
-        $formComment = $this->createForm(CommentType::class,$comment);
+        $formComment = $this->createForm(CommentType::class, $comment);
 
         $formComment->handleRequest($request);
         if ($formComment->isSubmitted() && $formComment->isValid()) {
-
             $comment->setUser($user);
             $comment->setArticle($article);
 

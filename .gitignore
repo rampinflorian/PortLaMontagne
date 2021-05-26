@@ -5,10 +5,6 @@
 /.env.*.local
 /config/secrets/prod/prod.decrypt.private.php
 /public/bundles/
-/public/article/image/*
-/public/market/image/*
-/public/user/image/*
-/src/preload.php
 /var/
 /vendor/
 ###< symfony/framework-bundle ###
@@ -36,3 +32,8 @@
 ###> liip/imagine-bundle ###
 /public/media/cache/
 ###< liip/imagine-bundle ###
+
+###> squizlabs/php_codesniffer ###
+/.phpcs-cache
+/phpcs.xml
+###< squizlabs/php_codesniffer ###

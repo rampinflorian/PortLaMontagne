@@ -90,7 +90,6 @@ class ArticleController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             if (!$form->get('isAlert')->getData()) {
                 $article->setAlert(null);
             }
@@ -147,7 +146,7 @@ class ArticleController extends AbstractController
         if (!is_null($file)) {
             $filename = 'articleImageContent_' . uniqid() . "." . $file->getClientOriginalExtension();
             $path = $this->getParameter('article_directory') . '/content/';
-            $file->move($path,$filename);
+            $file->move($path, $filename);
 
             $status = [
                 'status' => "success",

@@ -18,7 +18,6 @@ class CommentController extends AbstractController
      */
     public function delete(Comment $comment, Request $request)
     {
-
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->remove($comment);
         $entityManager->flush();
@@ -26,6 +25,5 @@ class CommentController extends AbstractController
         $this->addFlash('success', 'Commentaire;Ton commentaire a été supprimé !');
 
         return $this->redirect($request->headers->get('referer') ?? $this->generateUrl('article_index'));
-
     }
 }

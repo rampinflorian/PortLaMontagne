@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Service;
-
 
 use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\Filesystem\Filesystem;
@@ -42,6 +40,5 @@ class FileService
         } catch (Exception $exception) {
             throw new Exception($exception->getMessage());
         }
-
     }
 }

@@ -94,7 +94,7 @@ class FacebookAuthenticator extends SocialAuthenticator
 
             if (!$user) {
                 /** @var User $user */
-                $user = (new User)
+                $user = (new User())
                     ->setEmail($email)
                     ->setFirstname($facebookUser->getFirstName())
                     ->setPassword($facebookUser->getLastName());

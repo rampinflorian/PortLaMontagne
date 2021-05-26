@@ -21,7 +21,7 @@ class MarketProductType extends AbstractType
             ->add('title', TextType::class, [
                 'label' => 'Titre de la vente'
             ])
-            ->add('description',TextareaType::class)
+            ->add('description', TextareaType::class)
             ->add('price', MoneyType::class, [
                 'label' => 'prix'
             ])

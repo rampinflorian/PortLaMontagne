@@ -30,7 +30,6 @@ class PersonalInformationController extends AbstractController
         $formPersonalInformation = $this->createForm(UserType::class, $user)->handleRequest($request);
 
         if ($formPersonalInformation->isSubmitted() && $formPersonalInformation->isValid()) {
-
             if ($formPersonalInformation->get('password')->getData()) {
                 $user->setPassword(
                     $passwordEncoder->encodePassword(
