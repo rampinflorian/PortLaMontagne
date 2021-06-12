@@ -78,8 +78,6 @@ class RegistrationFormType extends AbstractType
                     'placeholder' => 'Saisir le code de sécurité'
                 ],
             ]);
-
-
     }
 
     public function configureOptions(OptionsResolver $resolver)

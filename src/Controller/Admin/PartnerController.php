@@ -43,7 +43,6 @@ class PartnerController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             $image = $form->get('image')->getData();
             $newFilename = $fileService->getFileName($image);
 
@@ -89,7 +88,6 @@ class PartnerController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             $image = $form->get('image')->getData();
             $newFilename = $fileService->getFileName($image);
 

@@ -104,10 +104,10 @@ class RegistrationController extends AbstractController
      * @param Request $request
      * @return RedirectResponse
      */
-    public function sendNewVerificationEmailAction(SendMailService $sendMailService, Request $request) : Response
+    public function sendNewVerificationEmailAction(SendMailService $sendMailService, Request $request): Response
     {
-            $sendMailService->accountConfirmation($this->getUser());
-            $this->addFlash('success', 'Vérification email; Un nouveau email de vérification vient d\'être envoyé !');
+        $sendMailService->accountConfirmation($this->getUser());
+        $this->addFlash('success', 'Vérification email; Un nouveau email de vérification vient d\'être envoyé !');
         return $this->redirect($request->headers->get('referer') ?? $this->generateUrl('article_index'));
     }
 }

@@ -17,7 +17,6 @@ class MarketProductController extends AbstractController
      */
     public function index(MarketProductRepository $marketProductRepository)
     {
-
         return $this->render('user/market/index.html.twig', [
             'marketproducts' => $marketProductRepository->findByVendor($this->getUser())
         ]);

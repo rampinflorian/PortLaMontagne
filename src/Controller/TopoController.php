@@ -16,7 +16,6 @@ class TopoController extends AbstractController
      */
     public function index(TopoRepository $topoRepository)
     {
-
         return $this->render('topo/index.html.twig', [
             'topos' => $topoRepository->findAll()
         ]);

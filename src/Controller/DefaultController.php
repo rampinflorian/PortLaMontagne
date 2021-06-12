@@ -38,9 +38,8 @@ class DefaultController extends AbstractController
      * @throws ServerExceptionInterface
      * @throws TransportExceptionInterface
      */
-    public function openWeatherMapAction(CallWeatherAPIService $callWeatherAPIService) : Response
+    public function openWeatherMapAction(CallWeatherAPIService $callWeatherAPIService): Response
     {
-
         return $this->json([
             'code' => 200,
             'weather' => $callWeatherAPIService->findByCity('TOULON')

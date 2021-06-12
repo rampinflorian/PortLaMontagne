@@ -20,7 +20,7 @@ class DashboardController extends AbstractController
      * @param MarketProductRepository $marketProductRepository
      * @return Response
      */
-    public function index(UserRepository $userRepository, ArticleRepository $articleRepository, CommentRepository $commentRepository, MarketProductRepository $marketProductRepository) : Response
+    public function index(UserRepository $userRepository, ArticleRepository $articleRepository, CommentRepository $commentRepository, MarketProductRepository $marketProductRepository): Response
     {
         return $this->render('admin/dashboard/index.html.twig', [
             'controller_name' => 'DashboardController',

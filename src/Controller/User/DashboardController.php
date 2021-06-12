@@ -18,7 +18,6 @@ class DashboardController extends AbstractController
      */
     public function index(CommentRepository $commentRepository, MarketProductRepository $marketProductRepository)
     {
-
         return $this->render('user/dashboard/index.html.twig', [
             'articlesCommented' => count($commentRepository->findByUser($this->getUser())),
             'marketProducts' => $marketProductRepository->count(['vendor' => $this->getUser()])

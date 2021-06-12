@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Service;
-
 
 use mysql_xdevapi\Exception;
 use Symfony\Component\HttpClient\HttpClient;

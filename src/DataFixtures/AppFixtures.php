@@ -47,7 +47,6 @@ class AppFixtures extends Fixture
                 ->setStar($faker->numberBetween(1, 5))
                 ->setIsSoldOut($faker->boolean);
             $manager->persist($topo);
-
         }
 
         for ($i = 0; $i < 19; $i++) {
