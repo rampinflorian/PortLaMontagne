@@ -112,7 +112,7 @@
         "version": "v1.0.5"
     },
     "gedmo/doctrine-extensions": {
-        "version": "v2.4.41"
+        "version": "v3.0.5"
     },
     "gregwar/captcha": {
         "version": "v1.1.8"
