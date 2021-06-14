@@ -13,13 +13,13 @@ use Symfony\Component\Routing\Annotation\Route;
 class HomeController extends AbstractController
 {
     /**
+     * @Route("/", name="home")
      * @param ArticleRepository $articleRepository
      * @param PartnerRepository $partnerRepository
      * @param ParameterBagInterface $parameterBag
      * @param CommentRepository $commentRepository
      * @return Response
      */
-    #[Route("/", name: "home")]
     public function index(
         ArticleRepository $articleRepository,
         PartnerRepository $partnerRepository,
