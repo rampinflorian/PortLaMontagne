@@ -11,6 +11,8 @@
 /src/preload.php
 /var/
 /vendor/
+.env
+.php-version
 ###< symfony/framework-bundle ###
 
 ###> symfony/phpunit-bridge ###
