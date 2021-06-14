@@ -4,7 +4,7 @@ namespace App\Entity;
 
 use App\Repository\MarketProductRepository;
 use Doctrine\ORM\Mapping as ORM;
-use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\String\Slugger\AsciiSlugger;
 
 /**
  * @ORM\Entity(repositoryClass=MarketProductRepository::class)
@@ -72,7 +72,6 @@ class MarketProduct
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Gedmo\Slug(fields={"title"})
      */
     private $slug;
 
@@ -93,6 +92,8 @@ class MarketProduct
     {
         $this->setCreatedAt(new \DateTime('now'));
         $this->setUpdatedAt(new \DateTime('now'));
+        $slugger = new AsciiSlugger();
+        $this->slug = $slugger->slug($this->title, '-', 'fr');
     }
 
     public function getId(): ?int
