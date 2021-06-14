@@ -8,6 +8,7 @@
         "ext-intl": "*",
         "ext-json": "*",
         "fakerphp/faker": "^1.14",
+        "gedmo/doctrine-extensions": "^3.0",
         "gregwar/captcha-bundle": "^2.1",
         "knpuniversity/oauth2-client-bundle": "^2.8",
         "league/oauth2-facebook": "^2.0.5",
