@@ -13,6 +13,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @UniqueEntity(fields={"email"}, message="Un utilisateur existe déjà avec cette adresse email !")
  * @ORM\HasLifecycleCallbacks()
+ * @method string getUserIdentifier()
  */
 class User implements UserInterface
 {
@@ -389,5 +390,10 @@ class User implements UserInterface
         }
 
         return $this;
+    }
+
+    public function __call($name, $arguments)
+    {
+        // TODO: Implement @method string getUserIdentifier()
     }
 }
