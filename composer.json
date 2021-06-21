@@ -42,8 +42,14 @@
         "twig/intl-extra": "^3.0"
     },
     "require-dev": {
+<<<<<<< Updated upstream
         "doctrine/doctrine-fixtures-bundle": "^3.3",
         "phpstan/phpstan-symfony": "^0.12.7",
+=======
+        "doctrine/doctrine-fixtures-bundle": "^3.4",
+        "phpstan/phpstan-symfony": "^0.12",
+        "squizlabs/php_codesniffer": "^3.6",
+>>>>>>> Stashed changes
         "symfony/debug-pack": "*",
         "symfony/maker-bundle": "^1.0",
         "symfony/profiler-pack": "*",
@@ -75,6 +81,7 @@
         "symfony/polyfill-php56": "*"
     },
     "scripts": {
+        "phpcs": "phpcs --standard=PSR2",
         "auto-scripts": {
             "cache:clear": "symfony-cmd",
             "assets:install %PUBLIC_DIR%": "symfony-cmd"
